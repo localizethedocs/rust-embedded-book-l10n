@@ -5,15 +5,15 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/intro/index.md:1
 msgid "Introduction"
-msgstr ""
+msgstr "介紹"
 
 #: src/intro/index.md:3
 msgid ""
@@ -105,7 +105,7 @@ msgstr ""
 
 #: src/intro/index.md:48
 msgid "Cross Compilation"
-msgstr ""
+msgstr "交叉編譯"
 
 #: src/intro/index.md:49
 msgid "Memory Mapped Peripherals"
@@ -121,7 +121,7 @@ msgstr ""
 
 #: src/intro/index.md:53
 msgid "Other Resources"
-msgstr ""
+msgstr "其他資源"
 
 #: src/intro/index.md:54
 msgid ""
@@ -132,15 +132,15 @@ msgstr ""
 
 #: src/intro/index.md:56
 msgid "Topic"
-msgstr ""
+msgstr "話題"
 
 #: src/intro/index.md:56
 msgid "Resource"
-msgstr ""
+msgstr "資源"
 
 #: src/intro/index.md:56
 msgid "Description"
-msgstr ""
+msgstr "描述"
 
 #: src/intro/index.md:58
 msgid "Rust"
@@ -148,7 +148,7 @@ msgstr ""
 
 #: src/intro/index.md:58
 msgid "[Rust Book](https://doc.rust-lang.org/book/)"
-msgstr ""
+msgstr "[Rust 手冊](https://doc.rust-lang.org/book/)"
 
 #: src/intro/index.md:58
 msgid ""
@@ -236,7 +236,7 @@ msgstr ""
 
 #: src/intro/index.md:68
 msgid "Translations"
-msgstr ""
+msgstr "翻譯"
 
 #: src/intro/index.md:70
 msgid ""
@@ -258,7 +258,7 @@ msgstr ""
 
 #: src/intro/index.md:79
 msgid "How to Use This Book"
-msgstr ""
+msgstr "如何使用這本手冊"
 
 #: src/intro/index.md:81
 msgid ""
