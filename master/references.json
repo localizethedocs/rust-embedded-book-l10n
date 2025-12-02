@@ -13,22 +13,22 @@
     },
     "zh_CN" : 
     {
-      "branch" : "",
+      "branch" : "master",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2025-07-08 18:54:25 +0000",
+        "hash" : "fe88fbb68391a465680dd91109f0a151a1676f3e",
+        "title" : "Merge pull request #386 from HosseinAssaran/master"
       }
     },
     "zh_TW" : 
     {
-      "branch" : "",
+      "branch" : "master",
       "commit" : 
       {
-        "date" : "",
-        "hash" : "",
-        "title" : ""
+        "date" : "2025-07-08 18:54:25 +0000",
+        "hash" : "fe88fbb68391a465680dd91109f0a151a1676f3e",
+        "title" : "Merge pull request #386 from HosseinAssaran/master"
       }
     }
   },

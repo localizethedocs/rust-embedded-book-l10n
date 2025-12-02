@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/naming.md:1
+msgid "Naming"
+msgstr ""
+
+#: src/design-patterns/hal/naming.md:4
+msgid "<a id=\"c-crate-name\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/naming.md:5
+msgid "The crate is named appropriately (C-CRATE-NAME)"
+msgstr ""
+
+#: src/design-patterns/hal/naming.md:7
+msgid ""
+"HAL crates should be named after the chip or family of chips they aim to "
+"support. Their name should end with `-hal` to distinguish them from register "
+"access crates. The name should not contain underscores (use dashes instead)."
+msgstr ""

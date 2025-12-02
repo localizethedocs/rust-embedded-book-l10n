@@ -1,0 +1,120 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/intro/install/linux.md:1
+msgid "Linux"
+msgstr ""
+
+#: src/intro/install/linux.md:3
+msgid "Here are the installation commands for a few Linux distributions."
+msgstr ""
+
+#: src/intro/install/linux.md:5
+msgid "Packages"
+msgstr ""
+
+#: src/intro/install/linux.md:7
+msgid "Ubuntu 18.04 or newer / Debian stretch or newer"
+msgstr ""
+
+#: src/intro/install/linux.md:9
+msgid ""
+"**NOTE** `gdb-multiarch` is the GDB command you'll use to debug your ARM "
+"Cortex-M programs"
+msgstr ""
+
+#: src/intro/install/linux.md:26
+msgid "Ubuntu 14.04 and 16.04"
+msgstr ""
+
+#: src/intro/install/linux.md:28
+msgid ""
+"**NOTE** `arm-none-eabi-gdb` is the GDB command you'll use to debug your ARM "
+"Cortex-M programs"
+msgstr ""
+
+#: src/intro/install/linux.md:40
+msgid "Fedora 27 or newer"
+msgstr ""
+
+#: src/intro/install/linux.md:51
+msgid "Arch Linux"
+msgstr ""
+
+#: src/intro/install/linux.md:53
+msgid ""
+"**NOTE** `arm-none-eabi-gdb` is the GDB command you'll use to debug ARM "
+"Cortex-M programs"
+msgstr ""
+
+#: src/intro/install/linux.md:60
+msgid "udev rules"
+msgstr ""
+
+#: src/intro/install/linux.md:62
+msgid ""
+"This rule lets you use OpenOCD with the Discovery board without root "
+"privilege."
+msgstr ""
+
+#: src/intro/install/linux.md:64
+msgid ""
+"Create the file `/etc/udev/rules.d/70-st-link.rules` with the contents shown "
+"below."
+msgstr ""
+
+#: src/intro/install/linux.md:66
+msgid ""
+"```text\n"
+"# STM32F3DISCOVERY rev A/B - ST-LINK/V2\n"
+"ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"3748\", TAG+=\"uaccess\"\n"
+"\n"
+"# STM32F3DISCOVERY rev C+ - ST-LINK/V2-1\n"
+"ATTRS{idVendor}==\"0483\", ATTRS{idProduct}==\"374b\", TAG+=\"uaccess\"\n"
+"```"
+msgstr ""
+
+#: src/intro/install/linux.md:74
+msgid "Then reload all the udev rules with:"
+msgstr ""
+
+#: src/intro/install/linux.md:80
+msgid ""
+"If you had the board plugged to your laptop, unplug it and then plug it "
+"again."
+msgstr ""
+
+#: src/intro/install/linux.md:82
+msgid "You can check the permissions by running this command:"
+msgstr ""
+
+#: src/intro/install/linux.md:88
+msgid "Which should show something like"
+msgstr ""
+
+#: src/intro/install/linux.md:96
+msgid ""
+"Take note of the bus and device numbers. Use those numbers to create a path "
+"like `/dev/bus/usb/<bus>/<device>`. Then use this path like so:"
+msgstr ""
+
+#: src/intro/install/linux.md:116
+msgid ""
+"The `+` appended to permissions indicates the existence of an extended "
+"permission. The `getfacl` command tells the user `you` can make use of this "
+"device."
+msgstr ""
+
+#: src/intro/install/linux.md:120
+msgid "Now, go to the [next section](verify.md)."
+msgstr ""

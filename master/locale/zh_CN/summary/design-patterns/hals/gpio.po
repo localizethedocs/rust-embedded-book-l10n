@@ -1,0 +1,135 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/gpio.md:1
+msgid "Recommendations for GPIO Interfaces"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:3
+msgid "<a id=\"c-zst-pin\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:4
+msgid "Pin types are zero-sized by default (C-ZST-PIN)"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:6
+msgid ""
+"GPIO Interfaces exposed by the HAL should provide dedicated zero-sized types "
+"for each pin on every interface or port, resulting in a zero-cost GPIO "
+"abstraction when all pin assignments are statically known."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:10
+msgid ""
+"Each GPIO Interface or Port should implement a `split` method returning a "
+"struct with every pin."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:13 src/design-patterns/hal/gpio.md:45
+#: src/design-patterns/hal/gpio.md:127
+msgid "Example:"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:17 src/design-patterns/hal/gpio.md:27
+#: src/design-patterns/hal/gpio.md:35 src/design-patterns/hal/gpio.md:138
+msgid "// ...\n"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:39
+msgid "<a id=\"c-erased-pin\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:40
+msgid "Pin types provide methods to erase pin and port (C-ERASED-PIN)"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:42
+msgid ""
+"Pins should provide type erasure methods that move their properties from "
+"compile time to runtime, and allow more flexibility in applications."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:48
+msgid "/// Port A, pin 0.\n"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:56
+msgid "/// A pin on port A.\n"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:59
+msgid "/// The pin number.\n"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:75
+msgid "// (these fields can be packed to reduce the memory footprint)\n"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:86
+msgid "<a id=\"c-pin-state\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:87
+msgid "Pin state should be encoded as type parameters (C-PIN-STATE)"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:89
+msgid ""
+"Pins may be configured as input or output with different characteristics "
+"depending on the chip or family. This state should be encoded in the type "
+"system to prevent use of pins in incorrect states."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:93
+msgid ""
+"Additional, chip-specific state (eg. drive strength) may also be encoded in "
+"this way, using additional type parameters."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:96
+msgid ""
+"Methods for changing the pin state should be provided as `into_input` and "
+"`into_output` methods."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:99
+msgid ""
+"Additionally, `with_{input,output}_state` methods should be provided that "
+"temporarily reconfigure a pin in a different state without moving it."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:102
+msgid ""
+"The following methods should be provided for every pin type (that is, both "
+"erased and non-erased pin types should provide the same API):"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:105
+msgid "`pub fn into_input<N: InputState>(self, input: N) -> Pin<N>`"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:106
+msgid "`pub fn into_output<N: OutputState>(self, output: N) -> Pin<N>`"
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:123
+msgid ""
+"Pin state should be bounded by sealed traits. Users of the HAL should have "
+"no need to add their own state. The traits can provide HAL-specific methods "
+"required to implement the pin state API."
+msgstr ""
+
+#: src/design-patterns/hal/gpio.md:203
+msgid "// Same for `PA` and `Pin`, and other pin types.\n"
+msgstr ""

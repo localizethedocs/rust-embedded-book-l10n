@@ -1,0 +1,74 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/static-guarantees/typestate-programming.md:1
+msgid "Typestate Programming"
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:3
+msgid ""
+"The concept of [typestates](https://en.wikipedia.org/wiki/"
+"Typestate_analysis) describes the encoding of information about the current "
+"state of an object into the type of that object. Although this can sound a "
+"little arcane, if you have used the [Builder Pattern](https://doc.rust-lang."
+"org/1.0.0/style/ownership/builders.html) in Rust, you have already started "
+"using Typestate Programming!"
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:48
+msgid "\"{:#?}\""
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:52
+msgid ""
+"In this example, there is no direct way to create a `Foo` object. We must "
+"create a `FooBuilder`, and properly initialize it before we can obtain the "
+"`Foo` object we want."
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:54
+msgid "This minimal example encodes two states:"
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:56
+msgid ""
+"`FooBuilder`, which represents an \"unconfigured\", or \"configuration in "
+"process\" state"
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:57
+msgid "`Foo`, which represents a \"configured\", or \"ready to use\" state."
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:59
+msgid "Strong Types"
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:61
+msgid ""
+"Because Rust has a [Strong Type System](https://en.wikipedia.org/wiki/"
+"Strong_and_weak_typing), there is no easy way to magically create an "
+"instance of `Foo`, or to turn a `FooBuilder` into a `Foo` without calling "
+"the `into_foo()` method. Additionally, calling the `into_foo()` method "
+"consumes the original `FooBuilder` structure, meaning it can not be reused "
+"without the creation of a new instance."
+msgstr ""
+
+#: src/static-guarantees/typestate-programming.md:65
+msgid ""
+"This allows us to represent the states of our system as types, and to "
+"include the necessary actions for state transitions into the methods that "
+"exchange one type for another. By creating a `FooBuilder`, and exchanging it "
+"for a `Foo` object, we have walked through the steps of a basic state "
+"machine."
+msgstr ""

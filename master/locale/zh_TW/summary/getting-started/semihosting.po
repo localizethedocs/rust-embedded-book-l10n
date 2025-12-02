@@ -1,0 +1,123 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/start/semihosting.md:1
+msgid "Semihosting"
+msgstr ""
+
+#: src/start/semihosting.md:3
+msgid ""
+"Semihosting is a mechanism that lets embedded devices do I/O on the host and "
+"is mainly used to log messages to the host console. Semihosting requires a "
+"debug session and pretty much nothing else (no extra wires!) so it's super "
+"convenient to use. The downside is that it's super slow: each write "
+"operation can take several milliseconds depending on the hardware debugger "
+"(e.g. ST-Link) you use."
+msgstr ""
+
+#: src/start/semihosting.md:9
+msgid ""
+"The [`cortex-m-semihosting`](https://crates.io/crates/cortex-m-semihosting) "
+"crate provides an API to do semihosting operations on Cortex-M devices. The "
+"program below is the semihosting version of \"Hello, world!\":"
+msgstr ""
+
+#: src/start/semihosting.md:26
+msgid "\"Hello, world!\""
+msgstr ""
+
+#: src/start/semihosting.md:32
+msgid ""
+"If you run this program on hardware you'll see the \"Hello, world!\" message "
+"within the OpenOCD logs."
+msgstr ""
+
+#: src/start/semihosting.md:42
+msgid "You do need to enable semihosting in OpenOCD from GDB first:"
+msgstr ""
+
+#: src/start/semihosting.md:48
+msgid ""
+"QEMU understands semihosting operations so the above program will also work "
+"with `qemu-system-arm` without having to start a debug session. Note that "
+"you'll need to pass the `-semihosting-config` flag to QEMU to enable "
+"semihosting support; these flags are already included in the `.cargo/config."
+"toml` file of the template."
+msgstr ""
+
+#: src/start/semihosting.md:61
+msgid ""
+"There's also an `exit` semihosting operation that can be used to terminate "
+"the QEMU process. Important: do **not** use `debug::exit` on hardware; this "
+"function can corrupt your OpenOCD session and you will not be able to debug "
+"more programs until you restart it."
+msgstr ""
+
+#: src/start/semihosting.md:77 src/start/semihosting.md:115
+msgid "\"blue\""
+msgstr ""
+
+#: src/start/semihosting.md:79 src/start/semihosting.md:117
+msgid "\"red\""
+msgstr ""
+
+#: src/start/semihosting.md:97
+msgid ""
+"One last tip: you can set the panicking behavior to `exit(EXIT_FAILURE)`. "
+"This will let you write `no_std` run-pass tests that you can run on QEMU."
+msgstr ""
+
+#: src/start/semihosting.md:100
+msgid ""
+"For convenience, the `panic-semihosting` crate has an \"exit\" feature that "
+"when enabled invokes `exit(EXIT_FAILURE)` after logging the panic message to "
+"the host stderr."
+msgstr ""
+
+#: src/start/semihosting.md:108
+msgid "// features = [\"exit\"]\n"
+msgstr ""
+
+#: src/start/semihosting.md:123
+msgid ""
+"```text\n"
+"$ cargo run\n"
+"     Running `qemu-system-arm (..)\n"
+"panicked at 'assertion failed: `(left == right)`\n"
+"  left: `\"blue\"`,\n"
+" right: `\"red\"`', examples/hello.rs:15:5\n"
+"\n"
+"$ echo $?\n"
+"1\n"
+"```"
+msgstr ""
+
+#: src/start/semihosting.md:134
+msgid ""
+"**NOTE**: To enable this feature on `panic-semihosting`, edit your `Cargo."
+"toml` dependencies section where `panic-semihosting` is specified with:"
+msgstr ""
+
+#: src/start/semihosting.md:137
+msgid ""
+"```toml\n"
+"panic-semihosting = { version = \"VERSION\", features = [\"exit\"] }\n"
+"```"
+msgstr ""
+
+#: src/start/semihosting.md:141
+msgid ""
+"where `VERSION` is the version desired. For more information on dependencies "
+"features check the [`specifying dependencies`](https://doc.rust-lang.org/"
+"cargo/reference/specifying-dependencies.html) section of the Cargo book."
+msgstr ""

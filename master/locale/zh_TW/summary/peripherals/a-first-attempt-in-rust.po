@@ -1,0 +1,209 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/peripherals/a-first-attempt.md:1
+msgid "A First Attempt"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:3
+msgid "The Registers"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:5
+msgid ""
+"Let's look at the 'SysTick' peripheral - a simple timer which comes with "
+"every Cortex-M processor core. Typically you'll be looking these up in the "
+"chip manufacturer's data sheet or _Technical Reference Manual_, but this "
+"example is common to all ARM Cortex-M cores, let's look in the [ARM "
+"reference manual](http://infocenter.arm.com/help/topic/com.arm.doc.dui0553a/"
+"Babieigh.html). We see there are four registers:"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:9
+msgid "Offset"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:9
+msgid "Name"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:9
+msgid "Description"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:9
+msgid "Width"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:11
+msgid "0x00"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:11
+msgid "SYST_CSR"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:11
+msgid "Control and Status Register"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:11 src/peripherals/a-first-attempt.md:12
+#: src/peripherals/a-first-attempt.md:13 src/peripherals/a-first-attempt.md:14
+msgid "32 bits"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:12
+msgid "0x04"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:12
+msgid "SYST_RVR"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:12
+msgid "Reload Value Register"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:13
+msgid "0x08"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:13
+msgid "SYST_CVR"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:13
+msgid "Current Value Register"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:14
+msgid "0x0C"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:14
+msgid "SYST_CALIB"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:14
+msgid "Calibration Value Register"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:16
+msgid "The C Approach"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:18
+msgid ""
+"In Rust, we can represent a collection of registers in exactly the same way "
+"as we do in C - with a `struct`."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:30
+msgid ""
+"The qualifier `#[repr(C)]` tells the Rust compiler to lay this structure out "
+"like a C compiler would. That's very important, as Rust allows structure "
+"fields to be re-ordered, while C does not. You can imagine the debugging "
+"we'd have to do if these fields were silently re-arranged by the compiler! "
+"With this qualifier in place, we have our four 32-bit fields which "
+"correspond to the table above. But of course, this `struct` is of no use by "
+"itself - we need a variable."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:37
+msgid "Volatile Accesses"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:39
+msgid "Now, there are a couple of problems with the approach above."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:41
+msgid "We have to use unsafe every time we want to access our Peripheral."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:42
+msgid ""
+"We've got no way of specifying which registers are read-only or read-write."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:43
+msgid ""
+"Any piece of code anywhere in your program could access the hardware through "
+"this structure."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:45
+msgid "Most importantly, it doesn't actually work..."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:47
+msgid ""
+"Now, the problem is that compilers are clever. If you make two writes to the "
+"same piece of RAM, one after the other, the compiler can notice this and "
+"just skip the first write entirely. In C, we can mark variables as "
+"`volatile` to ensure that every read or write occurs as intended. In Rust, "
+"we instead mark the _accesses_ as volatile, not the variable."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:54
+msgid ""
+"So, we've fixed one of our four problems, but now we have even more `unsafe` "
+"code! Fortunately, there's a third party crate which can help - "
+"[`volatile_register`](https://crates.io/crates/volatile_register)."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:79
+msgid ""
+"Now, the volatile accesses are performed automatically through the `read` "
+"and `write` methods. It's still `unsafe` to perform writes, but to be fair, "
+"hardware is a bunch of mutable state and there's no way for the compiler to "
+"know whether these writes are actually safe, so this is a good default "
+"position."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:81
+msgid "The Rusty Wrapper"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:83
+msgid ""
+"We need to wrap this `struct` up into a higher-layer API that is safe for "
+"our users to call. As the driver author, we manually verify the unsafe code "
+"is correct, and then present a safe API for our users so they don't have to "
+"worry about it (provided they trust us to get it right!)."
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:85
+msgid "One example might be:"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:121
+msgid "\"Time is now 0x{:08x}\""
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:125
+msgid ""
+"Now, the problem with this approach is that the following code is perfectly "
+"acceptable to the compiler:"
+msgstr ""
+
+#: src/peripherals/a-first-attempt.md:139
+msgid ""
+"Our `&mut self` argument to the `set_reload` function checks that there are "
+"no other references to _that_ particular `SystemTimer` struct, but they "
+"don't stop the user creating a second `SystemTimer` which points to the "
+"exact same peripheral! Code written in this fashion will work if the author "
+"is diligent enough to spot all of these 'duplicate' driver instances, but "
+"once the code is spread out over multiple modules, drivers, developers, and "
+"days, it gets easier and easier to make these kinds of mistakes."
+msgstr ""

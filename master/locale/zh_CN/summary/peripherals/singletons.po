@@ -1,0 +1,202 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/peripherals/singletons.md:1
+msgid "Singletons"
+msgstr ""
+
+#: src/peripherals/singletons.md:3
+msgid ""
+"In software engineering, the singleton pattern is a software design pattern "
+"that restricts the instantiation of a class to one object."
+msgstr ""
+
+#: src/peripherals/singletons.md:5
+msgid ""
+"_Wikipedia: [Singleton Pattern](https://en.wikipedia.org/wiki/"
+"Singleton_pattern)_"
+msgstr ""
+
+#: src/peripherals/singletons.md:10
+msgid "But why can't we just use global variable(s)?"
+msgstr ""
+
+#: src/peripherals/singletons.md:12
+msgid "We could make everything a public static, like this"
+msgstr ""
+
+#: src/peripherals/singletons.md:24
+msgid ""
+"But this has a few problems. It is a mutable global variable, and in Rust, "
+"these are always unsafe to interact with. These variables are also visible "
+"across your whole program, which means the borrow checker is unable to help "
+"you track references and ownership of these variables."
+msgstr ""
+
+#: src/peripherals/singletons.md:26
+msgid "How do we do this in Rust?"
+msgstr ""
+
+#: src/peripherals/singletons.md:28
+msgid ""
+"Instead of just making our peripheral a global variable, we might instead "
+"decide to make a structure, in this case called `PERIPHERALS`, which "
+"contains an `Option<T>` for each of our peripherals."
+msgstr ""
+
+#: src/peripherals/singletons.md:45
+msgid ""
+"This structure allows us to obtain a single instance of our peripheral. If "
+"we try to call `take_serial()` more than once, our code will panic!"
+msgstr ""
+
+#: src/peripherals/singletons.md:50
+msgid ""
+"// This panics!\n"
+"    // let serial_2 = unsafe { PERIPHERALS.take_serial() };\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:55
+msgid ""
+"Although interacting with this structure is `unsafe`, once we have the "
+"`SerialPort` it contained, we no longer need to use `unsafe`, or the "
+"`PERIPHERALS` structure at all."
+msgstr ""
+
+#: src/peripherals/singletons.md:57
+msgid ""
+"This has a small runtime overhead because we must wrap the `SerialPort` "
+"structure in an option, and we'll need to call `take_serial()` once, however "
+"this small up-front cost allows us to leverage the borrow checker throughout "
+"the rest of our program."
+msgstr ""
+
+#: src/peripherals/singletons.md:59
+msgid "Existing library support"
+msgstr ""
+
+#: src/peripherals/singletons.md:61
+msgid ""
+"Although we created our own `Peripherals` structure above, it is not "
+"necessary to do this for your code. the `cortex_m` crate contains a macro "
+"called `singleton!()` that will perform this action for you."
+msgstr ""
+
+#: src/peripherals/singletons.md:67
+msgid "// OK if `main` is executed only once\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:73
+msgid ""
+"[cortex_m docs](https://docs.rs/cortex-m/latest/cortex_m/macro.singleton."
+"html)"
+msgstr ""
+
+#: src/peripherals/singletons.md:75
+msgid ""
+"Additionally, if you use [`cortex-m-rtic`](https://github.com/rtic-rs/cortex-"
+"m-rtic), the entire process of defining and obtaining these peripherals are "
+"abstracted for you, and you are instead handed a `Peripherals` structure "
+"that contains a non-`Option<T>` version of all of the items you define."
+msgstr ""
+
+#: src/peripherals/singletons.md:78
+msgid "// cortex-m-rtic v0.5.x\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:85
+msgid "// Cortex-M peripherals\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:88
+msgid "// Device specific peripherals\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:94
+msgid "But why?"
+msgstr ""
+
+#: src/peripherals/singletons.md:96
+msgid ""
+"But how do these Singletons make a noticeable difference in how our Rust "
+"code works?"
+msgstr ""
+
+#: src/peripherals/singletons.md:103
+msgid "// <------ This is really, really important\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:112
+msgid "There are two important factors in play here:"
+msgstr ""
+
+#: src/peripherals/singletons.md:114
+msgid ""
+"Because we are using a singleton, there is only one way or place to obtain a "
+"`SerialPort` structure"
+msgstr ""
+
+#: src/peripherals/singletons.md:115
+msgid ""
+"To call the `read_speed()` method, we must have ownership or a reference to "
+"a `SerialPort` structure"
+msgstr ""
+
+#: src/peripherals/singletons.md:117
+msgid ""
+"These two factors put together means that it is only possible to access the "
+"hardware if we have appropriately satisfied the borrow checker, meaning that "
+"at no point do we have multiple mutable references to the same hardware!"
+msgstr ""
+
+#: src/peripherals/singletons.md:121
+msgid ""
+"// missing reference to `self`! Won't work.\n"
+"    // SerialPort::read_speed();\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:126
+msgid "// you can only read what you have access to\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:131
+msgid "Treat your hardware like data"
+msgstr ""
+
+#: src/peripherals/singletons.md:133
+msgid ""
+"Additionally, because some references are mutable, and some are immutable, "
+"it becomes possible to see whether a function or method could potentially "
+"modify the state of the hardware. For example,"
+msgstr ""
+
+#: src/peripherals/singletons.md:135
+msgid "This is allowed to change hardware settings:"
+msgstr ""
+
+#: src/peripherals/singletons.md:142 src/peripherals/singletons.md:150
+msgid "// ...\n"
+msgstr ""
+
+#: src/peripherals/singletons.md:146
+msgid "This isn't:"
+msgstr ""
+
+#: src/peripherals/singletons.md:154
+msgid ""
+"This allows us to enforce whether code should or should not make changes to "
+"hardware at **compile time**, rather than at runtime. As a note, this "
+"generally only works across one application, but for bare metal systems, our "
+"software will be compiled into a single application, so this is not usually "
+"a restriction."
+msgstr ""

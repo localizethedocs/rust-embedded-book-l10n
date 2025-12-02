@@ -1,0 +1,64 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/predictability.md:1
+msgid "Predictability"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:4
+msgid "<a id=\"c-ctor\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:5
+msgid "Constructors are used instead of extension traits (C-CTOR)"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:7
+msgid ""
+"All peripherals to which the HAL adds functionality should be wrapped in a "
+"new type, even if no additional fields are required for that functionality."
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:10
+msgid "Extension traits implemented for the raw peripheral should be avoided."
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:12
+msgid "<a id=\"c-inline\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:13
+msgid "Methods are decorated with `#[inline]` where appropriate (C-INLINE)"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:15
+msgid ""
+"The Rust compiler does not by default perform full inlining across crate "
+"boundaries. As embedded applications are sensitive to unexpected code size "
+"increases, `#[inline]` should be used to guide the compiler as follows:"
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:19
+msgid ""
+"All \"small\" functions should be marked `#[inline]`. What qualifies as "
+"\"small\" is subjective, but generally all functions that are expected to "
+"compile down to single-digit instruction sequences qualify as small."
+msgstr ""
+
+#: src/design-patterns/hal/predictability.md:22
+msgid ""
+"Functions that are very likely to take constant values as parameters should "
+"be marked as `#[inline]`. This enables the compiler to compute even "
+"complicated initialization logic at compile time, provided the function "
+"inputs are known."
+msgstr ""

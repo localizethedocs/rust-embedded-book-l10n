@@ -1,0 +1,76 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/static-guarantees/zero-cost-abstractions.md:1
+msgid "Zero Cost Abstractions"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:3
+msgid ""
+"Type states are also an excellent example of Zero Cost Abstractions - the "
+"ability to move certain behaviors to compile time execution or analysis. "
+"These type states contain no actual data, and are instead used as markers. "
+"Since they contain no data, they have no actual representation in memory at "
+"runtime:"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:8
+#: src/static-guarantees/zero-cost-abstractions.md:9
+#: src/static-guarantees/zero-cost-abstractions.md:10
+#: src/static-guarantees/zero-cost-abstractions.md:11
+msgid "// == 0\n"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:14
+msgid "Zero Sized Types"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:20
+msgid ""
+"Structures defined like this are called Zero Sized Types, as they contain no "
+"actual data. Although these types act \"real\" at compile time - you can "
+"copy them, move them, take references to them, etc., however the optimizer "
+"will completely strip them away."
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:22
+msgid "In this snippet of code:"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:36
+msgid ""
+"The GpioConfig we return never exists at runtime. Calling this function will "
+"generally boil down to a single assembly instruction - storing a constant "
+"register value to a register location. This means that the type state "
+"interface we've developed is a zero cost abstraction - it uses no more CPU, "
+"RAM, or code space tracking the state of `GpioConfig`, and renders to the "
+"same machine code as a direct register access."
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:38
+msgid "Nesting"
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:40
+msgid ""
+"In general, these abstractions may be nested as deeply as you would like. As "
+"long as all components used are zero sized types, the whole structure will "
+"not exist at runtime."
+msgstr ""
+
+#: src/static-guarantees/zero-cost-abstractions.md:42
+msgid ""
+"For complex or deeply nested structures, it may be tedious to define all "
+"possible combinations of state. In these cases, macros may be used to "
+"generate all implementations."
+msgstr ""

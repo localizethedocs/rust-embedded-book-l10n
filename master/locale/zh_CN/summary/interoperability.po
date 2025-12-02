@@ -1,0 +1,149 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/interoperability/index.md:1
+msgid "Interoperability"
+msgstr ""
+
+#: src/interoperability/index.md:3
+msgid ""
+"Interoperability between Rust and C code is always dependent on transforming "
+"data between the two languages. For this purpose, there is a dedicated "
+"module in the `stdlib` called [`std::ffi`](https://doc.rust-lang.org/std/ffi/"
+"index.html)."
+msgstr ""
+
+#: src/interoperability/index.md:9
+msgid ""
+"`std::ffi` provides type definitions for C primitive types, such as `char`, "
+"`int`, and `long`. It also provides some utility for converting more complex "
+"types such as strings, mapping both `&str` and `String` to C types that are "
+"easier and safer to handle."
+msgstr ""
+
+#: src/interoperability/index.md:15
+msgid ""
+"As of Rust 1.30, functionalities of `std::ffi` are available in either "
+"`core::ffi` or `alloc::ffi` depending on whether or not memory allocation is "
+"involved. The [`cty`](https://crates.io/crates/cty) crate and the "
+"[`cstr_core`](https://crates.io/crates/cstr_core) crate also offer similar "
+"functionalities."
+msgstr ""
+
+#: src/interoperability/index.md:25
+msgid "Rust type"
+msgstr ""
+
+#: src/interoperability/index.md:25
+msgid "Intermediate"
+msgstr ""
+
+#: src/interoperability/index.md:25
+msgid "C type"
+msgstr ""
+
+#: src/interoperability/index.md:27
+msgid "`String`"
+msgstr ""
+
+#: src/interoperability/index.md:27
+msgid "`CString`"
+msgstr ""
+
+#: src/interoperability/index.md:27
+msgid "`char *`"
+msgstr ""
+
+#: src/interoperability/index.md:28
+msgid "`&str`"
+msgstr ""
+
+#: src/interoperability/index.md:28
+msgid "`CStr`"
+msgstr ""
+
+#: src/interoperability/index.md:28
+msgid "`const char *`"
+msgstr ""
+
+#: src/interoperability/index.md:29
+msgid "`()`"
+msgstr ""
+
+#: src/interoperability/index.md:29
+msgid "`c_void`"
+msgstr ""
+
+#: src/interoperability/index.md:29
+msgid "`void`"
+msgstr ""
+
+#: src/interoperability/index.md:30
+msgid "`u32` or `u64`"
+msgstr ""
+
+#: src/interoperability/index.md:30
+msgid "`c_uint`"
+msgstr ""
+
+#: src/interoperability/index.md:30
+msgid "`unsigned int`"
+msgstr ""
+
+#: src/interoperability/index.md:31
+msgid "etc"
+msgstr ""
+
+#: src/interoperability/index.md:31
+msgid "..."
+msgstr ""
+
+#: src/interoperability/index.md:33
+msgid ""
+"A value of a C primitive type can be used as one of the corresponding Rust "
+"type and vice versa, since the former is simply a type alias of the latter. "
+"For example, the following code compiles on platforms where `unsigned int` "
+"is 32-bit long."
+msgstr ""
+
+#: src/interoperability/index.md:46
+msgid "Interoperability with other build systems"
+msgstr ""
+
+#: src/interoperability/index.md:48
+msgid ""
+"A common requirement for including Rust in your embedded project is "
+"combining Cargo with your existing build system, such as make or cmake."
+msgstr ""
+
+#: src/interoperability/index.md:51
+msgid ""
+"We are collecting examples and use cases for this on our issue tracker in "
+"[issue #61](https://github.com/rust-embedded/book/issues/61)."
+msgstr ""
+
+#: src/interoperability/index.md:56
+msgid "Interoperability with RTOSs"
+msgstr ""
+
+#: src/interoperability/index.md:58
+msgid ""
+"Integrating Rust with an RTOS such as FreeRTOS or ChibiOS is still a work in "
+"progress; especially calling RTOS functions from Rust can be tricky."
+msgstr ""
+
+#: src/interoperability/index.md:61
+msgid ""
+"We are collecting examples and use cases for this on our issue tracker in "
+"[issue #62](https://github.com/rust-embedded/book/issues/62)."
+msgstr ""

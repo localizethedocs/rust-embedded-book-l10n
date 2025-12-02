@@ -1,0 +1,125 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/intro/install.md:1
+msgid "Installing the tools"
+msgstr ""
+
+#: src/intro/install.md:3
+msgid ""
+"This page contains OS-agnostic installation instructions for a few of the "
+"tools:"
+msgstr ""
+
+#: src/intro/install.md:5
+msgid "Rust Toolchain"
+msgstr ""
+
+#: src/intro/install.md:7
+msgid ""
+"Install rustup by following the instructions at [https://rustup.rs](https://"
+"rustup.rs)."
+msgstr ""
+
+#: src/intro/install.md:9
+msgid ""
+"**NOTE** Make sure you have a compiler version equal to or newer than "
+"`1.31`. `rustc -V` should return a date newer than the one shown below."
+msgstr ""
+
+#: src/intro/install.md:17
+msgid ""
+"For bandwidth and disk usage concerns the default installation only supports "
+"native compilation. To add cross compilation support for the ARM Cortex-M "
+"architectures choose one of the following compilation targets. For the "
+"STM32F3DISCOVERY board used for the examples in this book, use the "
+"`thumbv7em-none-eabihf` target. [Find the best Cortex-M for you.](https://"
+"developer.arm.com/ip-products/processors/cortex-"
+"m#c-7d3b69ce-5b17-4c9e-8f06-59b605713133)"
+msgstr ""
+
+#: src/intro/install.md:23
+msgid "Cortex-M0, M0+, and M1 (ARMv6-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:28
+msgid "Cortex-M3 (ARMv7-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:33
+msgid ""
+"Cortex-M4 and M7 without hardware floating point (ARMv7E-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:38
+msgid ""
+"Cortex-M4F and M7F with hardware floating point (ARMv7E-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:43
+msgid "Cortex-M23 (ARMv8-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:48
+msgid "Cortex-M33 and M35P (ARMv8-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:53
+msgid ""
+"Cortex-M33F and M35PF with hardware floating point (ARMv8-M architecture):"
+msgstr ""
+
+#: src/intro/install.md:59
+msgid "`cargo-binutils`"
+msgstr ""
+
+#: src/intro/install.md:66
+msgid ""
+"WINDOWS: prerequisite C++ Build Tools for Visual Studio 2019 is installed. "
+"https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?"
+"sku=BuildTools&rel=16"
+msgstr ""
+
+#: src/intro/install.md:67
+msgid "`cargo-generate`"
+msgstr ""
+
+#: src/intro/install.md:69
+msgid "We'll use this later to generate a project from a template."
+msgstr ""
+
+#: src/intro/install.md:75
+msgid ""
+"Note: on some Linux distros (e.g. Ubuntu) you may need to install the "
+"packages `libssl-dev` and `pkg-config` prior to installing cargo-generate."
+msgstr ""
+
+#: src/intro/install.md:77
+msgid "OS-Specific Instructions"
+msgstr ""
+
+#: src/intro/install.md:79
+msgid "Now follow the instructions specific to the OS you are using:"
+msgstr ""
+
+#: src/intro/install.md:81
+msgid "[Linux](install/linux.md)"
+msgstr ""
+
+#: src/intro/install.md:82
+msgid "[Windows](install/windows.md)"
+msgstr ""
+
+#: src/intro/install.md:83
+msgid "[macOS](install/macos.md)"
+msgstr ""

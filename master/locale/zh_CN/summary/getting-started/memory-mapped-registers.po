@@ -1,0 +1,321 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/start/registers.md:1
+msgid "Memory Mapped Registers"
+msgstr ""
+
+#: src/start/registers.md:3
+msgid ""
+"Embedded systems can only get so far by executing normal Rust code and "
+"moving data around in RAM. If we want to get any information into or out of "
+"our system (be that blinking an LED, detecting a button press or "
+"communicating with an off-chip peripheral on some sort of bus) we're going "
+"to have to dip into the world of Peripherals and their 'memory mapped "
+"registers'."
+msgstr ""
+
+#: src/start/registers.md:5
+msgid ""
+"You may well find that the code you need to access the peripherals in your "
+"micro-controller has already been written, at one of the following levels:"
+msgstr ""
+
+#: src/start/registers.md:10
+msgid ""
+"Micro-architecture Crate - This sort of crate handles any useful routines "
+"common to the processor core your microcontroller is using, as well as any "
+"peripherals that are common to all micro-controllers that use that "
+"particular type of processor core. For example the [cortex-m](https://crates."
+"io/crates/cortex-m) crate gives you functions to enable and disable "
+"interrupts, which are the same for all Cortex-M based micro-controllers. It "
+"also gives you access to the 'SysTick' peripheral included with all Cortex-M "
+"based micro-controllers."
+msgstr ""
+
+#: src/start/registers.md:11
+msgid ""
+"Peripheral Access Crate (PAC) - This sort of crate is a thin wrapper over "
+"the various memory-wrapper registers defined for your particular part-number "
+"of micro-controller you are using. For example, [tm4c123x](https://crates.io/"
+"crates/tm4c123x) for the Texas Instruments Tiva-C TM4C123 series, or "
+"[stm32f30x](https://crates.io/crates/stm32f30x) for the ST-Micro STM32F30x "
+"series. Here, you'll be interacting with the registers directly, following "
+"each peripheral's operating instructions given in your micro-controller's "
+"Technical Reference Manual."
+msgstr ""
+
+#: src/start/registers.md:12
+msgid ""
+"HAL Crate - These crates offer a more user-friendly API for your particular "
+"processor, often by implementing some common traits defined in [embedded-hal]"
+"(https://crates.io/crates/embedded-hal). For example, this crate might offer "
+"a `Serial` struct, with a constructor that takes an appropriate set of GPIO "
+"pins and a baud rate, and offers some sort of `write_byte` function for "
+"sending data. See the chapter on [Portability](../portability/index.md) for "
+"more information on [embedded-hal](https://crates.io/crates/embedded-hal)."
+msgstr ""
+
+#: src/start/registers.md:13
+msgid ""
+"Board Crate - These crates go one step further than a HAL Crate by pre-"
+"configuring various peripherals and GPIO pins to suit the specific developer "
+"kit or board you are using, such as [stm32f3-discovery](https://crates.io/"
+"crates/stm32f3-discovery) for the STM32F3DISCOVERY board."
+msgstr ""
+
+#: src/start/registers.md:23
+msgid "Board Crate"
+msgstr ""
+
+#: src/start/registers.md:25
+msgid ""
+"A board crate is the perfect starting point, if you're new to embedded Rust. "
+"They nicely abstract the HW details that might be overwhelming when starting "
+"studying this subject, and makes standard tasks easy, like turning a LED on "
+"or off. The functionality it exposes varies a lot between boards. Since this "
+"book aims at staying hardware agnostic, the board crates won't be covered by "
+"this book."
+msgstr ""
+
+#: src/start/registers.md:27
+msgid ""
+"If you want to experiment with the STM32F3DISCOVERY board, it is highly "
+"recommended to take a look at the [stm32f3-discovery](https://crates.io/"
+"crates/stm32f3-discovery) board crate, which provides functionality to blink "
+"the board LEDs, access its compass, bluetooth and more. The [Discovery]"
+"(https://rust-embedded.github.io/discovery/) book offers a great "
+"introduction to the use of a board crate."
+msgstr ""
+
+#: src/start/registers.md:29
+msgid ""
+"But if you're working on a system that doesn't yet have dedicated board "
+"crate, or you need functionality not provided by existing crates, read on as "
+"we start from the bottom, with the micro-architecture crates."
+msgstr ""
+
+#: src/start/registers.md:31
+msgid "Micro-architecture crate"
+msgstr ""
+
+#: src/start/registers.md:33
+msgid ""
+"Let's look at the SysTick peripheral that's common to all Cortex-M based "
+"micro-controllers. We can find a pretty low-level API in the [cortex-m]"
+"(https://crates.io/crates/cortex-m) crate, and we can use it like this:"
+msgstr ""
+
+#: src/start/registers.md:51
+msgid "// Loop\n"
+msgstr ""
+
+#: src/start/registers.md:57
+msgid ""
+"The functions on the `SYST` struct map pretty closely to the functionality "
+"defined by the ARM Technical Reference Manual for this peripheral. There's "
+"nothing in this API about 'delaying for X milliseconds' - we have to crudely "
+"implement that ourselves using a `while` loop. Note that we can't access our "
+"`SYST` struct until we have called `Peripherals::take()` - this is a special "
+"routine that guarantees that there is only one `SYST` structure in our "
+"entire program. For more on that, see the [Peripherals](../peripherals/index."
+"md) section."
+msgstr ""
+
+#: src/start/registers.md:61
+msgid "Using a Peripheral Access Crate (PAC)"
+msgstr ""
+
+#: src/start/registers.md:63
+msgid ""
+"We won't get very far with our embedded software development if we restrict "
+"ourselves to only the basic peripherals included with every Cortex-M. At "
+"some point, we're going to need to write some code that's specific to the "
+"particular micro-controller we're using. In this example, let's assume we "
+"have an Texas Instruments TM4C123 - a middling 80MHz Cortex-M4 with 256 KiB "
+"of Flash. We're going to pull in the [tm4c123x](https://crates.io/crates/"
+"tm4c123x) crate to make use of this chip."
+msgstr ""
+
+#: src/start/registers.md:69 src/start/registers.md:145
+msgid "// panic handler\n"
+msgstr ""
+
+#: src/start/registers.md:81
+msgid "// Mode = 1 => Count up/down mode\n"
+msgstr ""
+
+#: src/start/registers.md:84
+msgid ""
+"// 528 cycles (264 up and down) = 4 loops per video line (2112 cycles)\n"
+msgstr ""
+
+#: src/start/registers.md:92
+msgid ""
+"We've accessed the `PWM0` peripheral in exactly the same way as we accessed "
+"the `SYST` peripheral earlier, except we called `tm4c123x::Peripherals::"
+"take()`. As this crate was auto-generated using [svd2rust](https://crates.io/"
+"crates/svd2rust), the access functions for our register fields take a "
+"closure, rather than a numeric argument. While this looks like a lot of "
+"code, the Rust compiler can use it to perform a bunch of checks for us, but "
+"then generate machine-code which is pretty close to hand-written assembler! "
+"Where the auto-generated code isn't able to determine that all possible "
+"arguments to a particular accessor function are valid (for example, if the "
+"SVD defines the register as 32-bit but doesn't say if some of those 32-bit "
+"values have a special meaning), then the function is marked as `unsafe`. We "
+"can see this in the example above when setting the `load` and `compa` sub-"
+"fields using the `bits()` function."
+msgstr ""
+
+#: src/start/registers.md:94
+msgid "Reading"
+msgstr ""
+
+#: src/start/registers.md:96
+msgid ""
+"The `read()` function returns an object which gives read-only access to the "
+"various sub-fields within this register, as defined by the manufacturer's "
+"SVD file for this chip. You can find all the functions available on special "
+"`R` return type for this particular register, in this particular peripheral, "
+"on this particular chip, in the [tm4c123x documentation](https://docs.rs/"
+"tm4c123x/0.7.0/tm4c123x/pwm0/ctl/struct.R.html)."
+msgstr ""
+
+#: src/start/registers.md:100
+msgid "// Do a thing\n"
+msgstr ""
+
+#: src/start/registers.md:104
+msgid "Writing"
+msgstr ""
+
+#: src/start/registers.md:106
+msgid ""
+"The `write()` function takes a closure with a single argument. Typically we "
+"call this `w`. This argument then gives read-write access to the various sub-"
+"fields within this register, as defined by the manufacturer's SVD file for "
+"this chip. Again, you can find all the functions available on the 'w' for "
+"this particular register, in this particular peripheral, on this particular "
+"chip, in the [tm4c123x documentation](https://docs.rs/tm4c123x/0.7.0/"
+"tm4c123x/pwm0/ctl/struct.W.html). Note that all of the sub-fields that we do "
+"not set will be set to a default value for us - any existing content in the "
+"register will be lost."
+msgstr ""
+
+#: src/start/registers.md:112
+msgid "Modifying"
+msgstr ""
+
+#: src/start/registers.md:114
+msgid ""
+"If we wish to change only one particular sub-field in this register and "
+"leave the other sub-fields unchanged, we can use the `modify` function. This "
+"function takes a closure with two arguments - one for reading and one for "
+"writing. Typically we call these `r` and `w` respectively. The `r` argument "
+"can be used to inspect the current contents of the register, and the `w` "
+"argument can be used to modify the register contents."
+msgstr ""
+
+#: src/start/registers.md:120
+msgid ""
+"The `modify` function really shows the power of closures here. In C, we'd "
+"have to read into some temporary value, modify the correct bits and then "
+"write the value back. This means there's considerable scope for error:"
+msgstr ""
+
+#: src/start/registers.md:128
+msgid "// Uh oh! Wrong variable!\n"
+msgstr ""
+
+#: src/start/registers.md:135
+msgid "Using a HAL crate"
+msgstr ""
+
+#: src/start/registers.md:137
+msgid ""
+"The HAL crate for a chip typically works by implementing a custom Trait for "
+"the raw structures exposed by the PAC. Often this trait will define a "
+"function called `constrain()` for single peripherals or `split()` for things "
+"like GPIO ports with multiple pins. This function will consume the "
+"underlying raw peripheral structure and return a new object with a higher-"
+"level API. This API may also do things like have the Serial port `new` "
+"function require a borrow on some `Clock` structure, which can only be "
+"generated by calling the function which configures the PLLs and sets up all "
+"the clock frequencies. In this way, it is statically impossible to create a "
+"Serial port object without first having configured the clock rates, or for "
+"the Serial port object to misconvert the baud rate into clock ticks. Some "
+"crates even define special traits for the states each GPIO pin can be in, "
+"requiring the user to put a pin into the correct state (say, by selecting "
+"the appropriate Alternate Function Mode) before passing the pin into "
+"Peripheral. All with no run-time cost!"
+msgstr ""
+
+#: src/start/registers.md:139
+msgid "Let's see an example:"
+msgstr ""
+
+#: src/start/registers.md:158
+msgid "// Wrap up the SYSCTL struct into an object with a higher-layer API\n"
+msgstr ""
+
+#: src/start/registers.md:160
+msgid "// Pick our oscillation settings\n"
+msgstr ""
+
+#: src/start/registers.md:165
+msgid "// Configure the PLL with those settings\n"
+msgstr ""
+
+#: src/start/registers.md:168
+msgid ""
+"// Wrap up the GPIO_PORTA struct into an object with a higher-layer API.\n"
+"    // Note it needs to borrow `sc.power_control` so it can power up the "
+"GPIO\n"
+"    // peripheral automatically.\n"
+msgstr ""
+
+#: src/start/registers.md:173
+msgid "// Activate the UART.\n"
+msgstr ""
+
+#: src/start/registers.md:176
+msgid "// The transmit pin\n"
+msgstr ""
+
+#: src/start/registers.md:180
+msgid "// The receive pin\n"
+msgstr ""
+
+#: src/start/registers.md:184
+msgid "// No RTS or CTS required\n"
+msgstr ""
+
+#: src/start/registers.md:187
+msgid "// The baud rate\n"
+msgstr ""
+
+#: src/start/registers.md:189
+msgid "// Output handling\n"
+msgstr ""
+
+#: src/start/registers.md:191
+msgid "// We need the clock rates to calculate the baud rate divisors\n"
+msgstr ""
+
+#: src/start/registers.md:193
+msgid "// We need this to power up the UART peripheral\n"
+msgstr ""
+
+#: src/start/registers.md:198
+msgid "\"Hello, World!\\r\\n\""
+msgstr ""

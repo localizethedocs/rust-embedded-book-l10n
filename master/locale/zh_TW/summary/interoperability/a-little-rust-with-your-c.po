@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_TW\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/interoperability/rust-with-c.md:1
+msgid "A little Rust with your C"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:3
+msgid "Using Rust code inside a C or C++ project mostly consists of two parts."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:5
+msgid "Creating a C-friendly API in Rust"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:6
+msgid "Embedding your Rust project into an external build system"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:8
+msgid ""
+"Apart from `cargo` and `meson`, most build systems don't have native Rust "
+"support. So you're most likely best off just using `cargo` for compiling "
+"your crate and any dependencies."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:12
+msgid "Setting up a project"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:14
+msgid "Create a new `cargo` project as usual."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:16
+msgid ""
+"There are flags to tell `cargo` to emit a systems library, instead of its "
+"regular rust target. This also allows you to set a different output name for "
+"your library, if you want it to differ from the rest of your crate."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:21
+msgid ""
+"```toml\n"
+"[lib]\n"
+"name = \"your_crate\"\n"
+"crate-type = [\"cdylib\"]      # Creates dynamic lib\n"
+"# crate-type = [\"staticlib\"] # Creates static lib\n"
+"```"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:28
+msgid "Building a `C` API"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:30
+msgid ""
+"Because C++ has no stable ABI for the Rust compiler to target, we use `C` "
+"for any interoperability between different languages. This is no exception "
+"when using Rust inside of C and C++ code."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:34
+msgid "`#[no_mangle]`"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:36
+msgid ""
+"The Rust compiler mangles symbol names differently than native code linkers "
+"expect. As such, any function that Rust exports to be used outside of Rust "
+"needs to be told not to be mangled by the compiler."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:40
+msgid "`extern \"C\"`"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:42
+msgid ""
+"By default, any function you write in Rust will use the Rust ABI (which is "
+"also not stabilized). Instead, when building outwards facing FFI APIs we "
+"need to tell the compiler to use the system ABI."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:47
+msgid ""
+"Depending on your platform, you might want to target a specific ABI version, "
+"which are documented [here](https://doc.rust-lang.org/reference/items/"
+"external-blocks.html)."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:52
+msgid ""
+"Putting these parts together, you get a function that looks roughly like "
+"this."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:56
+#: src/interoperability/rust-with-c.md:82
+msgid "\"C\""
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:61
+msgid ""
+"Just as when using `C` code in your Rust project you now need to transform "
+"data from and to a form that the rest of the application will understand."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:64
+msgid "Linking and greater project context."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:66
+msgid ""
+"So then, that's one half of the problem solved. How do you use this now?"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:69
+msgid "**This very much depends on your project and/or build system**"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:71
+msgid ""
+"`cargo` will create a `my_lib.so`/`my_lib.dll` or `my_lib.a` file, depending "
+"on your platform and settings. This library can simply be linked by your "
+"build system."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:75
+msgid ""
+"However, calling a Rust function from C requires a header file to declare "
+"the function signatures."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:78
+msgid ""
+"Every function in your Rust-ffi API needs to have a corresponding header "
+"function."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:85
+msgid "would then become"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:91
+msgid "etc."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:93
+msgid ""
+"There is a tool to automate this process, called [cbindgen](https://github."
+"com/eqrion/cbindgen) which analyses your Rust code and then generates "
+"headers for your C and C++ projects from it."
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:99
+msgid ""
+"At this point, using the Rust functions from C is as simple as including the "
+"header and calling them!"
+msgstr ""
+
+#: src/interoperability/rust-with-c.md:103
+msgid "\"my-rust-project.h\""
+msgstr ""
