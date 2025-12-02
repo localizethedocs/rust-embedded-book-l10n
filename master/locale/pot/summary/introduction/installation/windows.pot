@@ -1,0 +1,75 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/intro/install/windows.md:1
+msgid "Windows"
+msgstr ""
+
+#: src/intro/install/windows.md:3
+msgid "`arm-none-eabi-gdb`"
+msgstr ""
+
+#: src/intro/install/windows.md:5
+msgid ""
+"ARM provides `.exe` installers for Windows. Grab one from [here](https://"
+"developer.arm.com/downloads/-/arm-gnu-toolchain-downloads), and follow the "
+"instructions. Just before the installation process finishes tick/select the "
+"\"Add path to environment variable\" option. Then verify that the tools are "
+"in your `%PATH%`:"
+msgstr ""
+
+#: src/intro/install/windows.md:17
+msgid "OpenOCD"
+msgstr ""
+
+#: src/intro/install/windows.md:19
+msgid ""
+"There's no official binary release of OpenOCD for Windows but if you're not "
+"in the mood to compile it yourself, the xPack project provides a binary "
+"distribution, [here](https://xpack.github.io/openocd/). Follow the provided "
+"installation instructions. Then update your `%PATH%` environment variable to "
+"include the path where the binaries were installed. (`C:"
+"\\Users\\USERNAME\\AppData\\Roaming\\xPacks\\@xpack-dev-"
+"tools\\openocd\\0.10.0-13.1\\.content\\bin\\`, if you've been using the easy "
+"install)"
+msgstr ""
+
+#: src/intro/install/windows.md:27
+msgid "Verify that OpenOCD is in your `%PATH%` with:"
+msgstr ""
+
+#: src/intro/install/windows.md:35
+msgid "QEMU"
+msgstr ""
+
+#: src/intro/install/windows.md:37
+msgid ""
+"Grab QEMU from [the official website](https://www.qemu.org/download/"
+"#windows)."
+msgstr ""
+
+#: src/intro/install/windows.md:41
+msgid "ST-LINK USB driver"
+msgstr ""
+
+#: src/intro/install/windows.md:43
+msgid ""
+"You'll also need to install [this USB driver](http://www.st.com/en/embedded-"
+"software/stsw-link009.html) or OpenOCD won't work. Follow the installer "
+"instructions and make sure you install the right version (32-bit or 64-bit) "
+"of the driver."
+msgstr ""
+
+#: src/intro/install/windows.md:48
+msgid "That's all! Go to the [next section](verify.md)."
+msgstr ""

@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/index.md:1
+msgid "Design Patterns"
+msgstr ""
+
+#: src/design-patterns/index.md:3
+msgid ""
+"This chapter aims to collect various useful design patterns for embedded "
+"Rust."
+msgstr ""

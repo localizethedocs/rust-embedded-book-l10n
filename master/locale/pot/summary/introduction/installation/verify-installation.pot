@@ -1,0 +1,110 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/intro/install/verify.md:1
+msgid "Verify Installation"
+msgstr ""
+
+#: src/intro/install/verify.md:3
+msgid ""
+"In this section we check that some of the required tools / drivers have been "
+"correctly installed and configured."
+msgstr ""
+
+#: src/intro/install/verify.md:6
+msgid ""
+"Connect your laptop / PC to the discovery board using a Mini-USB USB cable. "
+"The discovery board has two USB connectors; use the one labeled \"USB ST-"
+"LINK\" that sits on the center of the edge of the board."
+msgstr ""
+
+#: src/intro/install/verify.md:10
+msgid ""
+"Also check that the ST-LINK header is populated. See the picture below; the "
+"ST-LINK header is highlighted."
+msgstr ""
+
+#: src/intro/install/verify.md:17
+msgid "Now run the following command:"
+msgstr ""
+
+#: src/intro/install/verify.md:23
+msgid ""
+"**NOTE**: Old versions of openocd, including the 0.10.0 release from 2017, "
+"do not contain the new (and preferable) `interface/stlink.cfg` file; instead "
+"you may need to use `interface/stlink-v2.cfg` or `interface/stlink-v2-1.cfg`."
+msgstr ""
+
+#: src/intro/install/verify.md:27
+msgid ""
+"You should get the following output and the program should block the console:"
+msgstr ""
+
+#: src/intro/install/verify.md:29
+msgid ""
+"```text\n"
+"Open On-Chip Debugger 0.10.0\n"
+"Licensed under GNU GPL v2\n"
+"For bug reports, read\n"
+"        http://openocd.org/doc/doxygen/bugs.html\n"
+"Info : auto-selecting first available session transport \"hla_swd\". To "
+"override use 'transport select <transport>'.\n"
+"adapter speed: 1000 kHz\n"
+"adapter_nsrst_delay: 100\n"
+"Info : The selected transport took over low-level target control. The "
+"results might differ compared to plain JTAG/SWD\n"
+"none separate\n"
+"Info : Unable to match requested speed 1000 kHz, using 950 kHz\n"
+"Info : Unable to match requested speed 1000 kHz, using 950 kHz\n"
+"Info : clock speed 950 kHz\n"
+"Info : STLINK v2 JTAG v27 API v2 SWIM v15 VID 0x0483 PID 0x374B\n"
+"Info : using stlink api v2\n"
+"Info : Target voltage: 2.919881\n"
+"Info : stm32f3x.cpu: hardware has 6 breakpoints, 4 watchpoints\n"
+"```"
+msgstr ""
+
+#: src/intro/install/verify.md:48
+msgid ""
+"The contents may not match exactly but you should get the last line about "
+"breakpoints and watchpoints. If you got it then terminate the OpenOCD "
+"process and move to the [next section](../../start/index.md)."
+msgstr ""
+
+#: src/intro/install/verify.md:54
+msgid ""
+"If you didn't get the \"breakpoints\" line then try one of the following "
+"commands."
+msgstr ""
+
+#: src/intro/install/verify.md:64
+msgid ""
+"If one of those commands works it means you got an old hardware revision of "
+"the discovery board. That won't be a problem but commit that fact to memory "
+"as you'll need to configure things a bit differently later on. You can move "
+"to the [next section](../../start/index.md)."
+msgstr ""
+
+#: src/intro/install/verify.md:69
+msgid ""
+"If none of the commands work as a normal user then try to run them with root "
+"permission (e.g. `sudo openocd ..`). If the commands do work with root "
+"permission then check that the [udev rules](linux.md#udev-rules) have been "
+"correctly set."
+msgstr ""
+
+#: src/intro/install/verify.md:75
+msgid ""
+"If you have reached this point and OpenOCD is not working please open [an "
+"issue](https://github.com/rust-embedded/book/issues) and we'll help you out!"
+msgstr ""
