@@ -1,0 +1,51 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/static-guarantees/index.md:1
+msgid "Static Guarantees"
+msgstr ""
+
+#: src/static-guarantees/index.md:3
+msgid ""
+"Rust's type system prevents data races at compile time (see [`Send`](https://"
+"doc.rust-lang.org/core/marker/trait.Send.html) and [`Sync`](https://doc.rust-"
+"lang.org/core/marker/trait.Sync.html) traits). The type system can also be "
+"used to check other properties at compile time; reducing the need for "
+"runtime checks in some cases."
+msgstr ""
+
+#: src/static-guarantees/index.md:10
+msgid ""
+"When applied to embedded programs these _static checks_ can be used, for "
+"example, to enforce that configuration of I/O interfaces is done properly. "
+"For instance, one can design an API where it is only possible to initialize "
+"a serial interface by first configuring the pins that will be used by the "
+"interface."
+msgstr ""
+
+#: src/static-guarantees/index.md:15
+msgid ""
+"One can also statically check that operations, like setting a pin low, can "
+"only be performed on correctly configured peripherals. For example, trying "
+"to change the output state of a pin configured in floating input mode would "
+"raise a compile error."
+msgstr ""
+
+#: src/static-guarantees/index.md:20
+msgid ""
+"And, as seen in the previous chapter, the concept of ownership can be "
+"applied to peripherals to ensure that only certain parts of a program can "
+"modify a peripheral. This _access control_ makes software easier to reason "
+"about compared to the alternative of treating peripherals as global mutable "
+"state."
+msgstr ""
