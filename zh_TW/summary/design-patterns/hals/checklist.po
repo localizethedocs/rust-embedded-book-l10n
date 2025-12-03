@@ -1,0 +1,80 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/checklist.md:1
+msgid "HAL Design Patterns Checklist"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:3
+msgid "**Naming** _(crate aligns with Rust naming conventions)_"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:4
+msgid ""
+"The crate is named appropriately ([C-CRATE-NAME](naming.html#c-crate-name))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:5
+msgid ""
+"**Interoperability** _(crate interacts nicely with other library "
+"functionality)_"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:6
+msgid ""
+"Wrapper types provide a destructor method ([C-FREE](interoperability.html#c-"
+"free))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:7
+msgid ""
+"HALs reexport their register access crate ([C-REEXPORT-PAC](interoperability."
+"html#c-reexport-pac))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:8
+msgid ""
+"Types implement the `embedded-hal` traits ([C-HAL-TRAITS](interoperability."
+"html#c-hal-traits))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:9
+msgid ""
+"**Predictability** _(crate enables legible code that acts how it looks)_"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:10
+msgid ""
+"Constructors are used instead of extension traits ([C-CTOR](predictability."
+"html#c-ctor))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:11
+msgid "**GPIO Interfaces** _(GPIO Interfaces follow a common pattern)_"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:12
+msgid "Pin types are zero-sized by default ([C-ZST-PIN](gpio.md#c-zst-pin))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:13
+msgid ""
+"Pin types provide methods to erase pin and port ([C-ERASED-PIN](gpio.md#c-"
+"erased-pin))"
+msgstr ""
+
+#: src/design-patterns/hal/checklist.md:14
+msgid ""
+"Pin state should be encoded as type parameters ([C-PIN-STATE](gpio.md#c-pin-"
+"state))"
+msgstr ""
