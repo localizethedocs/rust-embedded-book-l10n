@@ -52,7 +52,7 @@ msgstr ""
 
 #: src/static-guarantees/typestate-programming.md:59
 msgid "Strong Types"
-msgstr ""
+msgstr "強型別"
 
 #: src/static-guarantees/typestate-programming.md:61
 msgid ""

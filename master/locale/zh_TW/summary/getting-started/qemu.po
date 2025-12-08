@@ -49,15 +49,15 @@ msgstr ""
 
 #: src/start/qemu.md:26
 msgid "Using `cargo-generate`"
-msgstr ""
+msgstr "使用 `cargo-generate`"
 
 #: src/start/qemu.md:27
 msgid "First install cargo-generate"
-msgstr ""
+msgstr "首先安裝 cargo-generate"
 
 #: src/start/qemu.md:31
 msgid "Then generate a new project"
-msgstr ""
+msgstr "接著生成新專案"
 
 #: src/start/qemu.md:32
 msgid ""
@@ -65,10 +65,13 @@ msgid ""
 "cargo generate --git https://github.com/rust-embedded/cortex-m-quickstart\n"
 "```"
 msgstr ""
+"```console\n"
+"cargo generate --git https://github.com/rust-embedded/cortex-m-quickstart\n"
+"```"
 
 #: src/start/qemu.md:46
 msgid "Using `git`"
-msgstr ""
+msgstr "使用 `git`"
 
 #: src/start/qemu.md:48
 msgid "Clone the repository"
@@ -470,7 +473,7 @@ msgstr ""
 
 #: src/start/qemu.md:432
 msgid "Debugging"
-msgstr ""
+msgstr "除錯"
 
 #: src/start/qemu.md:434
 msgid "Debugging is critical to embedded development. Let's see how it's done."
@@ -620,6 +623,12 @@ msgid ""
 "13          hprintln!(\"Hello, world!\").unwrap();\n"
 "```"
 msgstr ""
+"```text\n"
+"Continuing.\n"
+"\n"
+"Breakpoint 1, hello::__cortex_m_rt_main () at examples\\hello.rs:13\n"
+"13          hprintln!(\"Hello, world!\").unwrap();\n"
+"```"
 
 #: src/start/qemu.md:544
 msgid ""

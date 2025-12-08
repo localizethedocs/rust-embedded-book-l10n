@@ -172,7 +172,7 @@ msgstr ""
 
 #: src/interoperability/c-with-rust.md:95
 msgid "Building your C/C++ code"
-msgstr ""
+msgstr "建置您的 C/C++ 程式碼"
 
 #: src/interoperability/c-with-rust.md:97
 msgid ""

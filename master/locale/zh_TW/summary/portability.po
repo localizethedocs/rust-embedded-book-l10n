@@ -114,7 +114,7 @@ msgstr ""
 
 #: src/portability/index.md:33
 msgid "Analog Digital Conversion"
-msgstr ""
+msgstr "類比訊號轉換"
 
 #: src/portability/index.md:35
 msgid ""

@@ -21,7 +21,7 @@ msgstr ""
 
 #: src/SUMMARY.md:13 src/SUMMARY.md:23
 msgid "Hardware"
-msgstr ""
+msgstr "硬體"
 
 #: src/SUMMARY.md:14
 msgid "`no_std`"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: src/SUMMARY.md:16
 msgid "Installation"
-msgstr ""
+msgstr "安裝"
 
 #: src/SUMMARY.md:17
 msgid "Linux"
@@ -133,7 +133,7 @@ msgstr ""
 
 #: src/SUMMARY.md:42
 msgid "Design Patterns"
-msgstr ""
+msgstr "設計模式"
 
 #: src/SUMMARY.md:43
 msgid "HALs"
@@ -185,4 +185,4 @@ msgstr ""
 
 #: src/SUMMARY.md:60
 msgid "Appendix A: Glossary"
-msgstr ""
+msgstr "附錄 A：詞彙表"

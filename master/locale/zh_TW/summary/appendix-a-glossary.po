@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/appendix/glossary.md:1
 msgid "Appendix A: Glossary"
-msgstr ""
+msgstr "附錄 A：詞彙表"
 
 #: src/appendix/glossary.md:3
 msgid ""

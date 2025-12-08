@@ -501,7 +501,7 @@ msgstr ""
 
 #: src/c-tips/index.md:410
 msgid "Other Resources"
-msgstr ""
+msgstr "其他資源"
 
 #: src/c-tips/index.md:412
 msgid "In this book:"

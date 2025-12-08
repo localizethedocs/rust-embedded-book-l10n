@@ -58,7 +58,7 @@ msgstr ""
 
 #: src/static-guarantees/design-contracts.md:7
 msgid "Disables the GPIO"
-msgstr ""
+msgstr "停用 GPIO"
 
 #: src/static-guarantees/design-contracts.md:8
 #: src/static-guarantees/design-contracts.md:9
@@ -73,7 +73,7 @@ msgstr ""
 
 #: src/static-guarantees/design-contracts.md:8
 msgid "Enables the GPIO"
-msgstr ""
+msgstr "啟用 GPIO"
 
 #: src/static-guarantees/design-contracts.md:9
 msgid "direction"

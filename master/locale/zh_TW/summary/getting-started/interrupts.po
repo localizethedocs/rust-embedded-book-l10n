@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/interrupts.md:1
 msgid "Interrupts"
-msgstr ""
+msgstr "中斷"
 
 #: src/start/interrupts.md:3
 msgid ""

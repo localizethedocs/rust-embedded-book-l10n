@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/hardware.md:1
 msgid "Hardware"
-msgstr ""
+msgstr "硬體"
 
 #: src/start/hardware.md:3
 msgid ""
@@ -306,6 +306,12 @@ msgid ""
 "13          hprintln!(\"Hello, world!\").unwrap();\n"
 "```"
 msgstr ""
+"```console\n"
+"(gdb) step\n"
+"halted: PC: 0x08000496\n"
+"hello::__cortex_m_rt_main () at examples/hello.rs:13\n"
+"13          hprintln!(\"Hello, world!\").unwrap();\n"
+"```"
 
 #: src/start/hardware.md:249
 msgid ""
@@ -321,7 +327,7 @@ msgstr ""
 
 #: src/start/hardware.md:266
 msgid "You can now exit GDB using the `quit` command."
-msgstr ""
+msgstr "您現在可以使用 `quit` 命令退出 GDB。"
 
 #: src/start/hardware.md:277
 msgid ""

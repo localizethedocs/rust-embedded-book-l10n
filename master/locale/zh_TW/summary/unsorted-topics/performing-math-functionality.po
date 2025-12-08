@@ -69,16 +69,16 @@ msgstr ""
 
 #: src/unsorted/math.md:73
 msgid "[`constgebra`](https://crates.io/crates/constgebra)"
-msgstr ""
+msgstr "[`constgebra`](https://crates.io/crates/constgebra)"
 
 #: src/unsorted/math.md:74
 msgid "[`micromath`](https://github.com/tarcieri/micromath)"
-msgstr ""
+msgstr "[`micromath`](https://github.com/tarcieri/micromath)"
 
 #: src/unsorted/math.md:75
 msgid "[`microfft`](https://crates.io/crates/microfft)"
-msgstr ""
+msgstr "[`microfft`](https://crates.io/crates/microfft)"
 
 #: src/unsorted/math.md:76
 msgid "[`nalgebra`](https://github.com/dimforge/nalgebra)"
-msgstr ""
+msgstr "[`nalgebra`](https://github.com/dimforge/nalgebra)"

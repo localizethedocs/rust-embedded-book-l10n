@@ -179,7 +179,7 @@ msgstr ""
 
 #: src/intro/tooling.md:73
 msgid "Debuggers"
-msgstr ""
+msgstr "除錯器"
 
 #: src/intro/tooling.md:75
 msgid ""
@@ -194,7 +194,7 @@ msgstr ""
 
 #: src/intro/tooling.md:77
 msgid "Debuggers know how to:"
-msgstr ""
+msgstr "除錯器知道如何："
 
 #: src/intro/tooling.md:78
 msgid "Interact with the memory mapped registers."
@@ -202,7 +202,7 @@ msgstr ""
 
 #: src/intro/tooling.md:79
 msgid "Set Breakpoints/Watchpoints."
-msgstr ""
+msgstr "設定中斷點/監看點。"
 
 #: src/intro/tooling.md:80
 msgid "Read and write to the memory mapped registers."

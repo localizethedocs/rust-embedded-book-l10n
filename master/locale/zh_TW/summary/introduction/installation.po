@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/intro/install.md:1
 msgid "Installing the tools"
-msgstr ""
+msgstr "安裝工具"
 
 #: src/intro/install.md:3
 msgid ""
@@ -23,7 +23,7 @@ msgstr ""
 
 #: src/intro/install.md:5
 msgid "Rust Toolchain"
-msgstr ""
+msgstr "Rust 工具鏈"
 
 #: src/intro/install.md:7
 msgid ""

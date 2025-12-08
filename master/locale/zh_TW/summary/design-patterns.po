@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/design-patterns/index.md:1
 msgid "Design Patterns"
-msgstr ""
+msgstr "設計模式"
 
 #: src/design-patterns/index.md:3
 msgid ""

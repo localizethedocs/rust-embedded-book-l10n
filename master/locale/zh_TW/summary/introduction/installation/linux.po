@@ -21,7 +21,7 @@ msgstr ""
 
 #: src/intro/install/linux.md:5
 msgid "Packages"
-msgstr ""
+msgstr "軟體包"
 
 #: src/intro/install/linux.md:7
 msgid "Ubuntu 18.04 or newer / Debian stretch or newer"
