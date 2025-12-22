@@ -1,0 +1,45 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/index.md:1
+msgid "HAL Design Patterns"
+msgstr "HAL 設計模式"
+
+#: src/design-patterns/hal/index.md:3
+msgid ""
+"This is a set of common and recommended patterns for writing hardware "
+"abstraction layers (HALs) for microcontrollers in Rust. These patterns are "
+"intended to be used in addition to the existing [Rust API Guidelines]"
+"(https://rust-lang.github.io/api-guidelines/) when writing HALs for "
+"microcontrollers."
+msgstr ""
+
+#: src/design-patterns/hal/index.md:10
+msgid "[Checklist](checklist.md)"
+msgstr ""
+
+#: src/design-patterns/hal/index.md:12
+msgid "[Naming](naming.md)"
+msgstr ""
+
+#: src/design-patterns/hal/index.md:13
+msgid "[Interoperability](interoperability.md)"
+msgstr ""
+
+#: src/design-patterns/hal/index.md:14
+msgid "[Predictability](predictability.md)"
+msgstr ""
+
+#: src/design-patterns/hal/index.md:15
+msgid "[GPIO](gpio.md)"
+msgstr ""
