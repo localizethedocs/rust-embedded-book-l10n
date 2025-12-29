@@ -13,11 +13,11 @@ msgstr ""
 
 #: src/intro/install/windows.md:1
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: src/intro/install/windows.md:3
 msgid "`arm-none-eabi-gdb`"
-msgstr ""
+msgstr "`arm-none-eabi-gdb`"
 
 #: src/intro/install/windows.md:5
 msgid ""
@@ -30,7 +30,7 @@ msgstr ""
 
 #: src/intro/install/windows.md:17
 msgid "OpenOCD"
-msgstr ""
+msgstr "OpenOCD"
 
 #: src/intro/install/windows.md:19
 msgid ""
@@ -50,7 +50,7 @@ msgstr ""
 
 #: src/intro/install/windows.md:35
 msgid "QEMU"
-msgstr ""
+msgstr "QEMU"
 
 #: src/intro/install/windows.md:37
 msgid ""

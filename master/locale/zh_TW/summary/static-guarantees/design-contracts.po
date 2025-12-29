@@ -85,7 +85,7 @@ msgstr ""
 
 #: src/static-guarantees/design-contracts.md:9
 msgid "Sets the direction to Input"
-msgstr ""
+msgstr "設定輸入的方向"
 
 #: src/static-guarantees/design-contracts.md:10
 msgid "output"
@@ -93,7 +93,7 @@ msgstr ""
 
 #: src/static-guarantees/design-contracts.md:10
 msgid "Sets the direction to Output"
-msgstr ""
+msgstr "設定輸出的方向"
 
 #: src/static-guarantees/design-contracts.md:11
 msgid "input_mode"

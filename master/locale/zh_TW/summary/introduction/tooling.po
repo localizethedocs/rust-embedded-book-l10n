@@ -69,7 +69,7 @@ msgstr ""
 
 #: src/intro/tooling.md:24
 msgid "`cargo-generate` OR `git`"
-msgstr ""
+msgstr "`cargo-generate` 或 `git`"
 
 #: src/intro/tooling.md:26
 msgid ""
@@ -127,7 +127,7 @@ msgstr ""
 
 #: src/intro/tooling.md:58
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: src/intro/tooling.md:60
 msgid ""
@@ -144,7 +144,7 @@ msgstr ""
 
 #: src/intro/tooling.md:62
 msgid "Software that drives debugging tools"
-msgstr ""
+msgstr "驅動除錯工具的軟體"
 
 #: src/intro/tooling.md:64
 msgid "Probe-rs"

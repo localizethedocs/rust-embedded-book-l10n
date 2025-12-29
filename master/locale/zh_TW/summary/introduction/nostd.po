@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/intro/no-std.md:1
 msgid "A `no_std` Rust Environment"
-msgstr ""
+msgstr "`no_std` Rust 環境"
 
 #: src/intro/no-std.md:3
 msgid ""
@@ -101,7 +101,7 @@ msgstr ""
 
 #: src/intro/no-std.md:45
 msgid "Overview"
-msgstr ""
+msgstr "概覽"
 
 #: src/intro/no-std.md:47
 msgid "feature"

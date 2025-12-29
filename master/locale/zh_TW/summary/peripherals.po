@@ -60,7 +60,7 @@ msgstr ""
 
 #: src/peripherals/index.md:14
 msgid "An I/O controller"
-msgstr ""
+msgstr "I/O 控制器"
 
 #: src/peripherals/index.md:16
 msgid ""

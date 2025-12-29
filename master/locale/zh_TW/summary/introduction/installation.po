@@ -114,12 +114,12 @@ msgstr ""
 
 #: src/intro/install.md:81
 msgid "[Linux](install/linux.md)"
-msgstr ""
+msgstr "[Linux](install/linux.md)"
 
 #: src/intro/install.md:82
 msgid "[Windows](install/windows.md)"
-msgstr ""
+msgstr "[Windows](install/windows.md)"
 
 #: src/intro/install.md:83
 msgid "[macOS](install/macos.md)"
-msgstr ""
+msgstr "[macOS](install/macos.md)"

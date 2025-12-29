@@ -134,7 +134,7 @@ msgstr ""
 
 #: src/static-guarantees/state-machines.md:42
 msgid "Disables the GPIO"
-msgstr ""
+msgstr "停用 GPIO"
 
 #: src/static-guarantees/state-machines.md:43
 #: src/static-guarantees/state-machines.md:44
@@ -149,7 +149,7 @@ msgstr ""
 
 #: src/static-guarantees/state-machines.md:43
 msgid "Enables the GPIO"
-msgstr ""
+msgstr "啟用 GPIO"
 
 #: src/static-guarantees/state-machines.md:44
 msgid "direction"
@@ -161,7 +161,7 @@ msgstr ""
 
 #: src/static-guarantees/state-machines.md:44
 msgid "Sets the direction to Input"
-msgstr ""
+msgstr "設定輸入的方向"
 
 #: src/static-guarantees/state-machines.md:45
 msgid "output"
@@ -169,7 +169,7 @@ msgstr ""
 
 #: src/static-guarantees/state-machines.md:45
 msgid "Sets the direction to Output"
-msgstr ""
+msgstr "設定輸出的方向"
 
 #: src/static-guarantees/state-machines.md:46
 msgid "input_mode"
