@@ -46,7 +46,7 @@ msgstr ""
 msgid ""
 "Get developers up to speed with embedded Rust development. i.e. How to set "
 "up a development environment."
-msgstr ""
+msgstr "讓開發者快速上手嵌入式 Rust 開發。例如：如何設定開發環境。"
 
 #: src/intro/index.md:17
 msgid ""

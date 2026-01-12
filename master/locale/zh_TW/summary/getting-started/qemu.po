@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/qemu.md:1
 msgid "QEMU"
-msgstr ""
+msgstr "QEMU"
 
 #: src/start/qemu.md:3
 msgid ""
@@ -127,6 +127,13 @@ msgid ""
 "cd app\n"
 "```"
 msgstr ""
+"```console\n"
+"curl -LO https://github.com/rust-embedded/cortex-m-quickstart/archive/master."
+"zip\n"
+"unzip master.zip\n"
+"mv cortex-m-quickstart-master app\n"
+"cd app\n"
+"```"
 
 #: src/start/qemu.md:83
 msgid ""
@@ -202,7 +209,7 @@ msgstr ""
 
 #: src/start/qemu.md:136
 msgid "Cross compiling"
-msgstr ""
+msgstr "交叉編譯"
 
 #: src/start/qemu.md:138
 msgid ""

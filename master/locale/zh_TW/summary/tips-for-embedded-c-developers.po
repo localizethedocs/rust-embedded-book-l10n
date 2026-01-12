@@ -24,7 +24,7 @@ msgstr ""
 
 #: src/c-tips/index.md:7
 msgid "Preprocessor"
-msgstr ""
+msgstr "預處理器"
 
 #: src/c-tips/index.md:9
 msgid ""
