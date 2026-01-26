@@ -1,0 +1,305 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/static-guarantees/state-machines.md:1
+msgid "Peripherals as State Machines"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:3
+msgid ""
+"The peripherals of a microcontroller can be thought of as set of state "
+"machines. For example, the configuration of a simplified [GPIO pin](https://"
+"en.wikipedia.org/wiki/General-purpose_input/output) could be represented as "
+"the following tree of states:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:7
+#: src/static-guarantees/state-machines.md:19
+msgid "Disabled"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:8
+#: src/static-guarantees/state-machines.md:20
+msgid "Enabled"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:9
+#: src/static-guarantees/state-machines.md:33
+msgid "Configured as Output"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:10
+#: src/static-guarantees/state-machines.md:34
+msgid "Output: High"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:11
+msgid "Output: Low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:12
+#: src/static-guarantees/state-machines.md:21
+#: src/static-guarantees/state-machines.md:32
+msgid "Configured as Input"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:13
+#: src/static-guarantees/state-machines.md:22
+#: src/static-guarantees/state-machines.md:26
+msgid "Input: High Resistance"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:14
+#: src/static-guarantees/state-machines.md:27
+#: src/static-guarantees/state-machines.md:31
+msgid "Input: Pulled Low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:15
+msgid "Input: Pulled High"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:17
+msgid ""
+"If the peripheral starts in the `Disabled` mode, to move to the `Input: High "
+"Resistance` mode, we must perform the following steps:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:24
+msgid ""
+"If we wanted to move from `Input: High Resistance` to `Input: Pulled Low`, "
+"we must perform the following steps:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:29
+msgid ""
+"Similarly, if we want to move a GPIO pin from configured as `Input: Pulled "
+"Low` to `Output: High`, we must perform the following steps:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:36
+msgid "Hardware Representation"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:38
+msgid ""
+"Typically the states listed above are set by writing values to given "
+"registers mapped to a GPIO peripheral. Let's define an imaginary GPIO "
+"Configuration Register to illustrate this:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:40
+msgid "Name"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:40
+msgid "Bit Number(s)"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:40
+msgid "Value"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:40
+msgid "Meaning"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:40
+msgid "Notes"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:42
+msgid "enable"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:42
+#: src/static-guarantees/state-machines.md:44
+#: src/static-guarantees/state-machines.md:50
+msgid "0"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:42
+msgid "disabled"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:42
+msgid "Disables the GPIO"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:43
+#: src/static-guarantees/state-machines.md:44
+#: src/static-guarantees/state-machines.md:45
+#: src/static-guarantees/state-machines.md:51
+msgid "1"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:43
+msgid "enabled"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:43
+msgid "Enables the GPIO"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:44
+msgid "direction"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:44
+msgid "input"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:44
+msgid "Sets the direction to Input"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:45
+msgid "output"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:45
+msgid "Sets the direction to Output"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:46
+msgid "input_mode"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:46
+msgid "2..3"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:46
+msgid "00"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:46
+msgid "hi-z"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:46
+msgid "Sets the input as high resistance"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:47
+msgid "01"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:47
+msgid "pull-low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:47
+msgid "Input pin is pulled low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:48
+msgid "10"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:48
+msgid "pull-high"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:48
+msgid "Input pin is pulled high"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:49
+msgid "11"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:49
+msgid "n/a"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:49
+msgid "Invalid state. Do not set"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:50
+msgid "output_mode"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:50
+msgid "4"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:50
+msgid "set-low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:50
+msgid "Output pin is driven low"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:51
+msgid "set-high"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:51
+msgid "Output pin is driven high"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:52
+msgid "input_status"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:52
+msgid "5"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:52
+msgid "x"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:52
+msgid "in-val"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:52
+msgid "0 if input is \\< 1.5v, 1 if input >= 1.5v"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:54
+msgid "We _could_ expose the following structure in Rust to control this GPIO:"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:57
+msgid "/// GPIO interface\n"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:59
+msgid "/// GPIO Configuration structure generated by svd2rust\n"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:94
+msgid ""
+"However, this would allow us to modify certain registers that do not make "
+"sense. For example, what happens if we set the `output_mode` field when our "
+"GPIO is configured as an input?"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:96
+msgid ""
+"In general, use of this structure would allow us to reach states not defined "
+"by our state machine above: e.g. an output that is pulled low, or an input "
+"that is set high. For some hardware, this may not matter. On other hardware, "
+"it could cause unexpected or undefined behavior!"
+msgstr ""
+
+#: src/static-guarantees/state-machines.md:98
+msgid ""
+"Although this interface is convenient to write, it doesn't enforce the "
+"design contracts set out by our hardware implementation."
+msgstr ""
