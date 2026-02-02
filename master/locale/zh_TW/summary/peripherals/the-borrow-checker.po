@@ -51,7 +51,7 @@ msgstr ""
 
 #: src/peripherals/borrowck.md:13
 msgid "The Borrow Checker"
-msgstr ""
+msgstr "借用檢查器"
 
 #: src/peripherals/borrowck.md:15
 msgid ""

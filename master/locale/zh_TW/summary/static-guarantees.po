@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/static-guarantees/index.md:1
 msgid "Static Guarantees"
-msgstr ""
+msgstr "靜態保證"
 
 #: src/static-guarantees/index.md:3
 msgid ""
@@ -23,6 +23,10 @@ msgid ""
 "used to check other properties at compile time; reducing the need for "
 "runtime checks in some cases."
 msgstr ""
+"Rust 的型別系統可在編譯期防止資料競爭（見 [`Send`](https://doc.rust-lang.org/"
+"core/marker/trait.Send.html) 與 [`Sync`](https://doc.rust-lang.org/core/"
+"marker/trait.Sync.html) traits）。型別系統也可用來在編譯期檢查其他性質，在某"
+"些情況下減少執行期檢查的需求。"
 
 #: src/static-guarantees/index.md:10
 msgid ""
@@ -32,6 +36,8 @@ msgid ""
 "a serial interface by first configuring the pins that will be used by the "
 "interface."
 msgstr ""
+"將這些_靜態檢查_應用在嵌入式程式時，可用來強制 I/O 介面正確設定。例如，可以設"
+"計一個 API，使得必須先設定將要使用的腳位，才能初始化序列介面。"
 
 #: src/static-guarantees/index.md:15
 msgid ""
@@ -40,6 +46,8 @@ msgid ""
 "to change the output state of a pin configured in floating input mode would "
 "raise a compile error."
 msgstr ""
+"也可在編譯期檢查像是將腳位設為低電位等操作，是否只能對已正確設定的周邊執行。"
+"例如，嘗試變更被設定為浮動輸入模式的腳位輸出狀態，會產生編譯錯誤。"
 
 #: src/static-guarantees/index.md:20
 msgid ""
@@ -49,3 +57,5 @@ msgid ""
 "about compared to the alternative of treating peripherals as global mutable "
 "state."
 msgstr ""
+"此外，如前章所示，所有權概念可應用於周邊，以確保只有程式的特定部分能修改周"
+"邊。這種_存取控制_相較於把周邊視為全域可變狀態，更容易推理軟體行為。"

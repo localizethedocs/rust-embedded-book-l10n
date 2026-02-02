@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/intro/install/verify.md:1
 msgid "Verify Installation"
-msgstr ""
+msgstr "驗證安裝"
 
 #: src/intro/install/verify.md:3
 msgid ""

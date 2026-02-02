@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/portability/index.md:1
 msgid "Portability"
-msgstr ""
+msgstr "可攜性"
 
 #: src/portability/index.md:3
 msgid ""
@@ -22,12 +22,16 @@ msgid ""
 "and capabilities and similarly the ways to interact with the peripherals "
 "will vary."
 msgstr ""
+"在嵌入式環境中，可攜性是非常重要的主題：每個廠商，甚至同一廠商的不同家族，都"
+"提供不同的周邊與能力，與周邊互動的方式也會有所差異。"
 
 #: src/portability/index.md:5
 msgid ""
 "A common way to equalize such differences is via a layer called Hardware "
 "Abstraction layer or **HAL**."
 msgstr ""
+"平衡這些差異的一個常見方式是透過稱為硬體抽象層（Hardware Abstraction Layer，"
+"**HAL**）的層次。"
 
 #: src/portability/index.md:7
 msgid ""
@@ -35,18 +39,24 @@ msgid ""
 "platform-specific details, giving programs direct access to the hardware "
 "resources."
 msgstr ""
+"硬體抽象是在軟體中模擬部分平台特有細節的一組程式例程，讓程式能直接存取硬體資"
+"源。"
 
 #: src/portability/index.md:9
 msgid ""
 "They often allow programmers to write device-independent, high performance "
 "applications by providing standard operating system (OS) calls to hardware."
 msgstr ""
+"它們通常透過向硬體提供標準作業系統（OS）呼叫，讓程式設計者能撰寫與裝置無關、"
+"高效能的應用程式。"
 
 #: src/portability/index.md:11
 msgid ""
 "_Wikipedia: [Hardware Abstraction Layer](https://en.wikipedia.org/wiki/"
 "Hardware_abstraction)_"
 msgstr ""
+"_Wikipedia：[Hardware Abstraction Layer](https://en.wikipedia.org/wiki/"
+"Hardware_abstraction)_"
 
 #: src/portability/index.md:15
 msgid ""
@@ -56,16 +66,21 @@ msgid ""
 "while the traditional approach as defined by Wikipedia could potentially "
 "work it is likely not the most productive approach to ensure portability."
 msgstr ""
+"嵌入式系統在這方面有些特殊，因為我們通常沒有作業系統與可由使用者安裝的軟體，"
+"而是整體編譯的韌體映像，以及許多其他限制。因此，雖然 Wikipedia 所定義的傳統作"
+"法可能可行，但可能不是最有效率的可攜性確保方式。"
 
 #: src/portability/index.md:17
 msgid ""
 "How do we do this in Rust? Enter **[embedded-hal](https://crates.io/crates/"
 "embedded-hal)**..."
 msgstr ""
+"在 Rust 中如何做到？答案是 **[embedded-hal](https://crates.io/crates/"
+"embedded-hal)**…"
 
 #: src/portability/index.md:19
 msgid "What is [embedded-hal](https://crates.io/crates/embedded-hal)?"
-msgstr ""
+msgstr "什麼是 [embedded-hal](https://crates.io/crates/embedded-hal)？"
 
 #: src/portability/index.md:21
 msgid ""
@@ -77,10 +92,14 @@ msgid ""
 "implementing a trait it is guaranteed that you have the methods specified in "
 "the trait available)."
 msgstr ""
+"簡而言之，它是一組 traits，用於定義 **HAL 實作**、**驅動程式** 與 **應用程式"
+"（或韌體）** 之間的實作契約。這些契約同時包含能力（例如某個型別實作了某 "
+"trait，表示 **HAL 實作**提供了某種能力）與方法（例如你能建立一個實作 trait 的"
+"型別，就保證擁有 trait 所指定的方法）。"
 
 #: src/portability/index.md:23
 msgid "A typical layering might look like this:"
-msgstr ""
+msgstr "典型的分層可能如下："
 
 #: src/portability/index.md:25
 msgid "![](../assets/rust_layers.svg)"
@@ -91,14 +110,16 @@ msgid ""
 "Some of the defined traits in **[embedded-hal](https://crates.io/crates/"
 "embedded-hal)** are:"
 msgstr ""
+"**[embedded-hal](https://crates.io/crates/embedded-hal)** 中定義的一些 trait "
+"包含："
 
 #: src/portability/index.md:28
 msgid "GPIO (input and output pins)"
-msgstr ""
+msgstr "GPIO（輸入與輸出腳位）"
 
 #: src/portability/index.md:29
 msgid "Serial communication"
-msgstr ""
+msgstr "序列通訊"
 
 #: src/portability/index.md:30
 msgid "I2C"
@@ -110,7 +131,7 @@ msgstr ""
 
 #: src/portability/index.md:32
 msgid "Timers/Countdowns"
-msgstr ""
+msgstr "計時器／倒數計時"
 
 #: src/portability/index.md:33
 msgid "Analog Digital Conversion"
@@ -132,64 +153,75 @@ msgid ""
 "benefits to be had, such as less trial-and-error due to a well-defined and "
 "ready-to-use APIs."
 msgstr ""
+"擁有 **embedded-hal** traits 以及實作並使用它們的套件，主要是為了控制複雜度。"
+"若一個應用程式同時要實作硬體周邊的使用、應用程式本身，以及可能的額外硬體驅"
+"動，很容易看出可重用性會非常有限。用數學表示，若 **M** 是周邊 HAL 實作數量，"
+"**N** 是驅動數量，若每個應用都重造輪子，最終會有 **M\\*N** 種實作；而使用 "
+"**[embedded-hal](https://crates.io/crates/embedded-hal)** traits 提供的 "
+"_API_，實作複雜度會趨近 **M+N**。當然還有其他好處，例如因為 API 定義清楚且可"
+"直接使用，能減少試錯。"
 
 #: src/portability/index.md:37
 msgid "Users of the [embedded-hal](https://crates.io/crates/embedded-hal)"
-msgstr ""
+msgstr "[embedded-hal](https://crates.io/crates/embedded-hal) 的使用者"
 
 #: src/portability/index.md:39
 msgid "As said above there are three main users of the HAL:"
-msgstr ""
+msgstr "如上所述，HAL 有三種主要使用者："
 
 #: src/portability/index.md:41
 msgid "HAL implementation"
-msgstr ""
+msgstr "HAL 實作"
 
 #: src/portability/index.md:43
 msgid ""
 "A HAL implementation provides the interfacing between the hardware and the "
 "users of the HAL traits. Typical implementations consist of three parts:"
-msgstr ""
+msgstr "HAL 實作提供硬體與 HAL traits 使用者之間的介面。典型實作包含三部分："
 
 #: src/portability/index.md:44
 msgid "One or more hardware specific types"
-msgstr ""
+msgstr "一或多個硬體特定型別"
 
 #: src/portability/index.md:45
 msgid ""
 "Functions to create and initialize such a type, often providing various "
 "configuration options (speed, operation mode, use pins, etc.)"
 msgstr ""
+"用來建立並初始化該型別的函式，通常提供各種設定選項（速度、操作模式、使用腳位"
+"等）"
 
 #: src/portability/index.md:46
 msgid ""
 "one or more `trait` `impl` of **[embedded-hal](https://crates.io/crates/"
 "embedded-hal)** traits for that type"
 msgstr ""
+"該型別的一或多個 **[embedded-hal](https://crates.io/crates/embedded-hal)** "
+"traits 的 `trait` `impl`"
 
 #: src/portability/index.md:48
 msgid "Such a **HAL implementation** can come in various flavours:"
-msgstr ""
+msgstr "這樣的 **HAL 實作** 可有不同形式："
 
 #: src/portability/index.md:49
 msgid "Via low-level hardware access, e.g. via registers"
-msgstr ""
+msgstr "透過低階硬體存取，例如暫存器"
 
 #: src/portability/index.md:50
 msgid "Via operating system, e.g. by using the `sysfs` under Linux"
-msgstr ""
+msgstr "透過作業系統，例如在 Linux 使用 `sysfs`"
 
 #: src/portability/index.md:51
 msgid "Via adapter, e.g. a mock of types for unit testing"
-msgstr ""
+msgstr "透過轉接層，例如用於單元測試的型別 mock"
 
 #: src/portability/index.md:52
 msgid "Via driver for hardware adapters, e.g. I2C multiplexer or GPIO expander"
-msgstr ""
+msgstr "透過硬體轉接器的驅動程式，例如 I2C 多工器或 GPIO 擴充器"
 
 #: src/portability/index.md:54
 msgid "Driver"
-msgstr ""
+msgstr "驅動程式"
 
 #: src/portability/index.md:56
 msgid ""
@@ -200,6 +232,10 @@ msgid ""
 "light), display devices (LED arrays, LCD displays) and actuators (motors, "
 "transmitters)."
 msgstr ""
+"驅動程式為內部或外部元件提供一組自訂功能，該元件連接到實作 [embedded-hal]"
+"(https://crates.io/crates/embedded-hal) traits 的周邊。典型例子包括各種感測器"
+"（溫度、磁力計、加速度計、光）、顯示裝置（LED 陣列、LCD 顯示器）與致動器（馬"
+"達、發射器）。"
 
 #: src/portability/index.md:58
 msgid ""
@@ -208,10 +244,13 @@ msgid ""
 "which is ensured via trait bound and provides its own type instance with a "
 "custom set of methods allowing to interact with the driven device."
 msgstr ""
+"驅動程式必須以實作 [embedded-hal](https://crates.io/crates/embedded-hal) 某"
+"個 `trait` 的型別實例初始化，這由 trait bound 保證，並提供其自有型別實例與自"
+"訂方法集合，用來與所驅動的裝置互動。"
 
 #: src/portability/index.md:60
 msgid "Application"
-msgstr ""
+msgstr "應用程式"
 
 #: src/portability/index.md:62
 msgid ""
@@ -227,3 +266,8 @@ msgid ""
 "multiple timers with different capabilities are available or peripherals "
 "conflict with others)."
 msgstr ""
+"應用程式把各部分組合起來，確保達成所需功能。在不同系統間移植時，這部分需要最"
+"多的調整努力，因為應用程式必須透過 HAL 實作正確初始化實體硬體，而不同硬體的初"
+"始化方式可能差異很大。此外，使用者選擇也常扮演重要角色，因為元件可能實體連接"
+"到不同端子，硬體匯流排有時需要外部硬體配合設定，或是內部周邊的使用需要不同取"
+"捨（例如存在多個能力不同的計時器或周邊彼此衝突）。"

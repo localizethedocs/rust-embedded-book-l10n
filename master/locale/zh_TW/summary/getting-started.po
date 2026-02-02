@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/index.md:1
 msgid "Getting Started"
-msgstr ""
+msgstr "開始上手"
 
 #: src/start/index.md:3
 msgid ""
@@ -25,3 +25,8 @@ msgid ""
 "section, where we use OpenOCD to program an [STM32F3DISCOVERY](http://www.st."
 "com/en/evaluation-tools/stm32f3discovery.html)."
 msgstr ""
+"在本節中，我們將帶你走過撰寫、建置、燒錄與除錯嵌入式程式的流程。你可以在不需"
+"特殊硬體的情況下嘗試大多數範例，因為我們會使用 QEMU（常見的開源硬體模擬器）展"
+"示基礎。唯有[硬體](./hardware.md)章節需要實體硬體，我們會使用 OpenOCD 對 "
+"[STM32F3DISCOVERY](http://www.st.com/en/evaluation-tools/stm32f3discovery."
+"html) 進行燒錄。"

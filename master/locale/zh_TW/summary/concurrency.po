@@ -13,30 +13,34 @@ msgstr ""
 
 #: src/concurrency/index.md:1
 msgid "Concurrency"
-msgstr ""
+msgstr "並行"
 
 #: src/concurrency/index.md:3
 msgid ""
 "Concurrency happens whenever different parts of your program might execute "
 "at different times or out of order. In an embedded context, this includes:"
 msgstr ""
+"並行會在程式的不同部分可能於不同時間或不同順序執行時發生。在嵌入式情境中，這"
+"包括："
 
 #: src/concurrency/index.md:6
 msgid ""
 "interrupt handlers, which run whenever the associated interrupt happens,"
-msgstr ""
+msgstr "中斷處理器：在相關中斷發生時執行，"
 
 #: src/concurrency/index.md:7
 msgid ""
 "various forms of multithreading, where your microprocessor regularly swaps "
 "between parts of your program,"
-msgstr ""
+msgstr "各種形式的多執行緒：微處理器會定期在程式的不同部分之間切換，"
 
 #: src/concurrency/index.md:9
 msgid ""
 "and in some systems, multiple-core microprocessors, where each core can be "
 "independently running a different part of your program at the same time."
 msgstr ""
+"以及在某些系統中，多核心微處理器：每個核心都能在同一時間獨立執行程式的不同部"
+"分。"
 
 #: src/concurrency/index.md:12
 msgid ""
@@ -45,10 +49,12 @@ msgid ""
 "difficult bugs can occur. Luckily, Rust provides a number of abstractions "
 "and safety guarantees to help us write correct code."
 msgstr ""
+"由於許多嵌入式程式需要處理中斷，並行遲早會出現，也正是許多細微且難解的錯誤出"
+"現之處。幸運的是，Rust 提供多種抽象與安全保證，協助我們寫出正確的程式碼。"
 
 #: src/concurrency/index.md:17
 msgid "No Concurrency"
-msgstr ""
+msgstr "無並行"
 
 #: src/concurrency/index.md:19
 msgid ""
@@ -58,6 +64,9 @@ msgid ""
 "at hand! Typically your loop will read some inputs, perform some processing, "
 "and write some outputs."
 msgstr ""
+"嵌入式程式最簡單的並行就是沒有並行：軟體由單一主迴圈構成，持續運行，且完全沒"
+"有中斷。有時這非常適合手邊的問題！通常你的迴圈會讀取一些輸入、做一些處理，再"
+"輸出一些結果。"
 
 #: src/concurrency/index.md:37
 msgid ""
@@ -65,10 +74,12 @@ msgid ""
 "between parts of your program or synchronising access to peripherals. If you "
 "can get away with such a simple approach this can be a great solution."
 msgstr ""
+"由於沒有並行，就不需要擔心程式各部分之間的資料共享或周邊存取同步。如果你可以"
+"採用這麼簡單的方法，這會是很棒的解決方案。"
 
 #: src/concurrency/index.md:41
 msgid "Global Mutable Data"
-msgstr ""
+msgstr "全域可變資料"
 
 #: src/concurrency/index.md:43
 msgid ""
@@ -79,6 +90,10 @@ msgid ""
 "this means we must have _statically allocated_ mutable memory, which both "
 "the interrupt handler and the main code can refer to."
 msgstr ""
+"與非嵌入式 Rust 不同，我們通常無法奢望建立堆積配置並把對該資料的參考傳給新建"
+"執行緒。相反地，我們的中斷處理器可能在任何時候被呼叫，必須知道如何存取我們正"
+"在使用的共享記憶體。在最低層，這代表我們必須擁有_靜態配置_的可變記憶體，讓中"
+"斷處理器與主程式碼都能參考。"
 
 #: src/concurrency/index.md:50
 msgid ""
@@ -89,6 +104,10 @@ msgid ""
 "interrupted halfway through by an interrupt which also accesses that "
 "variable."
 msgstr ""
+"在 Rust 中，這類 [`static mut`](https://doc.rust-lang.org/book/ch19-01-"
+"unsafe-rust.html#accessing-or-modifying-a-mutable-static-variable) 變數的讀寫"
+"永遠是不安全的，因為若不特別小心，你可能觸發資料競爭：對變數的存取途中被同樣"
+"會存取該變數的中斷打斷。"
 
 #: src/concurrency/index.md:57
 msgid ""
@@ -96,10 +115,12 @@ msgid ""
 "consider an embedded program which counts rising edges of some input signal "
 "in each one-second period (a frequency counter):"
 msgstr ""
+"為了示範此行為如何造成程式中的細微錯誤，想像一個嵌入式程式會在每一秒內計算某"
+"個輸入訊號的上升沿（頻率計數器）："
 
 #: src/concurrency/index.md:71
 msgid "// DANGER - Not actually safe! Could cause data races.\n"
-msgstr ""
+msgstr "// 危險 - 並不安全！可能造成資料競爭。\n"
 
 #: src/concurrency/index.md:84
 msgid ""
@@ -114,10 +135,16 @@ msgid ""
 "back to 0 would be ignored after the interrupt returns — and we would count "
 "twice as many transitions for that period."
 msgstr ""
+"每一秒，計時器中斷會把計數器設回 0。同時，主迴圈會持續量測訊號，並在看到低轉"
+"高時遞增計數器。我們必須用 `unsafe` 存取 `COUNTER`，因為它是 `static mut`，這"
+"代表我們向編譯器保證不會造成未定義行為。你能找出資料競爭嗎？`COUNTER` 的遞增_"
+"不_保證是原子操作——事實上，在多數嵌入式平台上，它會被拆成載入、遞增、儲存三步"
+"驟。如果中斷在載入之後、儲存之前觸發，回到中斷後會忽略重設為 0 的結果——因此該"
+"期間的轉換次數會被計兩次。"
 
 #: src/concurrency/index.md:95
 msgid "Critical Sections"
-msgstr ""
+msgstr "臨界區"
 
 #: src/concurrency/index.md:97
 msgid ""
@@ -126,10 +153,13 @@ msgid ""
 "to `COUNTER` in `main` in a critical section, we can be sure the timer "
 "interrupt will not fire until we're finished incrementing `COUNTER`:"
 msgstr ""
+"那麼，我們能如何處理資料競爭？一個簡單的作法是使用_臨界區_，也就是停用中斷的"
+"情境。把 `main` 中對 `COUNTER` 的存取包在臨界區內，我們就能確定在完成遞增"
+"`COUNTER` 之前計時器中斷不會觸發："
 
 #: src/concurrency/index.md:112
 msgid "// New critical section ensures synchronised access to COUNTER\n"
-msgstr ""
+msgstr "// 新的臨界區確保對 COUNTER 的同步存取\n"
 
 #: src/concurrency/index.md:127
 msgid ""
@@ -138,27 +168,31 @@ msgid ""
 "is also the same as disabling interrupts, running some code, and then re-"
 "enabling interrupts."
 msgstr ""
+"在此例中，我們使用 `cortex_m::interrupt::free`，但其他平台也會有類似機制可在"
+"臨界區中執行程式碼。這等同於停用中斷、執行某段程式碼，然後再重新啟用中斷。"
 
 #: src/concurrency/index.md:132
 msgid ""
 "Note we didn't need to put a critical section inside the timer interrupt, "
 "for two reasons:"
-msgstr ""
+msgstr "注意，我們不需要在計時器中斷內加入臨界區，原因有二："
 
 #: src/concurrency/index.md:135
 msgid ""
 "Writing 0 to `COUNTER` can't be affected by a race since we don't read it"
-msgstr ""
+msgstr "將 0 寫入 `COUNTER` 不會受競爭影響，因為我們沒有讀取它"
 
 #: src/concurrency/index.md:136
 msgid "It will never be interrupted by the `main` thread anyway"
-msgstr ""
+msgstr "反正也不會被 `main` 執行緒打斷"
 
 #: src/concurrency/index.md:138
 msgid ""
 "If `COUNTER` was being shared by multiple interrupt handlers that might "
 "_preempt_ each other, then each one might require a critical section as well."
 msgstr ""
+"若 `COUNTER` 由多個可能互相_搶占_的中斷處理器共享，則每一個也可能都需要臨界"
+"區。"
 
 #: src/concurrency/index.md:141
 msgid ""
@@ -171,6 +205,10 @@ msgid ""
 "Whether this is a problem depends on your system, but in general, we'd like "
 "to avoid it."
 msgstr ""
+"這解決了當下問題，但我們仍需撰寫大量 `unsafe` 程式碼並小心推理，而且可能會不"
+"必要地使用臨界區。由於每個臨界區會暫停中斷處理，因此會帶來額外的程式碼大小成"
+"本，以及更高的中斷延遲與抖動（中斷可能需要更久才被處理，且等待時間更不穩"
+"定）。這是否是問題取決於你的系統，但一般而言我們希望避免它。"
 
 #: src/concurrency/index.md:143
 msgid ""
@@ -180,10 +218,13 @@ msgid ""
 "core, even without interrupts. You will need stronger synchronisation "
 "primitives if you are using multiple cores."
 msgstr ""
+"值得注意的是，臨界區雖然保證不會有中斷觸發，但在多核心系統上並不提供互斥保"
+"證！即使沒有中斷，其他核心也可能同時存取相同記憶體。如果你使用多核心，就需要"
+"更強的同步原語。"
 
 #: src/concurrency/index.md:149
 msgid "Atomic Access"
-msgstr ""
+msgstr "原子存取"
 
 #: src/concurrency/index.md:151
 msgid ""
@@ -197,14 +238,19 @@ msgid ""
 "automatically retry the entire increment operation. These atomic operations "
 "are safe even across multiple cores."
 msgstr ""
+"在某些平台上，有特殊的原子指令，可為讀-改-寫操作提供保證。以 Cortex-M 為例："
+"`thumbv6`（Cortex-M0、Cortex-M0+）僅提供原子載入與儲存指令，而 `thumbv7`"
+"（Cortex-M3 及以上）提供完整的 Compare and Swap（CAS）指令。這些 CAS 指令可作"
+"為粗暴停用所有中斷的替代方案：我們可嘗試遞增，大多時候會成功；若被中斷，它會"
+"自動重試整個遞增操作。這些原子操作即使跨多核心也安全。"
 
 #: src/concurrency/index.md:173
 msgid "// Use `fetch_add` to atomically add 1 to COUNTER\n"
-msgstr ""
+msgstr "// 使用 `fetch_add` 以原子方式將 COUNTER 加 1\n"
 
 #: src/concurrency/index.md:182
 msgid "// Use `store` to write 0 directly to COUNTER\n"
-msgstr ""
+msgstr "// 使用 `store` 直接將 0 寫入 COUNTER\n"
 
 #: src/concurrency/index.md:187
 msgid ""
@@ -213,6 +259,9 @@ msgid ""
 "the main thread without disabling interrupts. When possible, this is a "
 "better solution — but it may not be supported on your platform."
 msgstr ""
+"此時 `COUNTER` 是安全的 `static` 變數。多虧 `AtomicUsize` 型別，`COUNTER`可在"
+"不中斷的情況下由中斷處理器與主執行緒安全地修改。若可行，這是更好的解決方案——"
+"但你的平台可能不支援。"
 
 #: src/concurrency/index.md:192
 msgid ""
@@ -225,16 +274,23 @@ msgid ""
 "what you're using atomics for you may or may not need this! The precise "
 "details of the atomic model are complicated and best described elsewhere."
 msgstr ""
+"關於 [`Ordering`](https://doc.rust-lang.org/core/sync/atomic/enum.Ordering."
+"html)：它會影響編譯器與硬體可能重排序指令的方式，並且會影響快取可見性。假設目"
+"標是單核心平台，在此情況下 `Relaxed` 足夠且最有效率。更嚴格的排序會讓編譯器在"
+"原子操作周圍插入記憶體屏障；視你使用原子的目的而定，可能需要也可能不需要。原"
+"子模型的精確細節相當複雜，最好參考其他資料。"
 
 #: src/concurrency/index.md:200
 msgid ""
 "For more details on atomics and ordering, see the [nomicon](https://doc.rust-"
 "lang.org/nomicon/atomics.html)."
 msgstr ""
+"更多關於原子操作與排序的細節，請參考 [nomicon](https://doc.rust-lang.org/"
+"nomicon/atomics.html)。"
 
 #: src/concurrency/index.md:206
 msgid "Abstractions, Send, and Sync"
-msgstr ""
+msgstr "抽象、Send 與 Sync"
 
 #: src/concurrency/index.md:208
 msgid ""
@@ -242,6 +298,8 @@ msgid ""
 "`unsafe` blocks which must be very carefully checked and are not ergonomic. "
 "Surely we can do better in Rust!"
 msgstr ""
+"上述解法都不算理想。它們需要 `unsafe` 區塊，必須非常仔細地檢查，且不夠易用。"
+"我們在 Rust 中一定能做得更好！"
 
 #: src/concurrency/index.md:212
 msgid ""
@@ -249,6 +307,8 @@ msgid ""
 "anywhere else in our code. For this example, we'll use the critical-section "
 "counter, but you could do something very similar with atomics."
 msgstr ""
+"我們可以把計數器抽象成安全的介面，讓程式其他地方都能安全使用。此例中我們會使"
+"用臨界區計數器，但用原子操作也能做出很相似的作法。"
 
 #: src/concurrency/index.md:219
 msgid ""
@@ -258,6 +318,9 @@ msgid ""
 "// COUNTER be `static` instead of `static mut`, but still able to mutate\n"
 "// its counter value.\n"
 msgstr ""
+"// 我們的計數器只是對 UnsafeCell<u32> 的包裝，這是 Rust 內部可變性的核心\n"
+"// 透過內部可變性，我們可以讓 COUNTER 成為 `static` 而不是 `static mut`，但\n"
+"// 仍可變更其計數值。\n"
 
 #: src/concurrency/index.md:230
 msgid ""
@@ -265,20 +328,25 @@ msgid ""
 "        // be operating inside a CriticalSection, and so can confidently\n"
 "        // use this unsafe block (required to call UnsafeCell::get).\n"
 msgstr ""
+"// 透過要求傳入 CriticalSection，我們知道必須\n"
+"        // 在臨界區內操作，因此可以放心使用這個 unsafe 區塊（呼叫\n"
+"        // UnsafeCell::get 所必需）。\n"
 
 #: src/concurrency/index.md:240
 msgid "// Required to allow static CSCounter. See explanation below.\n"
-msgstr ""
+msgstr "// 允許 static CSCounter 所需，詳見下方說明。\n"
 
 #: src/concurrency/index.md:243
 msgid ""
 "// COUNTER is no longer `mut` as it uses interior mutability;\n"
 "// therefore it also no longer requires unsafe blocks to access.\n"
 msgstr ""
+"// COUNTER 因使用內部可變性而不再是 `mut`；\n"
+"// 因此存取它也不再需要 unsafe 區塊。\n"
 
 #: src/concurrency/index.md:255
 msgid "// No unsafe here!\n"
-msgstr ""
+msgstr "// 這裡沒有 unsafe！\n"
 
 #: src/concurrency/index.md:264
 msgid ""
@@ -286,6 +354,8 @@ msgid ""
 "    // cs token, even though we know no other interrupt could pre-empt\n"
 "    // this one.\n"
 msgstr ""
+"// 我們仍需進入臨界區才能取得有效的 cs token，\n"
+"    // 即便我們知道沒有其他中斷能搶占這個中斷。\n"
 
 #: src/concurrency/index.md:269
 msgid ""
@@ -293,12 +363,16 @@ msgid ""
 "    // really wanted to, avoiding the overhead:\n"
 "    // let cs = unsafe { interrupt::CriticalSection::new() };\n"
 msgstr ""
+"// 如果真的想避免開銷，我們可以用 unsafe 產生假的 CriticalSection：\n"
+"    // let cs = unsafe { interrupt::CriticalSection::new() };\n"
 
 #: src/concurrency/index.md:275
 msgid ""
 "We've moved our `unsafe` code to inside our carefully-planned abstraction, "
 "and now our application code does not contain any `unsafe` blocks."
 msgstr ""
+"我們把 `unsafe` 程式碼移到精心設計的抽象內部，現在應用程式碼不再含有任何 "
+"`unsafe` 區塊。"
 
 #: src/concurrency/index.md:278
 msgid ""

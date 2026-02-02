@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/panicking.md:1
 msgid "Panicking"
-msgstr ""
+msgstr "恐慌處理"
 
 #: src/start/panicking.md:3
 msgid ""

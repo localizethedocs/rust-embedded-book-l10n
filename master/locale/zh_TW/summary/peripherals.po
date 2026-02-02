@@ -13,11 +13,11 @@ msgstr ""
 
 #: src/peripherals/index.md:1
 msgid "Peripherals"
-msgstr ""
+msgstr "周邊"
 
 #: src/peripherals/index.md:3
 msgid "What are Peripherals?"
-msgstr ""
+msgstr "什麼是周邊？"
 
 #: src/peripherals/index.md:5
 msgid ""
@@ -28,6 +28,9 @@ msgid ""
 "controllers, or human interfaces such as a display or keyboard. These "
 "components are collectively known as Peripherals."
 msgstr ""
+"多數微控制器不只有 CPU、RAM 或快閃記憶體，還包含用於與微控制器外部系統互動的"
+"矽區塊，也會透過感測器、馬達控制器或顯示器、鍵盤等人機介面，直接或間接地與周"
+"遭環境互動。這些元件統稱為周邊。"
 
 #: src/peripherals/index.md:7
 msgid ""
@@ -38,6 +41,9 @@ msgid ""
 "allowing the CPU to spend its time doing something else important, or doing "
 "nothing in order to save power."
 msgstr ""
+"這些周邊之所以有用，是因為它們讓開發者可以把處理工作卸載給周邊，避免所有事都"
+"由軟體處理。就像桌面開發者會把圖形處理交給顯示卡一樣，嵌入式開發者可把某些工"
+"作交給周邊，讓 CPU 可以去做更重要的事，或不做事以節省功耗。"
 
 #: src/peripherals/index.md:9
 msgid ""
@@ -45,18 +51,20 @@ msgid ""
 "the 1970s or 1980s (and actually, the desktop PCs of yesterday are not so "
 "far removed from the embedded systems of today) you would expect to see:"
 msgstr ""
+"如果你看看 1970 或 1980 年代老式家用電腦的主機板（其實昨日的桌機與今日的嵌入"
+"式系統並沒有太大差別），你大概會看到："
 
 #: src/peripherals/index.md:11
 msgid "A processor"
-msgstr ""
+msgstr "處理器"
 
 #: src/peripherals/index.md:12
 msgid "A RAM chip"
-msgstr ""
+msgstr "RAM 晶片"
 
 #: src/peripherals/index.md:13
 msgid "A ROM chip"
-msgstr ""
+msgstr "ROM 晶片"
 
 #: src/peripherals/index.md:14
 msgid "An I/O controller"
@@ -72,6 +80,10 @@ msgid ""
 "principles apply - it's just that everything is packed on to a single piece "
 "of silicon."
 msgstr ""
+"RAM 晶片、ROM 晶片與 I/O 控制器（此系統中的周邊）會透過一組稱為「匯流排」的平"
+"行線路連接到處理器。匯流排負責攜帶位址資訊，用以選擇處理器想要溝通的裝置；以"
+"及資料匯流排，用以傳輸實際資料。在嵌入式微控制器中，同樣的原理適用——只是所有"
+"東西都被封裝在同一塊矽晶片上。"
 
 #: src/peripherals/index.md:18
 msgid ""
@@ -79,10 +91,12 @@ msgid ""
 "Vulkan, Metal, or OpenGL, peripherals are exposed to our Microcontroller "
 "with a hardware interface, which is mapped to a chunk of the memory."
 msgstr ""
+"然而，不同於通常有 Vulkan、Metal 或 OpenGL 等軟體 API 的顯示卡，周邊會以硬體"
+"介面呈現給微控制器，並對映到一段記憶體。"
 
 #: src/peripherals/index.md:20
 msgid "Linear and Real Memory Space"
-msgstr ""
+msgstr "線性與實體記憶體空間"
 
 #: src/peripherals/index.md:22
 msgid ""
@@ -90,6 +104,8 @@ msgid ""
 "such as `0x4000_0000` or `0x0000_0000`, may also be a completely valid "
 "action."
 msgstr ""
+"在微控制器上，將資料寫入其他任意位址（如 `0x4000_0000` 或 `0x0000_0000`）可能"
+"也是完全合法的動作。"
 
 #: src/peripherals/index.md:24
 msgid ""
@@ -101,6 +117,10 @@ msgid ""
 "Microcontrollers do not typically have an MMU, and instead only use real "
 "physical addresses in software."
 msgstr ""
+"在桌面系統上，記憶體存取由 MMU（Memory Management Unit）嚴格控制。此元件有兩"
+"項主要責任：強制記憶體區段的存取權限（防止某行程讀取或修改另一行程的記憶"
+"體）；以及將實體記憶體區段重新對映到軟體使用的虛擬記憶體範圍。微控制器通常沒"
+"有 MMU，而是只在軟體中使用實體位址。"
 
 #: src/peripherals/index.md:26
 msgid ""
@@ -121,6 +141,14 @@ msgid ""
 "peripherals in certain memory locations. This ends up looking something like "
 "this:"
 msgstr ""
+"雖然 32 位元微控制器擁有從 `0x0000_0000` 到 `0xFFFF_FFFF` 的實體線性位址空"
+"間，但實際記憶體通常只使用其中幾百 KB，留下大量位址空間。前面章節提到 RAM 位"
+"於 `0x2000_0000`。若 RAM 為 64 KiB（最大位址 0xFFFF），那麼 `0x2000_0000` 到 "
+"`0x2000_FFFF` 就對應到 RAM。當我們寫入位於 `0x2000_1234` 的變數時，內部會有邏"
+"輯偵測位址高位（此例為 0x2000），並啟用 RAM 以處理低位址部分（此例為 "
+"0x1234）。在 Cortex-M 上，Flash ROM 也會對映在 `0x0000_0000` 到例如 "
+"`0x0007_FFFF`（若有 512 KiB Flash ROM）。微控制器設計者不會忽略這兩個區域之間"
+"的空間，而是把周邊的介面對映到特定位址，結果看起來像這樣："
 
 #: src/peripherals/index.md:28
 msgid "![](../assets/nrf52-memory-map.png)"
@@ -131,10 +159,12 @@ msgid ""
 "[Nordic nRF52832 Datasheet (pdf)](http://infocenter.nordicsemi.com/pdf/"
 "nRF52832_PS_v1.1.pdf)"
 msgstr ""
+"[Nordic nRF52832 規格書（pdf）](http://infocenter.nordicsemi.com/pdf/"
+"nRF52832_PS_v1.1.pdf)"
 
 #: src/peripherals/index.md:32
 msgid "Memory Mapped Peripherals"
-msgstr ""
+msgstr "記憶體對映周邊"
 
 #: src/peripherals/index.md:34
 msgid ""
@@ -144,6 +174,9 @@ msgid ""
 "memory address. The Serial Port Peripheral would then take over and send out "
 "the data automatically."
 msgstr ""
+"乍看之下，與這些周邊互動很簡單——把正確資料寫到正確位址。例如，透過序列埠送出"
+"一個 32 位元字，可能就只是將該 32 位元字寫入某個記憶體位址。序列埠周邊會接手"
+"並自動送出資料。"
 
 #: src/peripherals/index.md:36
 msgid ""
@@ -155,6 +188,10 @@ msgid ""
 "data at 125 Kilobits per second. These configuration registers look a little "
 "bit like this:"
 msgstr ""
+"周邊的設定方式也類似。不是呼叫函式來設定周邊，而是有一塊記憶體作為硬體 API。"
+"把 `0x8000_0000` 寫到 SPI 頻率設定暫存器，SPI 就會以 8 Mbps 傳輸；把 "
+"`0x0200_0000` 寫到同一位址，SPI 就會以 125 Kbps 傳輸。這些設定暫存器看起來像"
+"這樣："
 
 #: src/peripherals/index.md:38
 msgid "![](../assets/nrf52-spi-frequency-register.png)"
@@ -164,4 +201,4 @@ msgstr ""
 msgid ""
 "This interface is how interactions with the hardware are made, no matter "
 "what language is used, whether that language is Assembly, C, or Rust."
-msgstr ""
+msgstr "不論使用何種語言（組合語言、C 或 Rust），都必須透過此介面與硬體互動。"

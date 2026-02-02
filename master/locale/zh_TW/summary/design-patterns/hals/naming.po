@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/design-patterns/hal/naming.md:1
 msgid "Naming"
-msgstr ""
+msgstr "命名"
 
 #: src/design-patterns/hal/naming.md:4
 msgid "<a id=\"c-crate-name\"></a>"

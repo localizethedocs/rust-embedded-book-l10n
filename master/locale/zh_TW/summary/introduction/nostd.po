@@ -83,7 +83,7 @@ msgstr ""
 
 #: src/intro/no-std.md:36
 msgid "Summary"
-msgstr ""
+msgstr "摘要"
 
 #: src/intro/no-std.md:37
 msgid ""

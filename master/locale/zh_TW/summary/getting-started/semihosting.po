@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/start/semihosting.md:1
 msgid "Semihosting"
-msgstr ""
+msgstr "半主機"
 
 #: src/start/semihosting.md:3
 msgid ""

@@ -13,7 +13,7 @@ msgstr ""
 
 #: src/interoperability/rust-with-c.md:1
 msgid "A little Rust with your C"
-msgstr ""
+msgstr "在 C 中用點 Rust"
 
 #: src/interoperability/rust-with-c.md:3
 msgid "Using Rust code inside a C or C++ project mostly consists of two parts."
