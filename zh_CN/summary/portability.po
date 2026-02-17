@@ -1,0 +1,229 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/portability/index.md:1
+msgid "Portability"
+msgstr ""
+
+#: src/portability/index.md:3
+msgid ""
+"In embedded environments portability is a very important topic: Every vendor "
+"and even each family from a single manufacturer offers different peripherals "
+"and capabilities and similarly the ways to interact with the peripherals "
+"will vary."
+msgstr ""
+
+#: src/portability/index.md:5
+msgid ""
+"A common way to equalize such differences is via a layer called Hardware "
+"Abstraction layer or **HAL**."
+msgstr ""
+
+#: src/portability/index.md:7
+msgid ""
+"Hardware abstractions are sets of routines in software that emulate some "
+"platform-specific details, giving programs direct access to the hardware "
+"resources."
+msgstr ""
+
+#: src/portability/index.md:9
+msgid ""
+"They often allow programmers to write device-independent, high performance "
+"applications by providing standard operating system (OS) calls to hardware."
+msgstr ""
+
+#: src/portability/index.md:11
+msgid ""
+"_Wikipedia: [Hardware Abstraction Layer](https://en.wikipedia.org/wiki/"
+"Hardware_abstraction)_"
+msgstr ""
+
+#: src/portability/index.md:15
+msgid ""
+"Embedded systems are a bit special in this regard since we typically do not "
+"have operating systems and user installable software but firmware images "
+"which are compiled as a whole as well as a number of other constraints. So "
+"while the traditional approach as defined by Wikipedia could potentially "
+"work it is likely not the most productive approach to ensure portability."
+msgstr ""
+
+#: src/portability/index.md:17
+msgid ""
+"How do we do this in Rust? Enter **[embedded-hal](https://crates.io/crates/"
+"embedded-hal)**..."
+msgstr ""
+
+#: src/portability/index.md:19
+msgid "What is [embedded-hal](https://crates.io/crates/embedded-hal)?"
+msgstr ""
+
+#: src/portability/index.md:21
+msgid ""
+"In a nutshell it is a set of traits which define implementation contracts "
+"between **HAL implementations**, **drivers** and **applications (or "
+"firmwares)**. Those contracts include both capabilities (i.e. if a trait is "
+"implemented for a certain type, the **HAL implementation** provides a "
+"certain capability) and methods (i.e. if you can construct a type "
+"implementing a trait it is guaranteed that you have the methods specified in "
+"the trait available)."
+msgstr ""
+
+#: src/portability/index.md:23
+msgid "A typical layering might look like this:"
+msgstr ""
+
+#: src/portability/index.md:25
+msgid "![](../assets/rust_layers.svg)"
+msgstr ""
+
+#: src/portability/index.md:27
+msgid ""
+"Some of the defined traits in **[embedded-hal](https://crates.io/crates/"
+"embedded-hal)** are:"
+msgstr ""
+
+#: src/portability/index.md:28
+msgid "GPIO (input and output pins)"
+msgstr ""
+
+#: src/portability/index.md:29
+msgid "Serial communication"
+msgstr ""
+
+#: src/portability/index.md:30
+msgid "I2C"
+msgstr ""
+
+#: src/portability/index.md:31
+msgid "SPI"
+msgstr ""
+
+#: src/portability/index.md:32
+msgid "Timers/Countdowns"
+msgstr ""
+
+#: src/portability/index.md:33
+msgid "Analog Digital Conversion"
+msgstr ""
+
+#: src/portability/index.md:35
+msgid ""
+"The main reason for having the **embedded-hal** traits and crates "
+"implementing and using them is to keep complexity in check. If you consider "
+"that an application might have to implement the use of the peripheral in the "
+"hardware as well as the application and potentially drivers for additional "
+"hardware components, then it should be easy to see that the re-usability is "
+"very limited. Expressed mathematically, if **M** is the number of peripheral "
+"HAL implementations and **N** the number of drivers then if we were to "
+"reinvent the wheel for every application then we would end up with **M\\*N** "
+"implementations while by using the _API_ provided by the **[embedded-hal]"
+"(https://crates.io/crates/embedded-hal)** traits will make the "
+"implementation complexity approach **M+N**. Of course there're additional "
+"benefits to be had, such as less trial-and-error due to a well-defined and "
+"ready-to-use APIs."
+msgstr ""
+
+#: src/portability/index.md:37
+msgid "Users of the [embedded-hal](https://crates.io/crates/embedded-hal)"
+msgstr ""
+
+#: src/portability/index.md:39
+msgid "As said above there are three main users of the HAL:"
+msgstr ""
+
+#: src/portability/index.md:41
+msgid "HAL implementation"
+msgstr ""
+
+#: src/portability/index.md:43
+msgid ""
+"A HAL implementation provides the interfacing between the hardware and the "
+"users of the HAL traits. Typical implementations consist of three parts:"
+msgstr ""
+
+#: src/portability/index.md:44
+msgid "One or more hardware specific types"
+msgstr ""
+
+#: src/portability/index.md:45
+msgid ""
+"Functions to create and initialize such a type, often providing various "
+"configuration options (speed, operation mode, use pins, etc.)"
+msgstr ""
+
+#: src/portability/index.md:46
+msgid ""
+"one or more `trait` `impl` of **[embedded-hal](https://crates.io/crates/"
+"embedded-hal)** traits for that type"
+msgstr ""
+
+#: src/portability/index.md:48
+msgid "Such a **HAL implementation** can come in various flavours:"
+msgstr ""
+
+#: src/portability/index.md:49
+msgid "Via low-level hardware access, e.g. via registers"
+msgstr ""
+
+#: src/portability/index.md:50
+msgid "Via operating system, e.g. by using the `sysfs` under Linux"
+msgstr ""
+
+#: src/portability/index.md:51
+msgid "Via adapter, e.g. a mock of types for unit testing"
+msgstr ""
+
+#: src/portability/index.md:52
+msgid "Via driver for hardware adapters, e.g. I2C multiplexer or GPIO expander"
+msgstr ""
+
+#: src/portability/index.md:54
+msgid "Driver"
+msgstr ""
+
+#: src/portability/index.md:56
+msgid ""
+"A driver implements a set of custom functionality for an internal or "
+"external component, connected to a peripheral implementing the [embedded-hal]"
+"(https://crates.io/crates/embedded-hal) traits. Typical examples for such "
+"drivers include various sensors (temperature, magnetometer, accelerometer, "
+"light), display devices (LED arrays, LCD displays) and actuators (motors, "
+"transmitters)."
+msgstr ""
+
+#: src/portability/index.md:58
+msgid ""
+"A driver has to be initialized with an instance of type that implements a "
+"certain `trait` of the [embedded-hal](https://crates.io/crates/embedded-hal) "
+"which is ensured via trait bound and provides its own type instance with a "
+"custom set of methods allowing to interact with the driven device."
+msgstr ""
+
+#: src/portability/index.md:60
+msgid "Application"
+msgstr ""
+
+#: src/portability/index.md:62
+msgid ""
+"The application binds the various parts together and ensures that the "
+"desired functionality is achieved. When porting between different systems, "
+"this is the part which requires the most adaptation efforts, since the "
+"application needs to correctly initialize the real hardware via the HAL "
+"implementation and the initialisation of different hardware differs, "
+"sometimes drastically so. Also the user choice often plays a big role, since "
+"components can be physically connected to different terminals, hardware "
+"buses sometimes need external hardware to match the configuration or there "
+"are different trade-offs to be made in the use of internal peripherals (e.g. "
+"multiple timers with different capabilities are available or peripherals "
+"conflict with others)."
+msgstr ""
