@@ -1,0 +1,380 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/collections/index.md:1
+msgid "Collections"
+msgstr "集合"
+
+#: src/collections/index.md:3
+msgid ""
+"Eventually you'll want to use dynamic data structures (AKA collections) in "
+"your program. `std` provides a set of common collections: [`Vec`](https://"
+"doc.rust-lang.org/std/vec/struct.Vec.html), [`String`](https://doc.rust-lang."
+"org/std/string/struct.String.html), [`HashMap`](https://doc.rust-lang.org/"
+"std/collections/struct.HashMap.html), etc. All the collections implemented "
+"in `std` use a global dynamic memory allocator (AKA the heap)."
+msgstr ""
+"最終你會想在程式中使用動態資料結構（亦即集合）。`std` 提供一組常見集合："
+"[`Vec`](https://doc.rust-lang.org/std/vec/struct.Vec.html)、[`String`]"
+"(https://doc.rust-lang.org/std/string/struct.String.html)、[`HashMap`]"
+"(https://doc.rust-lang.org/std/collections/struct.HashMap.html) 等。`std` 中"
+"實作的所有集合都使用全域動態記憶體配置器（亦即堆積）。"
+
+#: src/collections/index.md:12
+msgid ""
+"As `core` is, by definition, free of memory allocations these "
+"implementations are not available there, but they can be found in the "
+"`alloc` crate that's shipped with the compiler."
+msgstr ""
+"由於 `core` 定義上不含記憶體配置，因此這些實作在那裡不可用，但可在隨編譯器提"
+"供的 `alloc` 套件中找到。"
+
+#: src/collections/index.md:16
+msgid ""
+"If you need collections, a heap allocated implementation is not your only "
+"option. You can also use _fixed capacity_ collections; one such "
+"implementation can be found in the [`heapless`](https://crates.io/crates/"
+"heapless) crate."
+msgstr ""
+"如果你需要集合，堆積配置的實作並非唯一選擇。你也可以使用_固定容量_集合；其中"
+"一種實作可見於 [`heapless`](https://crates.io/crates/heapless) 套件。"
+
+#: src/collections/index.md:22
+msgid "In this section, we'll explore and compare these two implementations."
+msgstr "在本節中，我們會探索並比較這兩種實作。"
+
+#: src/collections/index.md:24
+msgid "Using `alloc`"
+msgstr "使用 `alloc`"
+
+#: src/collections/index.md:26
+msgid ""
+"The `alloc` crate is shipped with the standard Rust distribution. To import "
+"the crate you can directly `use` it _without_ declaring it as a dependency "
+"in your `Cargo.toml` file."
+msgstr ""
+"`alloc` 套件隨標準 Rust 發行版一同提供。要匯入此套件，你可以直接 `use` 它，_"
+"不需要_ 在 `Cargo.toml` 中宣告相依。"
+
+#: src/collections/index.md:38
+msgid ""
+"To be able to use any collection you'll first need use the "
+"`global_allocator` attribute to declare the global allocator your program "
+"will use. It's required that the allocator you select implements the "
+"[`GlobalAlloc`](https://doc.rust-lang.org/core/alloc/trait.GlobalAlloc.html) "
+"trait."
+msgstr ""
+"要能使用任何集合，你首先需要用 `global_allocator` 屬性宣告程式所使用的全域配"
+"置器。你選擇的配置器必須實作 [`GlobalAlloc`](https://doc.rust-lang.org/core/"
+"alloc/trait.GlobalAlloc.html) trait。"
+
+#: src/collections/index.md:44
+msgid ""
+"For completeness and to keep this section as self-contained as possible "
+"we'll implement a simple bump pointer allocator and use that as the global "
+"allocator. However, we _strongly_ suggest you use a battle tested allocator "
+"from crates.io in your program instead of this allocator."
+msgstr ""
+"為了完整性並盡量讓本節自足，我們會實作一個簡單的指標遞增（bump pointer）配置"
+"器並將其作為全域配置器。然而，我們_強烈_建議你在程式中使用 crates.io 上久經考"
+"驗的配置器，而不是此配置器。"
+
+#: src/collections/index.md:50
+msgid "// Bump pointer allocator implementation\n"
+msgstr "// 指標遞增配置器實作\n"
+
+#: src/collections/index.md:57
+msgid "// Bump pointer allocator for *single* core systems\n"
+msgstr "// 適用於*單核心*系統的指標遞增配置器\n"
+
+#: src/collections/index.md:68
+msgid ""
+"// `interrupt::free` is a critical section that makes our allocator safe\n"
+"        // to use from within interrupts\n"
+msgstr ""
+"// `interrupt::free` 是臨界區，讓我們的配置器可安全\n"
+"        // 在中斷內使用\n"
+
+#: src/collections/index.md:76
+msgid "// move start up to the next alignment boundary\n"
+msgstr "// 將起點移到下一個對齊邊界\n"
+
+#: src/collections/index.md:80
+msgid "// a null pointer signal an Out Of Memory condition\n"
+msgstr "// 空指標代表記憶體不足（OOM）\n"
+
+#: src/collections/index.md:90
+msgid "// this allocator never deallocates memory\n"
+msgstr "// 此配置器從不釋放記憶體\n"
+
+#: src/collections/index.md:93
+msgid ""
+"// Declaration of the global memory allocator\n"
+"// NOTE the user must ensure that the memory region `[0x2000_0100, "
+"0x2000_0200]`\n"
+"// is not used by other parts of the program\n"
+msgstr ""
+"// 全域記憶體配置器的宣告\n"
+"// 注意：使用者必須確保記憶體區域 `[0x2000_0100, 0x2000_0200]`\n"
+"// 未被程式的其他部分使用\n"
+
+#: src/collections/index.md:104
+msgid ""
+"Apart from selecting a global allocator the user will also have to define "
+"how Out Of Memory (OOM) errors are handled using the _unstable_ "
+"`alloc_error_handler` attribute."
+msgstr ""
+"除了選擇全域配置器之外，使用者還必須使用_不穩定_的 `alloc_error_handler` 屬性"
+"來定義如何處理記憶體不足（OOM）錯誤。"
+
+#: src/collections/index.md:121
+msgid ""
+"Once all that is in place, the user can finally use the collections in "
+"`alloc`."
+msgstr "當上述一切就緒後，使用者終於可以使用 `alloc` 中的集合。"
+
+#: src/collections/index.md:132
+msgid "// ..\n"
+msgstr ""
+
+#: src/collections/index.md:137
+msgid ""
+"If you have used the collections in the `std` crate then these will be "
+"familiar as they are exact same implementation."
+msgstr "如果你用過 `std` 套件的集合，這些會很熟悉，因為實作完全相同。"
+
+#: src/collections/index.md:140
+msgid "Using `heapless`"
+msgstr "使用 `heapless`"
+
+#: src/collections/index.md:142
+msgid ""
+"`heapless` requires no setup as its collections don't depend on a global "
+"memory allocator. Just `use` its collections and proceed to instantiate them:"
+msgstr ""
+"`heapless` 不需要任何設定，因為其集合不依賴全域記憶體配置器。只要 `use` 其集"
+"合並直接建立實例即可："
+
+#: src/collections/index.md:146
+msgid "// heapless version: v0.4.x\n"
+msgstr "// heapless 版本：v0.4.x\n"
+
+#: src/collections/index.md:160
+msgid ""
+"You'll note two differences between these collections and the ones in "
+"`alloc`."
+msgstr "你會注意到這些集合與 `alloc` 中的集合有兩個差異。"
+
+#: src/collections/index.md:162
+msgid ""
+"First, you have to declare upfront the capacity of the collection. "
+"`heapless` collections never reallocate and have fixed capacities; this "
+"capacity is part of the type signature of the collection. In this case we "
+"have declared that `xs` has a capacity of 8 elements that is the vector can, "
+"at most, hold 8 elements. This is indicated by the `U8` (see [`typenum`]"
+"(https://crates.io/crates/typenum)) in the type signature."
+msgstr ""
+"第一，你必須事先宣告集合容量。`heapless` 集合不會重新配置，且容量固定；容量是"
+"集合型別簽名的一部分。在此例中，我們宣告 `xs` 容量為 8 個元素，也就是這個向量"
+"最多只能容納 8 個元素。這會在型別簽名中以 `U8` 表示（見[`typenum`](https://"
+"crates.io/crates/typenum)）。"
+
+#: src/collections/index.md:170
+msgid ""
+"Second, the `push` method, and many other methods, return a `Result`. Since "
+"the `heapless` collections have fixed capacity all operations that insert "
+"elements into the collection can potentially fail. The API reflects this "
+"problem by returning a `Result` indicating whether the operation succeeded "
+"or not. In contrast, `alloc` collections will reallocate themselves on the "
+"heap to increase their capacity."
+msgstr ""
+"第二，`push` 與許多其他方法會回傳 `Result`。由於 `heapless` 集合容量固定，所"
+"有插入元素的操作都有可能失敗。API 透過回傳 `Result` 來反映此問題，以表示操作"
+"是否成功。相較之下，`alloc` 集合會在堆積上重新配置以擴增容量。"
+
+#: src/collections/index.md:177
+msgid ""
+"As of version v0.4.x all `heapless` collections store all their elements "
+"inline. This means that an operation like `let x = heapless::Vec::new();` "
+"will allocate the collection on the stack, but it's also possible to "
+"allocate the collection on a `static` variable, or even on the heap "
+"(`Box<Vec<_, _>>`)."
+msgstr ""
+"截至 v0.4.x 版本，所有 `heapless` 集合都將元素內嵌存放。這意味著像 `let x = "
+"heapless::Vec::new();` 這樣的操作會在堆疊上配置集合，但也可以將集合配置在 "
+"`static` 變數上，甚至放在堆積上（`Box<Vec<_, _>>`）。"
+
+#: src/collections/index.md:182
+msgid "Trade-offs"
+msgstr "取捨"
+
+#: src/collections/index.md:184
+msgid ""
+"Keep these in mind when choosing between heap allocated, relocatable "
+"collections and fixed capacity collections."
+msgstr "在選擇可在堆積配置、可搬移的集合與固定容量集合時，請記住以下重點。"
+
+#: src/collections/index.md:187
+msgid "Out Of Memory and error handling"
+msgstr "記憶體不足與錯誤處理"
+
+#: src/collections/index.md:189
+msgid ""
+"With heap allocations Out Of Memory is always a possibility and can occur in "
+"any place where a collection may need to grow: for example, all `alloc::Vec."
+"push` invocations can potentially generate an OOM condition. Thus some "
+"operations can _implicitly_ fail. Some `alloc` collections expose "
+"`try_reserve` methods that let you check for potential OOM conditions when "
+"growing the collection but you need be proactive about using them."
+msgstr ""
+"使用堆積配置時，記憶體不足總是有可能發生，且可能出現在集合需要成長的任何地"
+"方：例如所有 `alloc::Vec.push` 都可能引發 OOM。因此某些操作可能會_隱含_失敗。"
+"有些 `alloc` 集合提供 `try_reserve` 方法，讓你在擴充集合時檢查可能的 OOM 狀"
+"況，但你必須主動使用它們。"
+
+#: src/collections/index.md:196
+msgid ""
+"If you exclusively use `heapless` collections and you don't use a memory "
+"allocator for anything else then an OOM condition is impossible. Instead, "
+"you'll have to deal with collections running out of capacity on a case by "
+"case basis. That is you'll have deal with _all_ the `Result`s returned by "
+"methods like `Vec.push`."
+msgstr ""
+"若你只使用 `heapless` 集合，且不把記憶體配置器用於其他用途，那麼 OOM 就不可能"
+"發生。取而代之，你必須逐案處理集合容量耗盡的情況。也就是說，你必須處理像 "
+"`Vec.push` 這類方法回傳的_所有_ `Result`。"
+
+#: src/collections/index.md:202
+msgid ""
+"OOM failures can be harder to debug than say `unwrap`\\-ing on all `Result`s "
+"returned by `heapless::Vec.push` because the observed location of failure "
+"may _not_ match with the location of the cause of the problem. For example, "
+"even `vec.reserve(1)` can trigger an OOM if the allocator is nearly "
+"exhausted because some other collection was leaking memory (memory leaks are "
+"possible in safe Rust)."
+msgstr ""
+"OOM 失敗可能比在 `heapless::Vec.push` 回傳的所有 `Result` 上做 `unwrap` 更難"
+"除錯，因為觀察到的失敗位置可能_不_等於問題原因的位置。例如，如果配置器幾乎耗"
+"盡，即使 `vec.reserve(1)` 也可能觸發 OOM，原因可能是其他集合在洩漏記憶體（安"
+"全 Rust 也可能發生記憶體洩漏）。"
+
+#: src/collections/index.md:209
+msgid "Memory usage"
+msgstr "記憶體使用"
+
+#: src/collections/index.md:211
+msgid ""
+"Reasoning about memory usage of heap allocated collections is hard because "
+"the capacity of long lived collections can change at runtime. Some "
+"operations may implicitly reallocate the collection increasing its memory "
+"usage, and some collections expose methods like `shrink_to_fit` that can "
+"potentially reduce the memory used by the collection -- ultimately, it's up "
+"to the allocator to decide whether to actually shrink the memory allocation "
+"or not. Additionally, the allocator may have to deal with memory "
+"fragmentation which can increase the _apparent_ memory usage."
+msgstr ""
+"推論堆積配置集合的記憶體用量很困難，因為長生命週期集合的容量可在執行期變動。"
+"有些操作可能會隱含地重新配置集合並增加記憶體用量，有些集合提供像 "
+"`shrink_to_fit` 的方法，可能降低集合的記憶體使用量——最終是否實際縮減配置仍取"
+"決於配置器。此外，配置器可能還需處理記憶體碎片化，這會增加_表觀_記憶體用量。"
+
+#: src/collections/index.md:220
+msgid ""
+"On the other hand if you exclusively use fixed capacity collections, store "
+"most of them in `static` variables and set a maximum size for the call stack "
+"then the linker will detect if you try to use more memory than what's "
+"physically available."
+msgstr ""
+"另一方面，若你只使用固定容量集合、將大多數放在 `static` 變數中，並為呼叫堆疊"
+"設定最大大小，那麼連結器會在你嘗試使用超過實體可用記憶體時偵測到。"
+
+#: src/collections/index.md:225
+msgid ""
+"Furthermore, fixed capacity collections allocated on the stack will be "
+"reported by [`-Z emit-stack-sizes`](https://doc.rust-lang.org/beta/unstable-"
+"book/compiler-flags/emit-stack-sizes.html) flag which means that tools that "
+"analyze stack usage (like [`stack-sizes`](https://crates.io/crates/stack-"
+"sizes)) will include them in their analysis."
+msgstr ""
+"此外，堆疊上配置的固定容量集合會被 [`-Z emit-stack-sizes`](https://doc.rust-"
+"lang.org/beta/unstable-book/compiler-flags/emit-stack-sizes.html) 旗標回報，"
+"這表示分析堆疊使用量的工具（如 [`stack-sizes`](https://crates.io/crates/"
+"stack-sizes)）會將它們納入分析。"
+
+#: src/collections/index.md:232
+msgid ""
+"However, fixed capacity collections can _not_ be shrunk which can result in "
+"lower load factors (the ratio between the size of the collection and its "
+"capacity) than what relocatable collections can achieve."
+msgstr ""
+"然而，固定容量集合_無法_縮小，這可能導致裝載率（集合大小與容量的比例）低於可"
+"搬移集合所能達到的程度。"
+
+#: src/collections/index.md:236
+msgid "Worst Case Execution Time (WCET)"
+msgstr "最壞執行時間（WCET）"
+
+#: src/collections/index.md:238
+msgid ""
+"If you are building time sensitive applications or hard real time "
+"applications then you care, maybe a lot, about the worst case execution time "
+"of the different parts of your program."
+msgstr ""
+"如果你在打造時間敏感或硬即時的應用程式，那麼你會非常在意程式各部分的最壞執行"
+"時間。"
+
+#: src/collections/index.md:242
+msgid ""
+"The `alloc` collections can reallocate so the WCET of operations that may "
+"grow the collection will also include the time it takes to reallocate the "
+"collection, which itself depends on the _runtime_ capacity of the "
+"collection. This makes it hard to determine the WCET of, for example, the "
+"`alloc::Vec.push` operation as it depends on both the allocator being used "
+"and its runtime capacity."
+msgstr ""
+"`alloc` 集合可以重新配置，因此可能增長集合的操作，其 WCET 也包含重新配置所需"
+"的時間，而這又取決於集合的_執行期_容量。這使得像 `alloc::Vec.push` 這樣的操作"
+"難以確定 WCET，因為它取決於使用的配置器與執行期容量。"
+
+#: src/collections/index.md:248
+msgid ""
+"On the other hand fixed capacity collections never reallocate so all "
+"operations have a predictable execution time. For example, `heapless::Vec."
+"push` executes in constant time."
+msgstr ""
+"另一方面，固定容量集合從不重新配置，因此所有操作都有可預測的執行時間。例如，"
+"`heapless::Vec.push` 以常數時間執行。"
+
+#: src/collections/index.md:252
+msgid "Ease of use"
+msgstr "易用性"
+
+#: src/collections/index.md:254
+msgid ""
+"`alloc` requires setting up a global allocator whereas `heapless` does not. "
+"However, `heapless` requires you to pick the capacity of each collection "
+"that you instantiate."
+msgstr ""
+"`alloc` 需要設定全域配置器，而 `heapless` 不需要。然而，`heapless` 需要你為每"
+"個實例化的集合選擇容量。"
+
+#: src/collections/index.md:258
+msgid ""
+"The `alloc` API will be familiar to virtually every Rust developer. The "
+"`heapless` API tries to closely mimic the `alloc` API but it will never be "
+"exactly the same due to its explicit error handling -- some developers may "
+"feel the explicit error handling is excessive or too cumbersome."
+msgstr ""
+"`alloc` 的 API 幾乎對每位 Rust 開發者都很熟悉。`heapless` 的 API 嘗試緊密模"
+"仿 `alloc` API，但因為明確的錯誤處理，它永遠不可能完全相同——有些開發者可能覺"
+"得明確的錯誤處理過於冗長或太繁瑣。"

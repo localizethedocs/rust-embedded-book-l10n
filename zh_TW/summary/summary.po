@@ -1,0 +1,188 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/SUMMARY.md:1
+msgid "Summary"
+msgstr "摘要"
+
+#: src/SUMMARY.md:12
+msgid "Introduction"
+msgstr "介紹"
+
+#: src/SUMMARY.md:13 src/SUMMARY.md:23
+msgid "Hardware"
+msgstr "硬體"
+
+#: src/SUMMARY.md:14
+msgid "`no_std`"
+msgstr ""
+
+#: src/SUMMARY.md:15
+msgid "Tooling"
+msgstr "工具"
+
+#: src/SUMMARY.md:16
+msgid "Installation"
+msgstr "安裝"
+
+#: src/SUMMARY.md:17
+msgid "Linux"
+msgstr ""
+
+#: src/SUMMARY.md:18
+msgid "MacOS"
+msgstr ""
+
+#: src/SUMMARY.md:19
+msgid "Windows"
+msgstr ""
+
+#: src/SUMMARY.md:20
+msgid "Verify Installation"
+msgstr "驗證安裝"
+
+#: src/SUMMARY.md:21
+msgid "Getting started"
+msgstr "開始上手"
+
+#: src/SUMMARY.md:22
+msgid "QEMU"
+msgstr ""
+
+#: src/SUMMARY.md:24
+msgid "Memory-mapped Registers"
+msgstr "記憶體對映暫存器"
+
+#: src/SUMMARY.md:25
+msgid "Semihosting"
+msgstr "半主機"
+
+#: src/SUMMARY.md:26
+msgid "Panicking"
+msgstr "恐慌處理"
+
+#: src/SUMMARY.md:27
+msgid "Exceptions"
+msgstr "例外"
+
+#: src/SUMMARY.md:28
+msgid "Interrupts"
+msgstr "中斷"
+
+#: src/SUMMARY.md:29
+msgid "IO"
+msgstr "I/O"
+
+#: src/SUMMARY.md:30
+msgid "Peripherals"
+msgstr "周邊"
+
+#: src/SUMMARY.md:31
+msgid "A first attempt in Rust"
+msgstr "Rust 的首次嘗試"
+
+#: src/SUMMARY.md:32
+msgid "The Borrow Checker"
+msgstr "借用檢查器"
+
+#: src/SUMMARY.md:33
+msgid "Singletons"
+msgstr "單例"
+
+#: src/SUMMARY.md:34
+msgid "Static Guarantees"
+msgstr "靜態保證"
+
+#: src/SUMMARY.md:35
+msgid "Typestate Programming"
+msgstr "型別狀態程式設計"
+
+#: src/SUMMARY.md:36
+msgid "Peripherals as State Machines"
+msgstr "將周邊視為狀態機"
+
+#: src/SUMMARY.md:37
+msgid "Design Contracts"
+msgstr "設計契約"
+
+#: src/SUMMARY.md:38
+msgid "Zero Cost Abstractions"
+msgstr "零成本抽象"
+
+#: src/SUMMARY.md:39
+msgid "Portability"
+msgstr "可攜性"
+
+#: src/SUMMARY.md:40
+msgid "Concurrency"
+msgstr "並行"
+
+#: src/SUMMARY.md:41
+msgid "Collections"
+msgstr "集合"
+
+#: src/SUMMARY.md:42
+msgid "Design Patterns"
+msgstr "設計模式"
+
+#: src/SUMMARY.md:43
+msgid "HALs"
+msgstr ""
+
+#: src/SUMMARY.md:44
+msgid "Checklist"
+msgstr "檢查清單"
+
+#: src/SUMMARY.md:45
+msgid "Naming"
+msgstr "命名"
+
+#: src/SUMMARY.md:46 src/SUMMARY.md:51
+msgid "Interoperability"
+msgstr "互通性"
+
+#: src/SUMMARY.md:47
+msgid "Predictability"
+msgstr "可預測性"
+
+#: src/SUMMARY.md:48
+msgid "GPIO"
+msgstr ""
+
+#: src/SUMMARY.md:49
+msgid "Tips for embedded C developers"
+msgstr "給嵌入式 C 開發者的提示"
+
+#: src/SUMMARY.md:52
+msgid "A little C with your Rust"
+msgstr "在 Rust 中用點 C"
+
+#: src/SUMMARY.md:53
+msgid "A little Rust with your C"
+msgstr "在 C 中用點 Rust"
+
+#: src/SUMMARY.md:54
+msgid "Unsorted topics"
+msgstr "未分類主題"
+
+#: src/SUMMARY.md:55
+msgid "Optimizations: The speed size tradeoff"
+msgstr "最佳化：速度與大小的取捨"
+
+#: src/SUMMARY.md:56
+msgid "Performing Math Functionality"
+msgstr "數學運算功能"
+
+#: src/SUMMARY.md:60
+msgid "Appendix A: Glossary"
+msgstr "附錄 A：詞彙表"

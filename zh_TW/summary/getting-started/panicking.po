@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/start/panicking.md:1
+msgid "Panicking"
+msgstr "恐慌處理"
+
+#: src/start/panicking.md:3
+msgid ""
+"Panicking is a core part of the Rust language. Built-in operations like "
+"indexing are runtime checked for memory safety. When out of bounds indexing "
+"is attempted this results in a panic."
+msgstr ""
+
+#: src/start/panicking.md:7
+msgid ""
+"In the standard library panicking has a defined behavior: it unwinds the "
+"stack of the panicking thread, unless the user opted for aborting the "
+"program on panics."
+msgstr ""
+
+#: src/start/panicking.md:11
+msgid ""
+"In programs without standard library, however, the panicking behavior is "
+"left undefined. A behavior can be chosen by declaring a `#[panic_handler]` "
+"function. This function must appear exactly _once_ in the dependency graph "
+"of a program, and must have the following signature: `fn(&PanicInfo) -> !`, "
+"where [`PanicInfo`](https://doc.rust-lang.org/core/panic/struct.PanicInfo."
+"html) is a struct containing information about the location of the panic."
+msgstr ""
+
+#: src/start/panicking.md:19
+msgid ""
+"Given that embedded systems range from user facing to safety critical "
+"(cannot crash) there's no one size fits all panicking behavior but there are "
+"plenty of commonly used behaviors. These common behaviors have been packaged "
+"into crates that define the `#[panic_handler]` function. Some examples "
+"include:"
+msgstr ""
+
+#: src/start/panicking.md:24
+msgid ""
+"[`panic-abort`](https://crates.io/crates/panic-abort). A panic causes the "
+"abort instruction to be executed."
+msgstr ""
+
+#: src/start/panicking.md:25
+msgid ""
+"[`panic-halt`](https://crates.io/crates/panic-halt). A panic causes the "
+"program, or the current thread, to halt by entering an infinite loop."
+msgstr ""
+
+#: src/start/panicking.md:27
+msgid ""
+"[`panic-itm`](https://crates.io/crates/panic-itm). The panicking message is "
+"logged using the ITM, an ARM Cortex-M specific peripheral."
+msgstr ""
+
+#: src/start/panicking.md:29
+msgid ""
+"[`panic-semihosting`](https://crates.io/crates/panic-semihosting). The "
+"panicking message is logged to the host using the semihosting technique."
+msgstr ""
+
+#: src/start/panicking.md:37
+msgid ""
+"You may be able to find even more crates searching for the [`panic-handler`]"
+"(https://crates.io/keywords/panic-handler) keyword on crates.io."
+msgstr ""
+
+#: src/start/panicking.md:42
+msgid ""
+"A program can pick one of these behaviors simply by linking to the "
+"corresponding crate. The fact that the panicking behavior is expressed in "
+"the source of an application as a single line of code is not only useful as "
+"documentation but can also be used to change the panicking behavior "
+"according to the compilation profile. For example:"
+msgstr ""
+
+#: src/start/panicking.md:51
+msgid ""
+"// dev profile: easier to debug panics; can put a breakpoint on "
+"`rust_begin_unwind`\n"
+msgstr ""
+
+#: src/start/panicking.md:55
+msgid "// release profile: minimize the binary size of the application\n"
+msgstr ""
+
+#: src/start/panicking.md:59
+msgid "// ..\n"
+msgstr ""
+
+#: src/start/panicking.md:63
+msgid ""
+"In this example the crate links to the `panic-halt` crate when built with "
+"the dev profile (`cargo build`), but links to the `panic-abort` crate when "
+"built with the release profile (`cargo build --release`)."
+msgstr ""
+
+#: src/start/panicking.md:67
+msgid ""
+"The `use panic_abort as _;` form of the `use` statement is used to ensure "
+"the `panic_abort` panic handler is included in our final executable while "
+"making it clear to the compiler that we won't explicitly use anything from "
+"the crate. Without the `as _` rename, the compiler would warn that we have "
+"an unused import. Sometimes you might see `extern crate panic_abort` "
+"instead, which is an older style used before the 2018 edition of Rust, and "
+"should now only be used for \"sysroot\" crates (those distributed with Rust "
+"itself) such as `proc_macro`, `alloc`, `std`, and `test`."
+msgstr ""
+
+#: src/start/panicking.md:74
+msgid "An example"
+msgstr ""
+
+#: src/start/panicking.md:76
+msgid ""
+"Here's an example that tries to index an array beyond its length. The "
+"operation results in a panic."
+msgstr ""
+
+#: src/start/panicking.md:91
+msgid "// out of bounds access\n"
+msgstr ""
+
+#: src/start/panicking.md:97
+msgid ""
+"This example chose the `panic-semihosting` behavior which prints the panic "
+"message to the host console using semihosting."
+msgstr ""
+
+#: src/start/panicking.md:106
+msgid ""
+"You can try changing the behavior to `panic-halt` and confirm that no "
+"message is printed in that case."
+msgstr ""
