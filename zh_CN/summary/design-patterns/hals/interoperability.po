@@ -1,0 +1,90 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/design-patterns/hal/interoperability.md:1
+msgid "Interoperability"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:4
+msgid "<a id=\"c-free\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:5
+msgid "Wrapper types provide a destructor method (C-FREE)"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:7
+msgid ""
+"Any non-`Copy` wrapper type provided by the HAL should provide a `free` "
+"method that consumes the wrapper and returns back the raw peripheral (and "
+"possibly other objects) it was created from."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:11
+msgid ""
+"The method should shut down and reset the peripheral if necessary. Calling "
+"`new` with the raw peripheral returned by `free` should not fail due to an "
+"unexpected state of the peripheral."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:15
+msgid ""
+"If the HAL type requires other non-`Copy` objects to be constructed (for "
+"example I/O pins), any such object should be released and returned by `free` "
+"as well. `free` should return a tuple in that case."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:19
+msgid "For example:"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:36
+msgid "<a id=\"c-reexport-pac\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:37
+msgid "HALs reexport their register access crate (C-REEXPORT-PAC)"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:39
+msgid ""
+"HALs can be written on top of [svd2rust](https://github.com/rust-embedded/"
+"svd2rust)\\-generated PACs, or on top of other crates that provide raw "
+"register access. HALs should always reexport the register access crate they "
+"are based on in their crate root."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:43
+msgid ""
+"A PAC should be reexported under the name `pac`, regardless of the actual "
+"name of the crate, as the name of the HAL should already make it clear what "
+"PAC is being accessed."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:49
+msgid "<a id=\"c-hal-traits\"></a>"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:50
+msgid "Types implement the `embedded-hal` traits (C-HAL-TRAITS)"
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:52
+msgid ""
+"Types provided by the HAL should implement all applicable traits provided by "
+"the [`embedded-hal`](https://github.com/rust-embedded/embedded-hal) crate."
+msgstr ""
+
+#: src/design-patterns/hal/interoperability.md:55
+msgid "Multiple traits may be implemented for the same type."
+msgstr ""
