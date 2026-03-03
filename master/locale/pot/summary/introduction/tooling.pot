@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Embedded Rust Book\n"
-"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"POT-Creation-Date: 2026-03-03T08:55:33Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/intro/tooling.md:1
@@ -233,10 +233,25 @@ msgid ""
 msgstr ""
 
 #: src/intro/tooling.md:89
-msgid "GDB (GNU Debugger)"
+msgid "TRACE32"
 msgstr ""
 
 #: src/intro/tooling.md:91
+msgid ""
+"TRACE32 is a professional debugging and tracing solution developed by "
+"Lauterbach for embedded systems. It supports a wide range of processor "
+"architectures, including ARM and RISC-V, and connects to target hardware via "
+"JTAG, SWD, and various trace interfaces. TRACE32 provides advanced debugging "
+"capabilities such as multicore debugging, complex breakpoints, and real-time "
+"trace analysis. It works with standard ELF/DWARF debug information, making "
+"it compatible with Rust binaries built using conventional toolchains."
+msgstr ""
+
+#: src/intro/tooling.md:93
+msgid "GDB (GNU Debugger)"
+msgstr ""
+
+#: src/intro/tooling.md:95
 msgid ""
 "GDB is a versatile debugging tool that allows developers to examine the "
 "state of programs while they run or after they crash. For embedded Rust, GDB "
@@ -248,11 +263,11 @@ msgid ""
 "integration with IDEs."
 msgstr ""
 
-#: src/intro/tooling.md:94
+#: src/intro/tooling.md:98
 msgid "Probes"
 msgstr ""
 
-#: src/intro/tooling.md:96
+#: src/intro/tooling.md:100
 msgid ""
 "A hardware probe is a device used in the development and debugging of "
 "embedded systems to facilitate communication between a host computer and the "
@@ -264,11 +279,11 @@ msgid ""
 "real-time."
 msgstr ""
 
-#: src/intro/tooling.md:98
+#: src/intro/tooling.md:102
 msgid "Rusty-probe"
 msgstr ""
 
-#: src/intro/tooling.md:100
+#: src/intro/tooling.md:104
 msgid ""
 "Rusty-probe is an open-sourced USB-based hardware debugging probe designed "
 "to work with probe-rs. The combination of Rusty-Probe and probe-rs provides "
@@ -276,11 +291,11 @@ msgid ""
 "Rust applications."
 msgstr ""
 
-#: src/intro/tooling.md:102
+#: src/intro/tooling.md:106
 msgid "ST-Link"
 msgstr ""
 
-#: src/intro/tooling.md:104
+#: src/intro/tooling.md:108
 msgid ""
 "The ST-Link is a popular debugging and programming probe developed by "
 "STMicroelectronics primarily for their STM32 and STM8 microcontroller "
@@ -291,11 +306,11 @@ msgid ""
 "working with STM microcontrollers."
 msgstr ""
 
-#: src/intro/tooling.md:106
+#: src/intro/tooling.md:110
 msgid "J-Link"
 msgstr ""
 
-#: src/intro/tooling.md:108
+#: src/intro/tooling.md:112
 msgid ""
 "J-Link, developed by SEGGER Microcontroller, is a robust and versatile "
 "debugger supporting a wide range of CPU cores and devices beyond just ARM, "
@@ -306,11 +321,11 @@ msgid ""
 "of development environments."
 msgstr ""
 
-#: src/intro/tooling.md:110
+#: src/intro/tooling.md:114
 msgid "MCU-Link"
 msgstr ""
 
-#: src/intro/tooling.md:112
+#: src/intro/tooling.md:116
 msgid ""
 "MCU-Link is a debugging probe that also functions as a programmer, provided "
 "by NXP Semiconductors. It supports a variety of ARM Cortex microcontrollers "
