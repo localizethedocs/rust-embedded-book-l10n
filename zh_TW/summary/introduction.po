@@ -1,0 +1,406 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/intro/index.md:1
+msgid "Introduction"
+msgstr "介紹"
+
+#: src/intro/index.md:3
+msgid ""
+"Welcome to The Embedded Rust Book: An introductory book about using the Rust "
+"Programming Language on \"Bare Metal\" embedded systems, such as "
+"Microcontrollers."
+msgstr ""
+"歡迎來到《嵌入式 Rust 手冊》：一本介紹如何在「裸機」嵌入式系統（如微控制器）"
+"上使用 Rust 程式語言的入門書。"
+
+#: src/intro/index.md:6
+msgid "Who Embedded Rust is For"
+msgstr "嵌入式 Rust 的適用對象"
+
+#: src/intro/index.md:7
+msgid ""
+"Embedded Rust is for everyone who wants to do embedded programming while "
+"taking advantage of the higher-level concepts and safety guarantees the Rust "
+"language provides. (See also [Who Rust Is For](https://doc.rust-lang.org/"
+"book/ch00-00-introduction.html))"
+msgstr ""
+"嵌入式 Rust 適合想進行嵌入式開發、同時享受 Rust 語言提供的高階概念與安全保證"
+"的人。（另見 [Rust 的適用對象](https://doc.rust-lang.org/book/ch00-00-"
+"introduction.html)）"
+
+#: src/intro/index.md:10
+msgid "Scope"
+msgstr "範疇"
+
+#: src/intro/index.md:12
+msgid "The goals of this book are:"
+msgstr "本書的目標是："
+
+#: src/intro/index.md:14
+msgid ""
+"Get developers up to speed with embedded Rust development. i.e. How to set "
+"up a development environment."
+msgstr "讓開發者快速上手嵌入式 Rust 開發。例如：如何設定開發環境。"
+
+#: src/intro/index.md:17
+msgid ""
+"Share _current_ best practices about using Rust for embedded development. i."
+"e. How to best use Rust language features to write more correct embedded "
+"software."
+msgstr ""
+"分享使用 Rust 進行嵌入式開發的_當前_最佳實務。例如：如何善用 Rust 語言特性來"
+"寫出更正確的嵌入式軟體。"
+
+#: src/intro/index.md:21
+msgid ""
+"Serve as a cookbook in some cases. e.g. How do I mix C and Rust in a single "
+"project?"
+msgstr "在某些情況下作為食譜。例如：如何在單一專案中混用 C 與 Rust？"
+
+#: src/intro/index.md:24
+msgid ""
+"This book tries to be as general as possible but to make things easier for "
+"both the readers and the writers it uses the ARM Cortex-M architecture in "
+"all its examples. However, the book doesn't assume that the reader is "
+"familiar with this particular architecture and explains details particular "
+"to this architecture where required."
+msgstr ""
+"本書力求通用，但為了讓讀者與作者更容易上手，所有範例都採用 ARM Cortex-M 架"
+"構。不過，本書不假設讀者熟悉該架構，並在需要時解釋其特定細節。"
+
+#: src/intro/index.md:30
+msgid "Who This Book is For"
+msgstr "本書的讀者"
+
+#: src/intro/index.md:31
+msgid ""
+"This book caters towards people with either some embedded background or some "
+"Rust background, however we believe everybody curious about embedded Rust "
+"programming can get something out of this book. For those without any prior "
+"knowledge we suggest you read the \"Assumptions and Prerequisites\" section "
+"and catch up on missing knowledge to get more out of the book and improve "
+"your reading experience. You can check out the \"Other Resources\" section "
+"to find resources on topics you might want to catch up on."
+msgstr ""
+"本書面向具備嵌入式或 Rust 背景的人，但我們相信所有對嵌入式 Rust 感到好奇的人"
+"都能從本書中有所收穫。若你沒有相關先備知識，我們建議先閱讀「假設與先備條件」"
+"章節並補足不足，讓你從本書獲益更多並提升閱讀體驗。你也可查看「其他資源」章"
+"節，尋找你想補充的主題。"
+
+#: src/intro/index.md:37
+msgid "Assumptions and Prerequisites"
+msgstr "假設與先備條件"
+
+#: src/intro/index.md:39
+msgid ""
+"You are comfortable using the Rust Programming Language, and have written, "
+"run, and debugged Rust applications on a desktop environment. You should "
+"also be familiar with the idioms of the [2018 edition](https://doc.rust-lang."
+"org/edition-guide/) as this book targets Rust 2018."
+msgstr ""
+"你已能熟練使用 Rust 程式語言，並在桌面環境撰寫、執行與除錯 Rust 應用程式。你"
+"也應熟悉 [2018 edition](https://doc.rust-lang.org/edition-guide/) 的慣例，因"
+"為本書以 Rust 2018 為目標。"
+
+#: src/intro/index.md:46
+msgid ""
+"You are comfortable developing and debugging embedded systems in another "
+"language such as C, C++, or Ada, and are familiar with concepts such as:"
+msgstr ""
+"你能以 C、C++ 或 Ada 等其他語言進行嵌入式系統開發與除錯，並熟悉以下概念："
+
+#: src/intro/index.md:48
+msgid "Cross Compilation"
+msgstr "交叉編譯"
+
+#: src/intro/index.md:49
+msgid "Memory Mapped Peripherals"
+msgstr "記憶體對映周邊"
+
+#: src/intro/index.md:50 src/intro/index.md:64
+msgid "Interrupts"
+msgstr "中斷"
+
+#: src/intro/index.md:51
+msgid "Common interfaces such as I2C, SPI, Serial, etc."
+msgstr "I2C、SPI、序列埠等常見介面"
+
+#: src/intro/index.md:53
+msgid "Other Resources"
+msgstr "其他資源"
+
+#: src/intro/index.md:54
+msgid ""
+"If you are unfamiliar with anything mentioned above or if you want more "
+"information about a specific topic mentioned in this book you might find "
+"some of these resources helpful."
+msgstr ""
+"如果你對上述內容不熟悉，或想了解本書提及的特定主題，以下資源可能會有幫助。"
+
+#: src/intro/index.md:56
+msgid "Topic"
+msgstr "話題"
+
+#: src/intro/index.md:56
+msgid "Resource"
+msgstr "資源"
+
+#: src/intro/index.md:56
+msgid "Description"
+msgstr "描述"
+
+#: src/intro/index.md:58
+msgid "Rust"
+msgstr ""
+
+#: src/intro/index.md:58
+msgid "[Rust Book](https://doc.rust-lang.org/book/)"
+msgstr "[Rust 手冊](https://doc.rust-lang.org/book/)"
+
+#: src/intro/index.md:58
+msgid ""
+"If you are not yet comfortable with Rust, we highly suggest reading this "
+"book."
+msgstr "若你尚未熟悉 Rust，我們強烈建議先閱讀此書。"
+
+#: src/intro/index.md:59 src/intro/index.md:60 src/intro/index.md:61
+#: src/intro/index.md:62 src/intro/index.md:63
+msgid "Rust, Embedded"
+msgstr "Rust、嵌入式"
+
+#: src/intro/index.md:59
+msgid "[Discovery Book](https://docs.rust-embedded.org/discovery/)"
+msgstr "[Discovery 手冊](https://docs.rust-embedded.org/discovery/)"
+
+#: src/intro/index.md:59
+msgid ""
+"If you have never done any embedded programming, this book might be a better "
+"start"
+msgstr "若你從未做過嵌入式開發，這本書可能是更好的起點"
+
+#: src/intro/index.md:60
+msgid "[Embedded Rust Bookshelf](https://docs.rust-embedded.org)"
+msgstr ""
+
+#: src/intro/index.md:60
+msgid ""
+"Here you can find several other resources provided by Rust's Embedded "
+"Working Group."
+msgstr "在這裡可以找到 Rust 嵌入式工作群提供的其他資源。"
+
+#: src/intro/index.md:61
+msgid "[Embedonomicon](https://docs.rust-embedded.org/embedonomicon/)"
+msgstr ""
+
+#: src/intro/index.md:61
+msgid "The nitty gritty details when doing embedded programming in Rust."
+msgstr "使用 Rust 進行嵌入式開發時的繁瑣細節。"
+
+#: src/intro/index.md:62
+msgid "[embedded FAQ](https://docs.rust-embedded.org/faq.html)"
+msgstr "[嵌入式 FAQ](https://docs.rust-embedded.org/faq.html)"
+
+#: src/intro/index.md:62
+msgid "Frequently asked questions about Rust in an embedded context."
+msgstr "關於嵌入式情境中的 Rust 常見問題。"
+
+#: src/intro/index.md:63
+msgid ""
+"[Comprehensive Rust 🦀: Bare Metal](https://google.github.io/comprehensive-"
+"rust/bare-metal.html)"
+msgstr ""
+"[Comprehensive Rust 🦀：裸機](https://google.github.io/comprehensive-rust/"
+"bare-metal.html)"
+
+#: src/intro/index.md:63
+msgid "Teaching material for a 1-day class on bare-metal Rust development"
+msgstr "裸機 Rust 開發 1 日課程的教學教材"
+
+#: src/intro/index.md:64
+msgid "[Interrupt](https://en.wikipedia.org/wiki/Interrupt)"
+msgstr "[中斷](https://en.wikipedia.org/wiki/Interrupt)"
+
+#: src/intro/index.md:64 src/intro/index.md:65 src/intro/index.md:66
+msgid "\\-"
+msgstr ""
+
+#: src/intro/index.md:65
+msgid "Memory-mapped IO/Peripherals"
+msgstr "記憶體對映 I/O/周邊"
+
+#: src/intro/index.md:65
+msgid "[Memory-mapped I/O](https://en.wikipedia.org/wiki/Memory-mapped_I/O)"
+msgstr "[記憶體對映 I/O](https://en.wikipedia.org/wiki/Memory-mapped_I/O)"
+
+#: src/intro/index.md:66
+msgid "SPI, UART, RS232, USB, I2C, TTL"
+msgstr "SPI、UART、RS232、USB、I2C、TTL"
+
+#: src/intro/index.md:66
+msgid ""
+"[Stack Exchange about SPI, UART, and other interfaces](https://electronics."
+"stackexchange.com/questions/37814/usart-uart-rs232-usb-spi-i2c-ttl-etc-what-"
+"are-all-of-these-and-how-do-th)"
+msgstr ""
+"[關於 SPI、UART 與其他介面的 Stack Exchange 討論](https://electronics."
+"stackexchange.com/questions/37814/usart-uart-rs232-usb-spi-i2c-ttl-etc-what-"
+"are-all-of-these-and-how-do-th)"
+
+#: src/intro/index.md:68
+msgid "Translations"
+msgstr "翻譯"
+
+#: src/intro/index.md:70
+msgid ""
+"This book has been translated by generous volunteers. If you would like your "
+"translation listed here, please open a PR to add it."
+msgstr "本書由熱心志工翻譯完成。若你希望你的翻譯列在此處，請開 PR 加入。"
+
+#: src/intro/index.md:73
+msgid ""
+"[Japanese](https://tomoyuki-nakabayashi.github.io/book/) ([repository]"
+"(https://github.com/tomoyuki-nakabayashi/book))"
+msgstr ""
+"[日文](https://tomoyuki-nakabayashi.github.io/book/)（[儲存庫](https://"
+"github.com/tomoyuki-nakabayashi/book)）"
+
+#: src/intro/index.md:76
+msgid ""
+"[Chinese](https://xxchang.github.io/book/) ([repository](https://github.com/"
+"XxChang/book))"
+msgstr ""
+"[中文](https://xxchang.github.io/book/)（[儲存庫](https://github.com/XxChang/"
+"book)）"
+
+#: src/intro/index.md:79
+msgid "How to Use This Book"
+msgstr "如何使用這本手冊"
+
+#: src/intro/index.md:81
+msgid ""
+"This book generally assumes that you’re reading it front-to-back. Later "
+"chapters build on concepts in earlier chapters, and earlier chapters may not "
+"dig into details on a topic, revisiting the topic in a later chapter."
+msgstr ""
+"該手冊一般假設你從前往後閱讀。後續章節會建立在前面章節的概念之上，而前面章節"
+"可能不會深入某些話題，並在後續章節再回頭詳述。"
+
+#: src/intro/index.md:85
+msgid ""
+"This book will be using the [STM32F3DISCOVERY](http://www.st.com/en/"
+"evaluation-tools/stm32f3discovery.html) development board from "
+"STMicroelectronics for the majority of the examples contained within. This "
+"board is based on the ARM Cortex-M architecture, and while basic "
+"functionality is the same across most CPUs based on this architecture, "
+"peripherals and other implementation details of Microcontrollers are "
+"different between different vendors, and often even different between "
+"Microcontroller families from the same vendor."
+msgstr ""
+"本書多數範例會使用 STMicroelectronics 的 [STM32F3DISCOVERY](http://www.st."
+"com/en/evaluation-tools/stm32f3discovery.html) 開發板。此開發板基於 ARM "
+"Cortex-M 架構，雖然此架構的多數 CPU 基本功能相同，但不同廠商的微控制器周邊與"
+"其他實作細節各不相同，甚至同一廠商不同家族也可能不同。"
+
+#: src/intro/index.md:93
+msgid ""
+"For this reason, we suggest purchasing the [STM32F3DISCOVERY](http://www.st."
+"com/en/evaluation-tools/stm32f3discovery.html) development board for the "
+"purpose of following the examples in this book."
+msgstr ""
+"因此，我們建議購買 [STM32F3DISCOVERY](http://www.st.com/en/evaluation-tools/"
+"stm32f3discovery.html) 開發板來跟著本書範例操作。"
+
+#: src/intro/index.md:98
+msgid "Contributing to This Book"
+msgstr "為本書做出貢獻"
+
+#: src/intro/index.md:100
+msgid ""
+"The work on this book is coordinated in [this repository](https://github.com/"
+"rust-embedded/book) and is mainly developed by the [resources team](https://"
+"github.com/rust-embedded/wg#the-resources-team)."
+msgstr ""
+"本書的工作由[此儲存庫](https://github.com/rust-embedded/book) 協調，主要由[資"
+"源團隊](https://github.com/rust-embedded/wg#the-resources-team) 開發。"
+
+#: src/intro/index.md:106
+msgid ""
+"If you have trouble following the instructions in this book or find that "
+"some section of the book is not clear enough or hard to follow then that's a "
+"bug and it should be reported in [the issue tracker](https://github.com/rust-"
+"embedded/book/issues/) of this book."
+msgstr ""
+"如果你在跟著本書指引時遇到困難，或發現某些章節不夠清楚或難以理解，那就是問"
+"題，應在本書的[議題追蹤器](https://github.com/rust-embedded/book/issues/) 回"
+"報。"
+
+#: src/intro/index.md:112
+msgid "Pull requests fixing typos and adding new content are very welcome!"
+msgstr "非常歡迎修正錯字與新增內容的 Pull Request！"
+
+#: src/intro/index.md:114
+msgid "Re-using this material"
+msgstr "重複使用本資料"
+
+#: src/intro/index.md:116
+msgid "This book is distributed under the following licenses:"
+msgstr "本書以以下授權條款釋出："
+
+#: src/intro/index.md:118
+msgid ""
+"The code samples and free-standing Cargo projects contained within this book "
+"are licensed under the terms of both the [MIT License](https://opensource."
+"org/licenses/MIT) and the [Apache License v2.0](http://www.apache.org/"
+"licenses/LICENSE-2.0)."
+msgstr ""
+"本書包含的程式碼範例與獨立的 Cargo 專案同時採用 [MIT 授權](https://"
+"opensource.org/licenses/MIT) 與 [Apache License v2.0](http://www.apache.org/"
+"licenses/LICENSE-2.0) 授權。"
+
+#: src/intro/index.md:119
+msgid ""
+"The written prose, pictures and diagrams contained within this book are "
+"licensed under the terms of the Creative Commons [CC-BY-SA v4.0](https://"
+"creativecommons.org/licenses/by-sa/4.0/legalcode) license."
+msgstr ""
+"本書的文字、圖片與圖表採用 Creative Commons [CC-BY-SA v4.0](https://"
+"creativecommons.org/licenses/by-sa/4.0/legalcode) 授權。"
+
+#: src/intro/index.md:125
+msgid "TL;DR: If you want to use our text or images in your work, you need to:"
+msgstr "TL;DR：若你想在作品中使用我們的文字或圖片，你需要："
+
+#: src/intro/index.md:127
+msgid ""
+"Give the appropriate credit (i.e. mention this book on your slide, and "
+"provide a link to the relevant page)"
+msgstr "給予適當的引用（例如在投影片中提到本書，並提供相關頁面的連結）"
+
+#: src/intro/index.md:128
+msgid ""
+"Provide a link to the [CC-BY-SA v4.0](https://creativecommons.org/licenses/"
+"by-sa/4.0/legalcode) licence"
+msgstr ""
+"提供 [CC-BY-SA v4.0](https://creativecommons.org/licenses/by-sa/4.0/"
+"legalcode) 授權連結"
+
+#: src/intro/index.md:129
+msgid ""
+"Indicate if you have changed the material in any way, and make any changes "
+"to our material available under the same licence"
+msgstr "說明是否對素材做過任何變更，並將你對素材的修改以相同授權釋出"
+
+#: src/intro/index.md:131
+msgid "Also, please do let us know if you find this book useful!"
+msgstr "如果你覺得本書有幫助，也請務必讓我們知道！"
