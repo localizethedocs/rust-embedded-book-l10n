@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Embedded Rust Book\n"
-"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"POT-Creation-Date: 2026-03-31T09:06:27Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/start/qemu.md:1
@@ -62,7 +62,7 @@ msgstr ""
 #: src/start/qemu.md:32
 msgid ""
 "```console\n"
-"cargo generate --git https://github.com/rust-embedded/cortex-m-quickstart\n"
+"cargo generate --git https://github.com/knurling-rs/app-template\n"
 "```"
 msgstr ""
 
@@ -203,13 +203,67 @@ msgstr ""
 
 #: src/start/qemu.md:138
 msgid ""
+"First of all we will need the memory layout for the target microcontroller, "
+"the LM3S6965 in our case. Otherwise the build will fail to link the image. "
+"Create a file named `memory.x` at the root of the project and paste the "
+"following content:"
+msgstr ""
+
+#: src/start/qemu.md:142
+msgid ""
+"```text\n"
+"MEMORY\n"
+"{\n"
+"  /* NOTE 1 K = 1 KiBi = 1024 bytes */\n"
+"  /* TODO Adjust these memory regions to match your device memory layout */\n"
+"  /* These values correspond to the LM3S6965, one of the few devices QEMU "
+"can emulate */\n"
+"  FLASH : ORIGIN = 0x00000000, LENGTH = 256K\n"
+"  RAM : ORIGIN = 0x20000000, LENGTH = 64K\n"
+"}\n"
+"\n"
+"/* This is where the call stack will be allocated. */\n"
+"/* The stack is of the full descending type. */\n"
+"/* You may want to use this variable to locate the call stack and static\n"
+"   variables in different memory regions. Below is shown the default value "
+"*/\n"
+"/* _stack_start = ORIGIN(RAM) + LENGTH(RAM); */\n"
+"\n"
+"/* You can use this symbol to customize the location of the .text section "
+"*/\n"
+"/* If omitted the .text section will be placed right after the ."
+"vector_table\n"
+"   section */\n"
+"/* This is required only on microcontrollers that store some configuration "
+"right\n"
+"   after the vector table */\n"
+"/* _stext = ORIGIN(FLASH) + 0x400; */\n"
+"\n"
+"/* Example of putting non-initialized variables into custom RAM locations. "
+"*/\n"
+"/* This assumes you have defined a region RAM2 above, and in the Rust\n"
+"   sources added the attribute `#[link_section = \".ram2bss\"]` to the data\n"
+"   you want to place there. */\n"
+"/* Note that the section will not be zero-initialized by the runtime! */\n"
+"/* SECTIONS {\n"
+"     .ram2bss (NOLOAD) : ALIGN(4) {\n"
+"       *(.ram2bss);\n"
+"       . = ALIGN(4);\n"
+"     } > RAM2\n"
+"   } INSERT AFTER .bss;\n"
+"*/\n"
+"```"
+msgstr ""
+
+#: src/start/qemu.md:179
+msgid ""
 "The next step is to _cross_ compile the program for the Cortex-M3 "
 "architecture. That's as simple as running `cargo build --target $TRIPLE` if "
 "you know what the compilation target (`$TRIPLE`) should be. Luckily, the `."
 "cargo/config.toml` in the template has the answer:"
 msgstr ""
 
-#: src/start/qemu.md:147
+#: src/start/qemu.md:188
 msgid ""
 "```toml\n"
 "[build]\n"
@@ -221,7 +275,7 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:156
+#: src/start/qemu.md:197
 msgid ""
 "To cross compile for the Cortex-M3 architecture we have to use `thumbv7m-"
 "none-eabi`. That target is not automatically installed when installing the "
@@ -229,87 +283,87 @@ msgid ""
 "toolchain, if you haven't done it yet:"
 msgstr ""
 
-#: src/start/qemu.md:163
+#: src/start/qemu.md:206
 msgid ""
 "Since the `thumbv7m-none-eabi` compilation target has been set as the "
 "default in your `.cargo/config.toml` file, the two commands below do the "
 "same:"
 msgstr ""
 
-#: src/start/qemu.md:171
+#: src/start/qemu.md:214
 msgid "Inspecting"
 msgstr ""
 
-#: src/start/qemu.md:173
+#: src/start/qemu.md:216
 msgid ""
 "Now we have a non-native ELF binary in `target/thumbv7m-none-eabi/debug/"
 "app`. We can inspect it using `cargo-binutils`."
 msgstr ""
 
-#: src/start/qemu.md:176
+#: src/start/qemu.md:219
 msgid ""
 "With `cargo-readobj` we can print the ELF headers to confirm that this is an "
 "ARM binary."
 msgstr ""
 
-#: src/start/qemu.md:183
+#: src/start/qemu.md:226
 msgid "Note that:"
 msgstr ""
 
-#: src/start/qemu.md:184
+#: src/start/qemu.md:227
 msgid ""
 "`--bin app` is sugar for inspect the binary at `target/$TRIPLE/debug/app`"
 msgstr ""
 
-#: src/start/qemu.md:185
+#: src/start/qemu.md:228
 msgid "`--bin app` will also (re)compile the binary, if necessary"
 msgstr ""
 
-#: src/start/qemu.md:211
+#: src/start/qemu.md:254
 msgid "`cargo-size` can print the size of the linker sections of the binary."
 msgstr ""
 
-#: src/start/qemu.md:217
+#: src/start/qemu.md:260
 msgid "we use `--release` to inspect the optimized version"
 msgstr ""
 
-#: src/start/qemu.md:241
+#: src/start/qemu.md:284
 msgid "A refresher on ELF linker sections"
 msgstr ""
 
-#: src/start/qemu.md:243
+#: src/start/qemu.md:286
 msgid "`.text` contains the program instructions"
 msgstr ""
 
-#: src/start/qemu.md:244
+#: src/start/qemu.md:287
 msgid "`.rodata` contains constant values like strings"
 msgstr ""
 
-#: src/start/qemu.md:245
+#: src/start/qemu.md:288
 msgid ""
 "`.data` contains statically allocated variables whose initial values are "
 "_not_ zero"
 msgstr ""
 
-#: src/start/qemu.md:247
+#: src/start/qemu.md:290
 msgid ""
 "`.bss` also contains statically allocated variables whose initial values "
 "_are_ zero"
 msgstr ""
 
-#: src/start/qemu.md:249
+#: src/start/qemu.md:292
 msgid ""
 "`.vector_table` is a _non_\\-standard section that we use to store the "
 "vector (interrupt) table"
 msgstr ""
 
-#: src/start/qemu.md:251
+#: src/start/qemu.md:294
 msgid ""
 "`.ARM.attributes` and the `.debug_*` sections contain metadata and will "
 "_not_ be loaded onto the target when flashing the binary."
 msgstr ""
 
-#: src/start/qemu.md:254
+#: src/start/qemu.md:297
 msgid ""
 "**IMPORTANT**: ELF files contain metadata like debug information so their "
 "_size on disk_ does _not_ accurately reflect the space the program will "
@@ -317,91 +371,97 @@ msgid ""
 "a binary really is."
 msgstr ""
 
-#: src/start/qemu.md:259
+#: src/start/qemu.md:302
 msgid "`cargo-objdump` can be used to disassemble the binary."
 msgstr ""
 
-#: src/start/qemu.md:265
+#: src/start/qemu.md:308
 msgid ""
 "**NOTE** if the above command complains about `Unknown command line "
 "argument` see the following bug report: https://github.com/rust-embedded/"
 "book/issues/269"
 msgstr ""
 
-#: src/start/qemu.md:268
+#: src/start/qemu.md:311
 msgid ""
 "**NOTE** this output can differ on your system. New versions of rustc, LLVM "
 "and libraries can generate different assembly. We truncated some of the "
 "instructions to keep the snippet small."
 msgstr ""
 
-#: src/start/qemu.md:311
+#: src/start/qemu.md:354
 msgid "Running"
 msgstr ""
 
-#: src/start/qemu.md:313
+#: src/start/qemu.md:356
 msgid ""
 "Next, let's see how to run an embedded program on QEMU! This time we'll use "
-"the `hello` example which actually does something."
+"the `hello` example which actually does something. By default, this example "
+"uses `[defmt]` and RTT to print text."
 msgstr ""
 
-#: src/start/qemu.md:316
-msgid "For convenience here's the source code of `examples/hello.rs`:"
-msgstr ""
-
-#: src/start/qemu.md:319
-msgid "//! Prints \"Hello, world!\" on the host console using semihosting\n"
-msgstr ""
-
-#: src/start/qemu.md:331
-msgid "\"Hello, world!\""
-msgstr ""
-
-#: src/start/qemu.md:333
+#: src/start/qemu.md:362
 msgid ""
-"// exit QEMU\n"
-"    // NOTE do not run this on hardware; it can corrupt OpenOCD state\n"
+"**NOTE** `defmt` is a third-party dependency (i.e. non-core) widely used in "
+"the Embedded Rust ecosystem."
 msgstr ""
 
-#: src/start/qemu.md:341
+#: src/start/qemu.md:365
 msgid ""
-"This program uses something called semihosting to print text to the _host_ "
-"console. When using real hardware this requires a debug session but when "
-"using QEMU this Just Works."
-msgstr ""
-
-#: src/start/qemu.md:345
-msgid "Let's start by compiling the example:"
-msgstr ""
-
-#: src/start/qemu.md:351
-msgid ""
-"The output binary will be located at `target/thumbv7m-none-eabi/debug/"
-"examples/hello`."
-msgstr ""
-
-#: src/start/qemu.md:354
-msgid "To run this binary on QEMU run the following command:"
+"In order to read and decode the messages produced by `defmt` in the host, we "
+"need to switch the RTT transport output to semihosting. When using real "
+"hardware this requires a debug session but when using QEMU this Just Works."
 msgstr ""
 
 #: src/start/qemu.md:369
+msgid "Let's switch the dependencies:"
+msgstr ""
+
+#: src/start/qemu.md:376
+msgid ""
+"Open `src/lib.rs` and replace `use defmt_rtt as _;` by `use "
+"defmt_semihosting as _;`"
+msgstr ""
+
+#: src/start/qemu.md:378
+msgid "Now we can build the example:"
+msgstr ""
+
+#: src/start/qemu.md:384
+msgid ""
+"The output binary will be located at `target/thumbv7m-none-eabi/debug/hello`."
+msgstr ""
+
+#: src/start/qemu.md:387
+msgid ""
+"To run this binary on QEMU, the following command would be usually enough:"
+msgstr ""
+
+#: src/start/qemu.md:398
+msgid ""
+"In our case, since we use `defmt`, the host will not be able to decode the "
+"output. Instead, we will need a tool by Ferrous Systems named [`qemu-run`]"
+"(https://github.com/knurling-rs/defmt/tree/main/qemu-run/):"
+msgstr ""
+
+#: src/start/qemu.md:413
 msgid ""
 "The command should successfully exit (exit code = 0) after printing the "
 "text. On \\*nix you can check that with the following command:"
 msgstr ""
 
-#: src/start/qemu.md:380
+#: src/start/qemu.md:424
 msgid "Let's break down that QEMU command:"
 msgstr ""
 
-#: src/start/qemu.md:382
+#: src/start/qemu.md:426
 msgid ""
 "`qemu-system-arm`. This is the QEMU emulator. There are a few variants of "
 "these QEMU binaries; this one does full _system_ emulation of _ARM_ machines "
 "hence the name."
 msgstr ""
 
-#: src/start/qemu.md:386
+#: src/start/qemu.md:430
 msgid ""
 "`-cpu cortex-m3`. This tells QEMU to emulate a Cortex-M3 CPU. Specifying the "
 "CPU model lets us catch some miscompilation errors: for example, running a "
@@ -409,37 +469,37 @@ msgid ""
 "QEMU error during its execution."
 msgstr ""
 
-#: src/start/qemu.md:391
+#: src/start/qemu.md:435
 msgid ""
 "`-machine lm3s6965evb`. This tells QEMU to emulate the LM3S6965EVB, an "
 "evaluation board that contains a LM3S6965 microcontroller."
 msgstr ""
 
-#: src/start/qemu.md:394
+#: src/start/qemu.md:438
 msgid "`-nographic`. This tells QEMU to not launch its GUI."
 msgstr ""
 
-#: src/start/qemu.md:396
+#: src/start/qemu.md:440
 msgid ""
 "`-semihosting-config (..)`. This tells QEMU to enable semihosting. "
 "Semihosting lets the emulated device, among other things, use the host "
 "stdout, stderr and stdin and create files on the host."
 msgstr ""
 
-#: src/start/qemu.md:400
+#: src/start/qemu.md:444
 msgid ""
 "`-kernel $file`. This tells QEMU which binary to load and run on the "
 "emulated machine."
 msgstr ""
 
-#: src/start/qemu.md:403
+#: src/start/qemu.md:447
 msgid ""
 "Typing out that long QEMU command is too much work! We can set a custom "
 "runner to simplify the process. `.cargo/config.toml` has a commented out "
 "runner that invokes QEMU; let's uncomment it:"
 msgstr ""
 
-#: src/start/qemu.md:411
+#: src/start/qemu.md:455
 msgid ""
 "```toml\n"
 "[target.thumbv7m-none-eabi]\n"
@@ -449,14 +509,14 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:417
+#: src/start/qemu.md:461
 msgid ""
 "This runner only applies to the `thumbv7m-none-eabi` target, which is our "
 "default compilation target. Now `cargo run` will compile the program and run "
 "it on QEMU:"
 msgstr ""
 
-#: src/start/qemu.md:425
+#: src/start/qemu.md:469
 msgid ""
 "```text\n"
 "   Compiling app v0.1.0 (file:///tmp/app)\n"
@@ -468,75 +528,75 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:432
+#: src/start/qemu.md:476
 msgid "Debugging"
 msgstr ""
 
-#: src/start/qemu.md:434
+#: src/start/qemu.md:478
 msgid "Debugging is critical to embedded development. Let's see how it's done."
 msgstr ""
 
-#: src/start/qemu.md:436
+#: src/start/qemu.md:480
 msgid ""
 "Debugging an embedded device involves _remote_ debugging as the program that "
 "we want to debug won't be running on the machine that's running the debugger "
 "program (GDB or LLDB)."
 msgstr ""
 
-#: src/start/qemu.md:440
+#: src/start/qemu.md:484
 msgid ""
 "Remote debugging involves a client and a server. In a QEMU setup, the client "
 "will be a GDB (or LLDB) process and the server will be the QEMU process "
 "that's also running the embedded program."
 msgstr ""
 
-#: src/start/qemu.md:444
+#: src/start/qemu.md:488
 msgid "In this section we'll use the `hello` example we already compiled."
 msgstr ""
 
-#: src/start/qemu.md:446
+#: src/start/qemu.md:490
 msgid "The first debugging step is to launch QEMU in debugging mode:"
 msgstr ""
 
-#: src/start/qemu.md:459
+#: src/start/qemu.md:503
 msgid ""
 "This command won't print anything to the console and will block the "
 "terminal. We have passed two extra flags this time:"
 msgstr ""
 
-#: src/start/qemu.md:462
+#: src/start/qemu.md:506
 msgid ""
 "`-gdb tcp::3333`. This tells QEMU to wait for a GDB connection on TCP port "
 "3333."
 msgstr ""
 
-#: src/start/qemu.md:465
+#: src/start/qemu.md:509
 msgid ""
 "`-S`. This tells QEMU to freeze the machine at startup. Without this the "
 "program would have reached the end of main before we had a chance to launch "
 "the debugger!"
 msgstr ""
 
-#: src/start/qemu.md:469
+#: src/start/qemu.md:513
 msgid ""
 "Next we launch GDB in another terminal and tell it to load the debug symbols "
 "of the example:"
 msgstr ""
 
-#: src/start/qemu.md:476
+#: src/start/qemu.md:520
 msgid ""
 "**NOTE**: you might need another version of gdb instead of `gdb-multiarch` "
 "depending on which one you installed in the installation chapter. This could "
 "also be `arm-none-eabi-gdb` or just `gdb`."
 msgstr ""
 
-#: src/start/qemu.md:480
+#: src/start/qemu.md:524
 msgid ""
 "Then within the GDB shell we connect to QEMU, which is waiting for a "
 "connection on TCP port 3333."
 msgstr ""
 
-#: src/start/qemu.md:487
+#: src/start/qemu.md:531
 msgid ""
 "```text\n"
 "Remote debugging using :3333\n"
@@ -545,33 +605,33 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:494
+#: src/start/qemu.md:538
 msgid ""
 "You'll see that the process is halted and that the program counter is "
 "pointing to a function named `Reset`. That is the reset handler: what Cortex-"
 "M cores execute upon booting."
 msgstr ""
 
-#: src/start/qemu.md:498
+#: src/start/qemu.md:542
 msgid ""
 "Note that on some setup, instead of displaying the line `Reset () at "
 "$REGISTRY/cortex-m-rt-0.6.1/src/lib.rs:473` as shown above, gdb may print "
 "some warnings like :"
 msgstr ""
 
-#: src/start/qemu.md:500
+#: src/start/qemu.md:544
 msgid ""
 "`core::num::bignum::Big32x40::mul_small () at src/libcore/num/bignum.rs:254` "
 "`    src/libcore/num/bignum.rs: No such file or directory.`"
 msgstr ""
 
-#: src/start/qemu.md:503
+#: src/start/qemu.md:547
 msgid ""
 "That's a known glitch. You can safely ignore those warnings, you're most "
 "likely at Reset()."
 msgstr ""
 
-#: src/start/qemu.md:506
+#: src/start/qemu.md:550
 msgid ""
 "This reset handler will eventually call our main function. Let's skip all "
 "the way there using a breakpoint and the `continue` command. To set the "
@@ -579,11 +639,11 @@ msgid ""
 "code, with the `list` command."
 msgstr ""
 
-#: src/start/qemu.md:512
+#: src/start/qemu.md:556
 msgid "This will show the source code, from the file examples/hello.rs."
 msgstr ""
 
-#: src/start/qemu.md:514
+#: src/start/qemu.md:558
 msgid ""
 "```text\n"
 "6       use panic_halt as _;\n"
@@ -599,19 +659,19 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:526
+#: src/start/qemu.md:570
 msgid ""
 "We would like to add a breakpoint just before the \"Hello, world!\", which "
 "is on line 13. We do that with the `break` command:"
 msgstr ""
 
-#: src/start/qemu.md:531
+#: src/start/qemu.md:575
 msgid ""
 "We can now instruct gdb to run up to our main function, with the `continue` "
 "command:"
 msgstr ""
 
-#: src/start/qemu.md:537
+#: src/start/qemu.md:581
 msgid ""
 "```text\n"
 "Continuing.\n"
@@ -621,22 +681,22 @@ msgid ""
 "```"
 msgstr ""
 
-#: src/start/qemu.md:544
+#: src/start/qemu.md:588
 msgid ""
 "We are now close to the code that prints \"Hello, world!\". Let's move "
 "forward using the `next` command."
 msgstr ""
 
-#: src/start/qemu.md:555
+#: src/start/qemu.md:599
 msgid ""
 "At this point you should see \"Hello, world!\" printed on the terminal "
 "that's running `qemu-system-arm`."
 msgstr ""
 
-#: src/start/qemu.md:563
+#: src/start/qemu.md:607
 msgid "Calling `next` again will terminate the QEMU process."
 msgstr ""
 
-#: src/start/qemu.md:573
+#: src/start/qemu.md:617
 msgid "You can now exit the GDB session."
 msgstr ""
