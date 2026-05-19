@@ -1,0 +1,131 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/appendix/glossary.md:1
+msgid "Appendix A: Glossary"
+msgstr ""
+
+#: src/appendix/glossary.md:3
+msgid ""
+"The embedded ecosystem is full of different protocols, hardware components "
+"and vendor-specific things that use their own terms and abbreviations. This "
+"Glossary attempts to list them with pointers for understanding them better."
+msgstr ""
+
+#: src/appendix/glossary.md:7
+msgid "BSP"
+msgstr ""
+
+#: src/appendix/glossary.md:9
+msgid ""
+"A Board Support Crate provides a high level interface configured for a "
+"specific board. It usually depends on a [HAL](#hal) crate. There is a more "
+"detailed description on the [memory-mapped registers page](../start/"
+"registers.md) or for a broader overview see [this video](https://youtu.be/"
+"vLYit_HHPaY)."
+msgstr ""
+
+#: src/appendix/glossary.md:14
+msgid "FPU"
+msgstr ""
+
+#: src/appendix/glossary.md:16
+msgid ""
+"Floating-point Unit. A 'math processor' running only operations on floating-"
+"point numbers."
+msgstr ""
+
+#: src/appendix/glossary.md:18
+msgid "HAL"
+msgstr ""
+
+#: src/appendix/glossary.md:20
+msgid ""
+"A Hardware Abstraction Layer crate provides a developer friendly interface "
+"to a microcontroller's features and peripherals. It is usually implemented "
+"on top of a [Peripheral Access Crate (PAC)](#pac). It may also implement "
+"traits from the [`embedded-hal`](https://crates.io/crates/embedded-hal) "
+"crate. There is a more detailed description on the [memory-mapped registers "
+"page](../start/registers.md) or for a broader overview see [this video]"
+"(https://youtu.be/vLYit_HHPaY)."
+msgstr ""
+
+#: src/appendix/glossary.md:26
+msgid "I2C"
+msgstr ""
+
+#: src/appendix/glossary.md:28
+msgid ""
+"Sometimes referred to as `I²C` or Inter-IC. It is a protocol meant for "
+"hardware communication within a single integrated circuit. See [here]"
+"(https://en.wikipedia.org/wiki/I2c) for more details"
+msgstr ""
+
+#: src/appendix/glossary.md:33
+msgid "PAC"
+msgstr ""
+
+#: src/appendix/glossary.md:35
+msgid ""
+"A Peripheral Access Crate provides access to a microcontroller's "
+"peripherals. It is one of the lower level crates and is usually generated "
+"directly from the provided [SVD](#svd), often using [svd2rust](https://"
+"github.com/rust-embedded/svd2rust/). The [Hardware Abstraction Layer](#hal) "
+"would usually depend on this crate. There is a more detailed description on "
+"the [memory-mapped registers page](../start/registers.md) or for a broader "
+"overview see [this video](https://youtu.be/vLYit_HHPaY)."
+msgstr ""
+
+#: src/appendix/glossary.md:42
+msgid "SPI"
+msgstr ""
+
+#: src/appendix/glossary.md:44
+msgid ""
+"Serial Peripheral Interface. See [here](https://en.wikipedia.org/wiki/"
+"Serial_peripheral_interface) for more information."
+msgstr ""
+
+#: src/appendix/glossary.md:48
+msgid "SVD"
+msgstr ""
+
+#: src/appendix/glossary.md:50
+msgid ""
+"System View Description is an XML file format used to describe the "
+"programmers view of a microcontroller device. You can read more about it on "
+"[the ARM CMSIS documentation site](https://www.keil.com/pack/doc/CMSIS/SVD/"
+"html/index.html)."
+msgstr ""
+
+#: src/appendix/glossary.md:54
+msgid "UART"
+msgstr ""
+
+#: src/appendix/glossary.md:56
+msgid ""
+"Universal asynchronous receiver-transmitter. See [here](https://en.wikipedia."
+"org/wiki/Universal_asynchronous_receiver-transmitter) for more information."
+msgstr ""
+
+#: src/appendix/glossary.md:60
+msgid "USART"
+msgstr ""
+
+#: src/appendix/glossary.md:62
+msgid ""
+"Universal synchronous and asynchronous receiver-transmitter. See [here]"
+"(https://en.wikipedia.org/wiki/"
+"Universal_synchronous_and_asynchronous_receiver-transmitter) for more "
+"information."
+msgstr ""
