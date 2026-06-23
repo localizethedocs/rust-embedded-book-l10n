@@ -1,0 +1,648 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/c-tips/index.md:1
+msgid "Tips for embedded C developers"
+msgstr "給嵌入式 C 開發者的提示"
+
+#: src/c-tips/index.md:3
+msgid ""
+"This chapter collects a variety of tips that might be useful to experienced "
+"embedded C developers looking to start writing Rust. It will especially "
+"highlight how things you might already be used to in C are different in Rust."
+msgstr ""
+"本章收錄各種可能對有經驗的嵌入式 C 開發者有用的提示，以便開始撰寫 Rust。其中"
+"會特別強調你在 C 中習以為常的事，在 Rust 中有何不同。"
+
+#: src/c-tips/index.md:7
+msgid "Preprocessor"
+msgstr "預處理器"
+
+#: src/c-tips/index.md:9
+msgid ""
+"In embedded C it is very common to use the preprocessor for a variety of "
+"purposes, such as:"
+msgstr "在嵌入式 C 中，預處理器常被用於各種用途，例如："
+
+#: src/c-tips/index.md:12
+msgid "Compile-time selection of code blocks with `#ifdef`"
+msgstr "使用 `#ifdef` 於編譯期選擇程式碼區塊"
+
+#: src/c-tips/index.md:13
+msgid "Compile-time array sizes and computations"
+msgstr "編譯期的陣列大小與計算"
+
+#: src/c-tips/index.md:14
+msgid "Macros to simplify common patterns (to avoid function call overhead)"
+msgstr "用巨集簡化常見模式（避免函式呼叫開銷）"
+
+#: src/c-tips/index.md:16
+msgid ""
+"In Rust there is no preprocessor, and so many of these use cases are "
+"addressed differently. In the rest of this section we cover various "
+"alternatives to using the preprocessor."
+msgstr ""
+"Rust 沒有預處理器，因此這些用例多半以不同方式處理。在本節其餘部分，我們會介紹"
+"多種預處理器的替代方案。"
+
+#: src/c-tips/index.md:20
+msgid "Compile-Time Code Selection"
+msgstr "編譯期程式碼選擇"
+
+#: src/c-tips/index.md:22
+msgid ""
+"The closest match to `#ifdef ... #endif` in Rust are [Cargo features]"
+"(https://doc.rust-lang.org/cargo/reference/manifest.html#the-features-"
+"section). These are a little more formal than the C preprocessor: all "
+"possible features are explicitly listed per crate, and can only be either on "
+"or off. Features are turned on when you list a crate as a dependency, and "
+"are additive: if any crate in your dependency tree enables a feature for "
+"another crate, that feature will be enabled for all users of that crate."
+msgstr ""
+"在 Rust 中，最接近 `#ifdef ... #endif` 的是 [Cargo features](https://doc."
+"rust-lang.org/cargo/reference/manifest.html#the-features-section)。它們比 C "
+"預處理器更正式：每個 crate 會明確列出所有可能的 feature，且只能是開或關。當你"
+"把某個 crate 列為相依時會啟用 feature，而且 feature 是可累加的：若相依樹中任"
+"何 crate 為另一個 crate 啟用 feature，該 crate 的所有使用者都會啟用該 "
+"feature。"
+
+#: src/c-tips/index.md:31
+msgid ""
+"For example, you might have a crate which provides a library of signal "
+"processing primitives. Each one might take some extra time to compile or "
+"declare some large table of constants which you'd like to avoid. You could "
+"declare a Cargo feature for each component in your `Cargo.toml`:"
+msgstr ""
+"例如，你可能有個 crate 提供訊號處理基礎元件。每個元件可能需要額外編譯時間或宣"
+"告大型常數表，而你希望避免。你可以在 `Cargo.toml` 為每個元件宣告一個 Cargo "
+"feature："
+
+#: src/c-tips/index.md:42
+msgid ""
+"Then, in your code, use `#[cfg(feature=\"FIR\")]` to control what is "
+"included."
+msgstr "然後在程式碼中使用 `#[cfg(feature=\"FIR\")]` 來控制要包含哪些內容。"
+
+#: src/c-tips/index.md:45
+msgid "/// In your top-level lib.rs\n"
+msgstr "/// 在你的頂層 lib.rs 中\n"
+
+#: src/c-tips/index.md:47
+msgid "\"FIR\""
+msgstr ""
+
+#: src/c-tips/index.md:50
+msgid "\"IIR\""
+msgstr ""
+
+#: src/c-tips/index.md:54
+msgid ""
+"You can similarly include code blocks only if a feature is _not_ enabled, or "
+"if any combination of features are or are not enabled."
+msgstr ""
+"你也可以在 feature _未_啟用時包含程式碼區塊，或在某些 feature 組合啟用或未啟"
+"用時包含程式碼。"
+
+#: src/c-tips/index.md:57
+msgid ""
+"Additionally, Rust provides a number of automatically-set conditions you can "
+"use, such as `target_arch` to select different code based on architecture. "
+"For full details of the conditional compilation support, refer to the "
+"[conditional compilation](https://doc.rust-lang.org/reference/conditional-"
+"compilation.html) chapter of the Rust reference."
+msgstr ""
+"此外，Rust 提供多種自動設定的條件可用，例如 `target_arch` 可依架構選擇不同程"
+"式碼。關於條件式編譯支援的完整細節，請參考 Rust 參考文件中的[條件式編譯]"
+"(https://doc.rust-lang.org/reference/conditional-compilation.html) 章節。"
+
+#: src/c-tips/index.md:64
+msgid ""
+"The conditional compilation will only apply to the next statement or block. "
+"If a block can not be used in the current scope then the `cfg` attribute "
+"will need to be used multiple times.  It's worth noting that most of the "
+"time it is better to simply include all the code and allow the compiler to "
+"remove dead code when optimising: it's simpler for you and your users, and "
+"in general the compiler will do a good job of removing unused code."
+msgstr ""
+"條件式編譯只會套用到下一個敘述或區塊。若某個區塊在目前作用域無法使用，就需要"
+"多次使用 `cfg` 屬性。值得注意的是，多數情況下更好的作法是直接包含所有程式碼，"
+"讓編譯器在最佳化時移除死碼：對你與使用者都更簡單，且通常編譯器能很好地移除未"
+"使用的程式碼。"
+
+#: src/c-tips/index.md:71
+msgid "Compile-Time Sizes and Computation"
+msgstr "編譯期大小與計算"
+
+#: src/c-tips/index.md:73
+msgid ""
+"Rust supports `const fn`, functions which are guaranteed to be evaluable at "
+"compile-time and can therefore be used where constants are required, such as "
+"in the size of arrays. This can be used alongside features mentioned above, "
+"for example:"
+msgstr ""
+"Rust 支援 `const fn`，其函式可保證在編譯期求值，因此可用於需要常數的地方，例"
+"如陣列大小。它可與上述 feature 一起使用，例如："
+
+#: src/c-tips/index.md:80 src/c-tips/index.md:82
+msgid "\"use_more_ram\""
+msgstr ""
+
+#: src/c-tips/index.md:89
+msgid ""
+"These are new to stable Rust as of 1.31, so documentation is still sparse. "
+"The functionality available to `const fn` is also very limited at the time "
+"of writing; in future Rust releases it is expected to expand on what is "
+"permitted in a `const fn`."
+msgstr ""
+"這些功能自 Rust 1.31 起才進入穩定版，因此文件仍較少。撰寫本書時，`const fn` "
+"可用的功能也相當有限；未來 Rust 版本預期會擴充 `const fn` 允許的內容。"
+
+#: src/c-tips/index.md:94
+msgid "Macros"
+msgstr "巨集"
+
+#: src/c-tips/index.md:96
+msgid ""
+"Rust provides an extremely powerful [macro system](https://doc.rust-lang.org/"
+"book/ch19-06-macros.html). While the C preprocessor operates almost directly "
+"on the text of your source code, the Rust macro system operates at a higher "
+"level. There are two varieties of Rust macro: _macros by example_ and "
+"_procedural macros_. The former are simpler and most common; they look like "
+"function calls and can expand to a complete expression, statement, item, or "
+"pattern. Procedural macros are more complex but permit extremely powerful "
+"additions to the Rust language: they can transform arbitrary Rust syntax "
+"into new Rust syntax."
+msgstr ""
+"Rust 提供非常強大的[巨集系統](https://doc.rust-lang.org/book/ch19-06-macros."
+"html)。C 的預處理器幾乎直接操作原始碼文字，而 Rust 巨集系統在更高層級運作。"
+"Rust 的巨集有兩種：_巨集範例（macros by example）_ 與 _程序式巨集"
+"（procedural macros）_。前者較簡單且最常見，看起來像函式呼叫，能展開成完整的"
+"表達式、敘述、項目或樣式。程序式巨集更複雜，但可對 Rust 語言進行極其強大的擴"
+"展：它們可將任意 Rust語法轉換成新的 Rust 語法。"
+
+#: src/c-tips/index.md:107
+msgid ""
+"In general, where you might have used a C preprocessor macro, you probably "
+"want to see if a macro-by-example can do the job instead. They can be "
+"defined in your crate and easily used by your own crate or exported for "
+"other users. Be aware that since they must expand to complete expressions, "
+"statements, items, or patterns, some use cases of C preprocessor macros will "
+"not work, for example a macro that expands to part of a variable name or an "
+"incomplete set of items in a list."
+msgstr ""
+"一般而言，若你原本會用 C 預處理器巨集，應先看看巨集範例是否能完成任務。它們可"
+"在你的 crate 中定義，並輕鬆供自己的 crate 使用或匯出給其他使用者。請注意，因"
+"為它們必須展開成完整的表達式、敘述、項目或樣式，所以某些 C 預處理器巨集的用法"
+"無法使用，例如展開成變數名稱的一部分，或清單中不完整的一組項目。"
+
+#: src/c-tips/index.md:115
+msgid ""
+"As with Cargo features, it is worth considering if you even need the macro. "
+"In many cases a regular function is easier to understand and will be inlined "
+"to the same code as a macro. The `#[inline]` and `#[inline(always)]` "
+"[attributes](https://doc.rust-lang.org/reference/attributes.html#inline-"
+"attribute) give you further control over this process, although care should "
+"be taken here as well — the compiler will automatically inline functions "
+"from the same crate where appropriate, so forcing it to do so "
+"inappropriately might actually lead to decreased performance."
+msgstr ""
+"和 Cargo features 一樣，也值得考慮是否真的需要巨集。許多情況下，一般函式更容"
+"易理解，且會被內聯成與巨集相同的程式碼。`#[inline]` 與 `#[inline(always)]` "
+"[屬性](https://doc.rust-lang.org/reference/attributes.html#inline-attribute) "
+"可提供更多控制，但也需小心——編譯器會在適當時自動內聯同一 crate 的函式，若強制"
+"內聯不恰當，反而可能降低效能。"
+
+#: src/c-tips/index.md:125
+msgid ""
+"Explaining the entire Rust macro system is out of scope for this tips page, "
+"so you are encouraged to consult the Rust documentation for full details."
+msgstr ""
+"完整說明 Rust 巨集系統超出本提示頁的範圍，建議參考 Rust 文件以了解完整細節。"
+
+#: src/c-tips/index.md:128
+msgid "Build System"
+msgstr "建置系統"
+
+#: src/c-tips/index.md:130
+msgid ""
+"Most Rust crates are built using Cargo (although it is not required). This "
+"takes care of many difficult problems with traditional build systems. "
+"However, you may wish to customise the build process. Cargo provides [`build."
+"rs` scripts](https://doc.rust-lang.org/cargo/reference/build-scripts.html) "
+"for this purpose. They are Rust scripts which can interact with the Cargo "
+"build system as required."
+msgstr ""
+"多數 Rust crate 以 Cargo 建置（雖非必須）。這解決了傳統建置系統的許多難題。不"
+"過，你可能希望自訂建置流程。Cargo 提供 [`build.rs` 腳本](https://doc.rust-"
+"lang.org/cargo/reference/build-scripts.html) 來達成此目的。這些是可依需求與 "
+"Cargo 建置系統互動的 Rust 腳本。"
+
+#: src/c-tips/index.md:138
+msgid "Common use cases for build scripts include:"
+msgstr "建置腳本的常見用途包括："
+
+#: src/c-tips/index.md:140
+msgid ""
+"provide build-time information, for example statically embedding the build "
+"date or Git commit hash into your executable"
+msgstr "提供建置時資訊，例如將建置日期或 Git 提交雜湊值靜態嵌入可執行檔"
+
+#: src/c-tips/index.md:142
+msgid ""
+"generate linker scripts at build time depending on selected features or "
+"other logic"
+msgstr "依選擇的 feature 或其他邏輯在建置時產生連結器腳本"
+
+#: src/c-tips/index.md:144
+msgid "change the Cargo build configuration"
+msgstr "變更 Cargo 建置設定"
+
+#: src/c-tips/index.md:145
+msgid "add extra static libraries to link against"
+msgstr "加入額外要連結的靜態函式庫"
+
+#: src/c-tips/index.md:147
+msgid ""
+"At present there is no support for post-build scripts, which you might "
+"traditionally have used for tasks like automatic generation of binaries from "
+"the build objects or printing build information."
+msgstr ""
+"目前沒有後置建置腳本的支援，而你可能曾用它來自動從建置物件產生二進位檔或輸出"
+"建置資訊。"
+
+#: src/c-tips/index.md:151
+msgid "Cross-Compiling"
+msgstr "交叉編譯"
+
+#: src/c-tips/index.md:153
+msgid ""
+"Using Cargo for your build system also simplifies cross-compiling. In most "
+"cases it suffices to tell Cargo `--target thumbv6m-none-eabi` and find a "
+"suitable executable in `target/thumbv6m-none-eabi/debug/myapp`."
+msgstr ""
+"使用 Cargo 作為建置系統也能簡化交叉編譯。多數情況下只需告訴 Cargo `--target "
+"thumbv6m-none-eabi`，並在 `target/thumbv6m-none-eabi/debug/myapp` 找到合適的"
+"可執行檔。"
+
+#: src/c-tips/index.md:157
+msgid ""
+"For platforms not natively supported by Rust, you will need to build "
+"`libcore` for that target yourself. On such platforms, [Xargo](https://"
+"github.com/japaric/xargo) can be used as a stand-in for Cargo which "
+"automatically builds `libcore` for you."
+msgstr ""
+"對於 Rust 尚未原生支援的平台，你需要自行為該目標建置 `libcore`。在這類平台"
+"上，可使用 [Xargo](https://github.com/japaric/xargo) 作為 Cargo 的替代，為你"
+"自動建置 `libcore`。"
+
+#: src/c-tips/index.md:163
+msgid "Iterators vs Array Access"
+msgstr "疊代器與陣列存取"
+
+#: src/c-tips/index.md:165
+msgid "In C you are probably used to accessing arrays directly by their index:"
+msgstr "在 C 中，你可能習慣以索引直接存取陣列："
+
+#: src/c-tips/index.md:175
+msgid ""
+"In Rust this is an anti-pattern: indexed access can be slower (as it needs "
+"to be bounds checked) and may prevent various compiler optimisations. This "
+"is an important distinction and worth repeating: Rust will check for out-of-"
+"bounds access on manual array indexing to guarantee memory safety, while C "
+"will happily index outside the array."
+msgstr ""
+"在 Rust 中這是反模式：索引存取可能較慢（因為需要邊界檢查），也可能阻礙各種編"
+"譯器最佳化。這點很重要，值得重申：Rust 會對手動索引陣列進行越界檢查以保證記憶"
+"體安全，而 C 則會愉快地索引到陣列之外。"
+
+#: src/c-tips/index.md:181
+msgid "Instead, use iterators:"
+msgstr "改用疊代器："
+
+#: src/c-tips/index.md:190
+msgid ""
+"Iterators provide a powerful array of functionality you would have to "
+"implement manually in C, such as chaining, zipping, enumerating, finding the "
+"min or max, summing, and more. Iterator methods can also be chained, giving "
+"very readable data processing code."
+msgstr ""
+"疊代器提供了你在 C 中必須手動實作的一系列強大功能，例如串接、拉鍊化、枚舉、找"
+"最小/最大值、加總等。疊代器方法也可串接，讓資料處理程式碼非常易讀。"
+
+#: src/c-tips/index.md:195
+msgid ""
+"See the [Iterators in the Book](https://doc.rust-lang.org/book/ch13-02-"
+"iterators.html) and [Iterator documentation](https://doc.rust-lang.org/core/"
+"iter/trait.Iterator.html) for more details."
+msgstr ""
+"更多細節請參考[手冊中的疊代器](https://doc.rust-lang.org/book/ch13-02-"
+"iterators.html)與[Iterator 文件](https://doc.rust-lang.org/core/iter/trait."
+"Iterator.html)。"
+
+#: src/c-tips/index.md:200
+msgid "References vs Pointers"
+msgstr "參考與指標"
+
+#: src/c-tips/index.md:202
+msgid ""
+"In Rust, pointers (called [_raw pointers_](https://doc.rust-lang.org/book/"
+"ch19-01-unsafe-rust.html#dereferencing-a-raw-pointer)) exist but are only "
+"used in specific circumstances, as dereferencing them is always considered "
+"`unsafe` -- Rust cannot provide its usual guarantees about what might be "
+"behind the pointer."
+msgstr ""
+"在 Rust 中確實有指標（稱為[_裸指標_](https://doc.rust-lang.org/book/ch19-01-"
+"unsafe-rust.html#dereferencing-a-raw-pointer)），但只在特定情況下使用，因為解"
+"參考它們一律被視為 `unsafe`——Rust 無法對指標背後的內容提供一貫的保證。"
+
+#: src/c-tips/index.md:208
+msgid ""
+"In most cases, we instead use _references_, indicated by the `&` symbol, or "
+"_mutable references_, indicated by `&mut`. References behave similarly to "
+"pointers, in that they can be dereferenced to access the underlying values, "
+"but they are a key part of Rust's ownership system: Rust will strictly "
+"enforce that you may only have one mutable reference _or_ multiple non-"
+"mutable references to the same value at any given time."
+msgstr ""
+"在多數情況下，我們會改用_參考_（以 `&` 表示），或_可變參考_（以 `&mut` 表"
+"示）。參考的行為類似指標，可解參考以存取底層值，但它們是 Rust 所有權系統的關"
+"鍵：Rust 嚴格保證在任何時刻對同一個值只能有一個可變參考，_或_ 多個不可變參"
+"考。"
+
+#: src/c-tips/index.md:215
+msgid ""
+"In practice this means you have to be more careful about whether you need "
+"mutable access to data: where in C the default is mutable and you must be "
+"explicit about `const`, in Rust the opposite is true."
+msgstr ""
+"實務上這代表你必須更謹慎考慮是否真的需要對資料進行可變存取：在 C 中預設可變且"
+"需明確標示 `const`，在 Rust 中則相反。"
+
+#: src/c-tips/index.md:219
+msgid ""
+"One situation where you might still use raw pointers is interacting directly "
+"with hardware (for example, writing a pointer to a buffer into a DMA "
+"peripheral register), and they are also used under the hood for all "
+"peripheral access crates to allow you to read and write memory-mapped "
+"registers."
+msgstr ""
+"仍可能使用裸指標的情況之一是直接與硬體互動（例如將緩衝區指標寫入 DMA 周邊暫存"
+"器）。它們也被所有周邊存取套件在底層使用，以允許讀寫記憶體對映暫存器。"
+
+#: src/c-tips/index.md:224
+msgid "Volatile Access"
+msgstr "易變存取"
+
+#: src/c-tips/index.md:226
+msgid ""
+"In C, individual variables may be marked `volatile`, indicating to the "
+"compiler that the value in the variable may change between accesses. "
+"Volatile variables are commonly used in an embedded context for memory-"
+"mapped registers."
+msgstr ""
+"在 C 中，單一變數可標記為 `volatile`，告訴編譯器該變數的值可能在存取之間改"
+"變。易變變數在嵌入式情境中常用於記憶體對映暫存器。"
+
+#: src/c-tips/index.md:230
+msgid ""
+"In Rust, instead of marking a variable as `volatile`, we use specific "
+"methods to perform volatile access: [`core::ptr::read_volatile`](https://doc."
+"rust-lang.org/core/ptr/fn.read_volatile.html) and [`core::ptr::"
+"write_volatile`](https://doc.rust-lang.org/core/ptr/fn.write_volatile.html). "
+"These methods take a `*const T` or a `*mut T` (_raw pointers_, as discussed "
+"above) and perform a volatile read or write."
+msgstr ""
+"在 Rust 中，不是將變數標記為 `volatile`，而是使用特定方法進行易變存取："
+"[`core::ptr::read_volatile`](https://doc.rust-lang.org/core/ptr/fn."
+"read_volatile.html) 與[`core::ptr::write_volatile`](https://doc.rust-lang."
+"org/core/ptr/fn.write_volatile.html)。這些方法接受 `*const T` 或 `*mut T`（如"
+"上所述的_裸指標_），並執行易變讀寫。"
+
+#: src/c-tips/index.md:238
+msgid "For example, in C you might write:"
+msgstr "例如，在 C 中你可能會寫："
+
+#: src/c-tips/index.md:244
+msgid "// Signal that the interrupt has occurred\n"
+msgstr "// 表示中斷已發生\n"
+
+#: src/c-tips/index.md:250 src/c-tips/index.md:275
+msgid "// Sleep until signalled\n"
+msgstr "// 睡眠直到收到訊號\n"
+
+#: src/c-tips/index.md:252 src/c-tips/index.md:277
+msgid "// Reset signalled indicator\n"
+msgstr "// 重設已通知的指示\n"
+
+#: src/c-tips/index.md:254 src/c-tips/index.md:279
+msgid "// Perform some task that was waiting for the interrupt\n"
+msgstr "// 執行先前等待中斷的任務\n"
+
+#: src/c-tips/index.md:260
+msgid "The equivalent in Rust would use volatile methods on each access:"
+msgstr "在 Rust 中等效作法是在每次存取時使用易變方法："
+
+#: src/c-tips/index.md:267
+msgid ""
+"// Signal that the interrupt has occurred\n"
+"    // (In real code, you should consider a higher level primitive,\n"
+"    //  such as an atomic type).\n"
+msgstr ""
+"// 表示中斷已發生\n"
+"    //（在實際程式碼中，你應考慮更高階的原語，\n"
+"    //  例如原子型別）。\n"
+
+#: src/c-tips/index.md:285
+msgid "A few things are worth noting in the code sample:"
+msgstr "程式碼範例中有幾點值得注意："
+
+#: src/c-tips/index.md:286
+msgid ""
+"We can pass `&mut SIGNALLED` into the function requiring `*mut T`, since "
+"`&mut T` automatically converts to a `*mut T` (and the same for `*const T`)"
+msgstr ""
+"我們可以將 `&mut SIGNALLED` 傳給需要 `*mut T` 的函式，因為 `&mut T` 會自動轉"
+"換為 `*mut T`（`*const T` 亦同）"
+
+#: src/c-tips/index.md:288
+msgid ""
+"We need `unsafe` blocks for the `read_volatile`/`write_volatile` methods, "
+"since they are `unsafe` functions. It is the programmer's responsibility to "
+"ensure safe use: see the methods' documentation for further details."
+msgstr ""
+"由於 `read_volatile`/`write_volatile` 是 `unsafe` 函式，我們需要使用 "
+"`unsafe` 區塊。確保安全使用是程式設計者的責任：詳情請參考這些方法的文件。"
+
+#: src/c-tips/index.md:292
+msgid ""
+"It is rare to require these functions directly in your code, as they will "
+"usually be taken care of for you by higher-level libraries. For memory "
+"mapped peripherals, the peripheral access crates will implement volatile "
+"access automatically, while for concurrency primitives there are better "
+"abstractions available (see the [Concurrency chapter](../concurrency/index."
+"md))."
+msgstr ""
+"通常不需要在程式中直接呼叫這些函式，因為高階函式庫會替你處理。對記憶體對映周"
+"邊而言，周邊存取套件會自動實作易變存取；對並行原語則有更好的抽象可用（參見[並"
+"行章節](../concurrency/index.md)）。"
+
+#: src/c-tips/index.md:300
+msgid "Packed and Aligned Types"
+msgstr "打包與對齊型別"
+
+#: src/c-tips/index.md:302
+msgid ""
+"In embedded C it is common to tell the compiler a variable must have a "
+"certain alignment or a struct must be packed rather than aligned, usually to "
+"meet specific hardware or protocol requirements."
+msgstr ""
+"在嵌入式 C 中，常見做法是告訴編譯器某變數必須有特定位元組對齊，或某個結構體必"
+"須打包而非對齊，通常是為了滿足特定硬體或通訊協定需求。"
+
+#: src/c-tips/index.md:306
+msgid ""
+"In Rust this is controlled by the `repr` attribute on a struct or union. The "
+"default representation provides no guarantees of layout, so should not be "
+"used for code that interoperates with hardware or C. The compiler may re-"
+"order struct members or insert padding and the behaviour may change with "
+"future versions of Rust."
+msgstr ""
+"在 Rust 中，這由結構體或聯合體上的 `repr` 屬性控制。預設表現形式不保證版面配"
+"置，因此不應用於與硬體或 C 互通的程式碼。編譯器可能會重新排序結構體成員或插入"
+"填充，且行為可能在未來 Rust 版本中改變。"
+
+#: src/c-tips/index.md:321 src/c-tips/index.md:340 src/c-tips/index.md:366
+#: src/c-tips/index.md:390 src/c-tips/index.md:391
+msgid "\"{:p} {:p} {:p}\""
+msgstr ""
+
+#: src/c-tips/index.md:323
+msgid ""
+"// 0x7ffecb3511d0 0x7ffecb3511d4 0x7ffecb3511d2\n"
+"// Note ordering has been changed to x, z, y to improve packing.\n"
+msgstr ""
+"// 0x7ffecb3511d0 0x7ffecb3511d4 0x7ffecb3511d2\n"
+"// 注意為了改善打包，順序已改為 x、z、y。\n"
+
+#: src/c-tips/index.md:328
+msgid "To ensure layouts that are interoperable with C, use `repr(C)`:"
+msgstr "為了確保與 C 互通的版面配置，使用 `repr(C)`："
+
+#: src/c-tips/index.md:342
+msgid ""
+"// 0x7fffd0d84c60 0x7fffd0d84c62 0x7fffd0d84c64\n"
+"// Ordering is preserved and the layout will not change over time.\n"
+"// `z` is two-byte aligned so a byte of padding exists between `y` and `z`.\n"
+msgstr ""
+"// 0x7fffd0d84c60 0x7fffd0d84c62 0x7fffd0d84c64\n"
+"// 順序保持不變，且版面配置不會隨時間改變。\n"
+"// `z` 需 2 位元組對齊，因此 `y` 與 `z` 之間存在 1 位元組填充。\n"
+
+#: src/c-tips/index.md:348
+msgid "To ensure a packed representation, use `repr(packed)`:"
+msgstr "若要確保打包表示，使用 `repr(packed)`："
+
+#: src/c-tips/index.md:360
+msgid ""
+"// References must always be aligned, so to check the addresses of the\n"
+"    // struct's fields, we use `std::ptr::addr_of!()` to get a raw pointer\n"
+"    // instead of just printing `&v.x`.\n"
+msgstr ""
+"// 參考必須永遠對齊，因此要檢查結構體欄位位址時，\n"
+"    // 我們使用 `std::ptr::addr_of!()` 取得裸指標，\n"
+"    // 而不是直接列印 `&v.x`。\n"
+
+#: src/c-tips/index.md:368
+msgid ""
+"// 0x7ffd33598490 0x7ffd33598492 0x7ffd33598493\n"
+"// No padding has been inserted between `y` and `z`, so now `z` is "
+"unaligned.\n"
+msgstr ""
+"// 0x7ffd33598490 0x7ffd33598492 0x7ffd33598493\n"
+"// `y` 與 `z` 之間未插入填充，因此 `z` 現在未對齊。\n"
+
+#: src/c-tips/index.md:373
+msgid ""
+"Note that using `repr(packed)` also sets the alignment of the type to `1`."
+msgstr "注意，使用 `repr(packed)` 也會把型別對齊設為 `1`。"
+
+#: src/c-tips/index.md:375
+msgid ""
+"Finally, to specify a specific alignment, use `repr(align(n))`, where `n` is "
+"the number of bytes to align to (and must be a power of two):"
+msgstr ""
+"最後，若要指定特定對齊方式，使用 `repr(align(n))`，其中 `n` 是對齊到的位元組"
+"數（且必須為 2 的冪）："
+
+#: src/c-tips/index.md:393
+msgid ""
+"// 0x7ffec909a000 0x7ffec909a002 0x7ffec909a004\n"
+"// 0x7ffec909b000 0x7ffec909b002 0x7ffec909b004\n"
+"// The two instances `u` and `v` have been placed on 4096-byte alignments,\n"
+"// evidenced by the `000` at the end of their addresses.\n"
+msgstr ""
+"// 0x7ffec909a000 0x7ffec909a002 0x7ffec909a004\n"
+"// 0x7ffec909b000 0x7ffec909b002 0x7ffec909b004\n"
+"// 兩個實例 `u` 與 `v` 被放在 4096 位元組對齊的位置，\n"
+"// 從位址末尾的 `000` 可看出。\n"
+
+#: src/c-tips/index.md:400
+msgid ""
+"Note we can combine `repr(C)` with `repr(align(n))` to obtain an aligned and "
+"C-compatible layout. It is not permissible to combine `repr(align(n))` with "
+"`repr(packed)`, since `repr(packed)` sets the alignment to `1`. It is also "
+"not permissible for a `repr(packed)` type to contain a `repr(align(n))` type."
+msgstr ""
+"注意，我們可將 `repr(C)` 與 `repr(align(n))` 結合以取得對齊且相容 C 的配置。"
+"不得將 `repr(align(n))` 與 `repr(packed)` 結合，因為 `repr(packed)` 會把對齊"
+"設為 `1`。`repr(packed)` 型別也不得包含 `repr(align(n))` 型別。"
+
+#: src/c-tips/index.md:405
+msgid ""
+"For further details on type layouts, refer to the [type layout](https://doc."
+"rust-lang.org/reference/type-layout.html) chapter of the Rust Reference."
+msgstr ""
+"關於型別配置的更多細節，請參考 Rust 參考文件的 [type layout](https://doc."
+"rust-lang.org/reference/type-layout.html) 章節。"
+
+#: src/c-tips/index.md:410
+msgid "Other Resources"
+msgstr "其他資源"
+
+#: src/c-tips/index.md:412
+msgid "In this book:"
+msgstr "本書中的資源："
+
+#: src/c-tips/index.md:413
+msgid "[A little C with your Rust](../interoperability/c-with-rust.md)"
+msgstr "[在 Rust 中用點 C](../interoperability/c-with-rust.md)"
+
+#: src/c-tips/index.md:414
+msgid "[A little Rust with your C](../interoperability/rust-with-c.md)"
+msgstr "[在 C 中用點 Rust](../interoperability/rust-with-c.md)"
+
+#: src/c-tips/index.md:415
+msgid "[The Rust Embedded FAQs](https://docs.rust-embedded.org/faq.html)"
+msgstr "[Rust Embedded 常見問題](https://docs.rust-embedded.org/faq.html)"
+
+#: src/c-tips/index.md:416
+msgid "[Rust Pointers for C Programmers](http://blahg.josefsipek.net/?p=580)"
+msgstr "[給 C 程式設計者的 Rust 指標](http://blahg.josefsipek.net/?p=580)"
+
+#: src/c-tips/index.md:417
+msgid ""
+"[I used to use pointers - now what?](https://github.com/diwic/reffers-rs/"
+"blob/master/docs/Pointers.md)"
+msgstr ""
+"[我以前用指標—現在呢？](https://github.com/diwic/reffers-rs/blob/master/docs/"
+"Pointers.md)"

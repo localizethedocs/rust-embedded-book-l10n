@@ -1,0 +1,714 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: The Embedded Rust Book\n"
+"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: src/concurrency/index.md:1
+msgid "Concurrency"
+msgstr "並行"
+
+#: src/concurrency/index.md:3
+msgid ""
+"Concurrency happens whenever different parts of your program might execute "
+"at different times or out of order. In an embedded context, this includes:"
+msgstr ""
+"並行會在程式的不同部分可能於不同時間或不同順序執行時發生。在嵌入式情境中，這"
+"包括："
+
+#: src/concurrency/index.md:6
+msgid ""
+"interrupt handlers, which run whenever the associated interrupt happens,"
+msgstr "中斷處理器：在相關中斷發生時執行，"
+
+#: src/concurrency/index.md:7
+msgid ""
+"various forms of multithreading, where your microprocessor regularly swaps "
+"between parts of your program,"
+msgstr "各種形式的多執行緒：微處理器會定期在程式的不同部分之間切換，"
+
+#: src/concurrency/index.md:9
+msgid ""
+"and in some systems, multiple-core microprocessors, where each core can be "
+"independently running a different part of your program at the same time."
+msgstr ""
+"以及在某些系統中，多核心微處理器：每個核心都能在同一時間獨立執行程式的不同部"
+"分。"
+
+#: src/concurrency/index.md:12
+msgid ""
+"Since many embedded programs need to deal with interrupts, concurrency will "
+"usually come up sooner or later, and it's also where many subtle and "
+"difficult bugs can occur. Luckily, Rust provides a number of abstractions "
+"and safety guarantees to help us write correct code."
+msgstr ""
+"由於許多嵌入式程式需要處理中斷，並行遲早會出現，也正是許多細微且難解的錯誤出"
+"現之處。幸運的是，Rust 提供多種抽象與安全保證，協助我們寫出正確的程式碼。"
+
+#: src/concurrency/index.md:17
+msgid "No Concurrency"
+msgstr "無並行"
+
+#: src/concurrency/index.md:19
+msgid ""
+"The simplest concurrency for an embedded program is no concurrency: your "
+"software consists of a single main loop which just keeps running, and there "
+"are no interrupts at all. Sometimes this is perfectly suited to the problem "
+"at hand! Typically your loop will read some inputs, perform some processing, "
+"and write some outputs."
+msgstr ""
+"嵌入式程式最簡單的並行就是沒有並行：軟體由單一主迴圈構成，持續運行，且完全沒"
+"有中斷。有時這非常適合手邊的問題！通常你的迴圈會讀取一些輸入、做一些處理，再"
+"輸出一些結果。"
+
+#: src/concurrency/index.md:37
+msgid ""
+"Since there's no concurrency, there's no need to worry about sharing data "
+"between parts of your program or synchronising access to peripherals. If you "
+"can get away with such a simple approach this can be a great solution."
+msgstr ""
+"由於沒有並行，就不需要擔心程式各部分之間的資料共享或周邊存取同步。如果你可以"
+"採用這麼簡單的方法，這會是很棒的解決方案。"
+
+#: src/concurrency/index.md:41
+msgid "Global Mutable Data"
+msgstr "全域可變資料"
+
+#: src/concurrency/index.md:43
+msgid ""
+"Unlike non-embedded Rust, we will not usually have the luxury of creating "
+"heap allocations and passing references to that data into a newly-created "
+"thread. Instead, our interrupt handlers might be called at any time and must "
+"know how to access whatever shared memory we are using. At the lowest level, "
+"this means we must have _statically allocated_ mutable memory, which both "
+"the interrupt handler and the main code can refer to."
+msgstr ""
+"與非嵌入式 Rust 不同，我們通常無法奢望建立堆積配置並把對該資料的參考傳給新建"
+"執行緒。相反地，我們的中斷處理器可能在任何時候被呼叫，必須知道如何存取我們正"
+"在使用的共享記憶體。在最低層，這代表我們必須擁有_靜態配置_的可變記憶體，讓中"
+"斷處理器與主程式碼都能參考。"
+
+#: src/concurrency/index.md:50
+msgid ""
+"In Rust, such [`static mut`](https://doc.rust-lang.org/book/ch19-01-unsafe-"
+"rust.html#accessing-or-modifying-a-mutable-static-variable) variables are "
+"always unsafe to read or write, because without taking special care, you "
+"might trigger a race condition, where your access to the variable is "
+"interrupted halfway through by an interrupt which also accesses that "
+"variable."
+msgstr ""
+"在 Rust 中，這類 [`static mut`](https://doc.rust-lang.org/book/ch19-01-"
+"unsafe-rust.html#accessing-or-modifying-a-mutable-static-variable) 變數的讀寫"
+"永遠是不安全的，因為若不特別小心，你可能觸發資料競爭：對變數的存取途中被同樣"
+"會存取該變數的中斷打斷。"
+
+#: src/concurrency/index.md:57
+msgid ""
+"For an example of how this behaviour can cause subtle errors in your code, "
+"consider an embedded program which counts rising edges of some input signal "
+"in each one-second period (a frequency counter):"
+msgstr ""
+"為了示範此行為如何造成程式中的細微錯誤，想像一個嵌入式程式會在每一秒內計算某"
+"個輸入訊號的上升沿（頻率計數器）："
+
+#: src/concurrency/index.md:71
+msgid "// DANGER - Not actually safe! Could cause data races.\n"
+msgstr "// 危險 - 並不安全！可能造成資料競爭。\n"
+
+#: src/concurrency/index.md:84
+msgid ""
+"Each second, the timer interrupt sets the counter back to 0. Meanwhile, the "
+"main loop continually measures the signal, and incremements the counter when "
+"it sees a change from low to high. We've had to use `unsafe` to access "
+"`COUNTER`, as it's `static mut`, and that means we're promising the compiler "
+"we won't cause any undefined behaviour. Can you spot the race condition? The "
+"increment on `COUNTER` is _not_ guaranteed to be atomic — in fact, on most "
+"embedded platforms, it will be split into a load, then the increment, then a "
+"store. If the interrupt fired after the load but before the store, the reset "
+"back to 0 would be ignored after the interrupt returns — and we would count "
+"twice as many transitions for that period."
+msgstr ""
+"每一秒，計時器中斷會把計數器設回 0。同時，主迴圈會持續量測訊號，並在看到低轉"
+"高時遞增計數器。我們必須用 `unsafe` 存取 `COUNTER`，因為它是 `static mut`，這"
+"代表我們向編譯器保證不會造成未定義行為。你能找出資料競爭嗎？`COUNTER` 的遞增_"
+"不_保證是原子操作——事實上，在多數嵌入式平台上，它會被拆成載入、遞增、儲存三步"
+"驟。如果中斷在載入之後、儲存之前觸發，回到中斷後會忽略重設為 0 的結果——因此該"
+"期間的轉換次數會被計兩次。"
+
+#: src/concurrency/index.md:95
+msgid "Critical Sections"
+msgstr "臨界區"
+
+#: src/concurrency/index.md:97
+msgid ""
+"So, what can we do about data races? A simple approach is to use _critical "
+"sections_, a context where interrupts are disabled. By wrapping the access "
+"to `COUNTER` in `main` in a critical section, we can be sure the timer "
+"interrupt will not fire until we're finished incrementing `COUNTER`:"
+msgstr ""
+"那麼，我們能如何處理資料競爭？一個簡單的作法是使用_臨界區_，也就是停用中斷的"
+"情境。把 `main` 中對 `COUNTER` 的存取包在臨界區內，我們就能確定在完成遞增"
+"`COUNTER` 之前計時器中斷不會觸發："
+
+#: src/concurrency/index.md:112
+msgid "// New critical section ensures synchronised access to COUNTER\n"
+msgstr "// 新的臨界區確保對 COUNTER 的同步存取\n"
+
+#: src/concurrency/index.md:127
+msgid ""
+"In this example, we use `cortex_m::interrupt::free`, but other platforms "
+"will have similar mechanisms for executing code in a critical section. This "
+"is also the same as disabling interrupts, running some code, and then re-"
+"enabling interrupts."
+msgstr ""
+"在此例中，我們使用 `cortex_m::interrupt::free`，但其他平台也會有類似機制可在"
+"臨界區中執行程式碼。這等同於停用中斷、執行某段程式碼，然後再重新啟用中斷。"
+
+#: src/concurrency/index.md:132
+msgid ""
+"Note we didn't need to put a critical section inside the timer interrupt, "
+"for two reasons:"
+msgstr "注意，我們不需要在計時器中斷內加入臨界區，原因有二："
+
+#: src/concurrency/index.md:135
+msgid ""
+"Writing 0 to `COUNTER` can't be affected by a race since we don't read it"
+msgstr "將 0 寫入 `COUNTER` 不會受競爭影響，因為我們沒有讀取它"
+
+#: src/concurrency/index.md:136
+msgid "It will never be interrupted by the `main` thread anyway"
+msgstr "反正也不會被 `main` 執行緒打斷"
+
+#: src/concurrency/index.md:138
+msgid ""
+"If `COUNTER` was being shared by multiple interrupt handlers that might "
+"_preempt_ each other, then each one might require a critical section as well."
+msgstr ""
+"若 `COUNTER` 由多個可能互相_搶占_的中斷處理器共享，則每一個也可能都需要臨界"
+"區。"
+
+#: src/concurrency/index.md:141
+msgid ""
+"This solves our immediate problem, but we're still left writing a lot of "
+"unsafe code which we need to carefully reason about, and we might be using "
+"critical sections needlessly. Since each critical section temporarily pauses "
+"interrupt processing, there is an associated cost of some extra code size "
+"and higher interrupt latency and jitter (interrupts may take longer to be "
+"processed, and the time until they are processed will be more variable). "
+"Whether this is a problem depends on your system, but in general, we'd like "
+"to avoid it."
+msgstr ""
+"這解決了當下問題，但我們仍需撰寫大量 `unsafe` 程式碼並小心推理，而且可能會不"
+"必要地使用臨界區。由於每個臨界區會暫停中斷處理，因此會帶來額外的程式碼大小成"
+"本，以及更高的中斷延遲與抖動（中斷可能需要更久才被處理，且等待時間更不穩"
+"定）。這是否是問題取決於你的系統，但一般而言我們希望避免它。"
+
+#: src/concurrency/index.md:143
+msgid ""
+"It's worth noting that while a critical section guarantees no interrupts "
+"will fire, it does not provide an exclusivity guarantee on multi-core "
+"systems!  The other core could be happily accessing the same memory as your "
+"core, even without interrupts. You will need stronger synchronisation "
+"primitives if you are using multiple cores."
+msgstr ""
+"值得注意的是，臨界區雖然保證不會有中斷觸發，但在多核心系統上並不提供互斥保"
+"證！即使沒有中斷，其他核心也可能同時存取相同記憶體。如果你使用多核心，就需要"
+"更強的同步原語。"
+
+#: src/concurrency/index.md:149
+msgid "Atomic Access"
+msgstr "原子存取"
+
+#: src/concurrency/index.md:151
+msgid ""
+"On some platforms, special atomic instructions are available, which provide "
+"guarantees about read-modify-write operations. Specifically for Cortex-M: "
+"`thumbv6` (Cortex-M0, Cortex-M0+) only provide atomic load and store "
+"instructions, while `thumbv7` (Cortex-M3 and above) provide full Compare and "
+"Swap (CAS) instructions. These CAS instructions give an alternative to the "
+"heavy-handed disabling of all interrupts: we can attempt the increment, it "
+"will succeed most of the time, but if it was interrupted it will "
+"automatically retry the entire increment operation. These atomic operations "
+"are safe even across multiple cores."
+msgstr ""
+"在某些平台上，有特殊的原子指令，可為讀-改-寫操作提供保證。以 Cortex-M 為例："
+"`thumbv6`（Cortex-M0、Cortex-M0+）僅提供原子載入與儲存指令，而 `thumbv7`"
+"（Cortex-M3 及以上）提供完整的 Compare and Swap（CAS）指令。這些 CAS 指令可作"
+"為粗暴停用所有中斷的替代方案：我們可嘗試遞增，大多時候會成功；若被中斷，它會"
+"自動重試整個遞增操作。這些原子操作即使跨多核心也安全。"
+
+#: src/concurrency/index.md:173
+msgid "// Use `fetch_add` to atomically add 1 to COUNTER\n"
+msgstr "// 使用 `fetch_add` 以原子方式將 COUNTER 加 1\n"
+
+#: src/concurrency/index.md:182
+msgid "// Use `store` to write 0 directly to COUNTER\n"
+msgstr "// 使用 `store` 直接將 0 寫入 COUNTER\n"
+
+#: src/concurrency/index.md:187
+msgid ""
+"This time `COUNTER` is a safe `static` variable. Thanks to the `AtomicUsize` "
+"type `COUNTER` can be safely modified from both the interrupt handler and "
+"the main thread without disabling interrupts. When possible, this is a "
+"better solution — but it may not be supported on your platform."
+msgstr ""
+"此時 `COUNTER` 是安全的 `static` 變數。多虧 `AtomicUsize` 型別，`COUNTER`可在"
+"不中斷的情況下由中斷處理器與主執行緒安全地修改。若可行，這是更好的解決方案——"
+"但你的平台可能不支援。"
+
+#: src/concurrency/index.md:192
+msgid ""
+"A note on [`Ordering`](https://doc.rust-lang.org/core/sync/atomic/enum."
+"Ordering.html): this affects how the compiler and hardware may reorder "
+"instructions, and also has consequences on cache visibility. Assuming that "
+"the target is a single core platform `Relaxed` is sufficient and the most "
+"efficient choice in this particular case. Stricter ordering will cause the "
+"compiler to emit memory barriers around the atomic operations; depending on "
+"what you're using atomics for you may or may not need this! The precise "
+"details of the atomic model are complicated and best described elsewhere."
+msgstr ""
+"關於 [`Ordering`](https://doc.rust-lang.org/core/sync/atomic/enum.Ordering."
+"html)：它會影響編譯器與硬體可能重排序指令的方式，並且會影響快取可見性。假設目"
+"標是單核心平台，在此情況下 `Relaxed` 足夠且最有效率。更嚴格的排序會讓編譯器在"
+"原子操作周圍插入記憶體屏障；視你使用原子的目的而定，可能需要也可能不需要。原"
+"子模型的精確細節相當複雜，最好參考其他資料。"
+
+#: src/concurrency/index.md:200
+msgid ""
+"For more details on atomics and ordering, see the [nomicon](https://doc.rust-"
+"lang.org/nomicon/atomics.html)."
+msgstr ""
+"更多關於原子操作與排序的細節，請參考 [nomicon](https://doc.rust-lang.org/"
+"nomicon/atomics.html)。"
+
+#: src/concurrency/index.md:206
+msgid "Abstractions, Send, and Sync"
+msgstr "抽象、Send 與 Sync"
+
+#: src/concurrency/index.md:208
+msgid ""
+"None of the above solutions are especially satisfactory. They require "
+"`unsafe` blocks which must be very carefully checked and are not ergonomic. "
+"Surely we can do better in Rust!"
+msgstr ""
+"上述解法都不算理想。它們需要 `unsafe` 區塊，必須非常仔細地檢查，且不夠易用。"
+"我們在 Rust 中一定能做得更好！"
+
+#: src/concurrency/index.md:212
+msgid ""
+"We can abstract our counter into a safe interface which can be safely used "
+"anywhere else in our code. For this example, we'll use the critical-section "
+"counter, but you could do something very similar with atomics."
+msgstr ""
+"我們可以把計數器抽象成安全的介面，讓程式其他地方都能安全使用。此例中我們會使"
+"用臨界區計數器，但用原子操作也能做出很相似的作法。"
+
+#: src/concurrency/index.md:219
+msgid ""
+"// Our counter is just a wrapper around UnsafeCell<u32>, which is the heart\n"
+"// of interior mutability in Rust. By using interior mutability, we can "
+"have\n"
+"// COUNTER be `static` instead of `static mut`, but still able to mutate\n"
+"// its counter value.\n"
+msgstr ""
+"// 我們的計數器只是對 UnsafeCell<u32> 的包裝，這是 Rust 內部可變性的核心\n"
+"// 透過內部可變性，我們可以讓 COUNTER 成為 `static` 而不是 `static mut`，但\n"
+"// 仍可變更其計數值。\n"
+
+#: src/concurrency/index.md:230
+msgid ""
+"// By requiring a CriticalSection be passed in, we know we must\n"
+"        // be operating inside a CriticalSection, and so can confidently\n"
+"        // use this unsafe block (required to call UnsafeCell::get).\n"
+msgstr ""
+"// 透過要求傳入 CriticalSection，我們知道必須\n"
+"        // 在臨界區內操作，因此可以放心使用這個 unsafe 區塊（呼叫\n"
+"        // UnsafeCell::get 所必需）。\n"
+
+#: src/concurrency/index.md:240
+msgid "// Required to allow static CSCounter. See explanation below.\n"
+msgstr "// 允許 static CSCounter 所需，詳見下方說明。\n"
+
+#: src/concurrency/index.md:243
+msgid ""
+"// COUNTER is no longer `mut` as it uses interior mutability;\n"
+"// therefore it also no longer requires unsafe blocks to access.\n"
+msgstr ""
+"// COUNTER 因使用內部可變性而不再是 `mut`；\n"
+"// 因此存取它也不再需要 unsafe 區塊。\n"
+
+#: src/concurrency/index.md:255
+msgid "// No unsafe here!\n"
+msgstr "// 這裡沒有 unsafe！\n"
+
+#: src/concurrency/index.md:264
+msgid ""
+"// We do need to enter a critical section here just to obtain a valid\n"
+"    // cs token, even though we know no other interrupt could pre-empt\n"
+"    // this one.\n"
+msgstr ""
+"// 我們仍需進入臨界區才能取得有效的 cs token，\n"
+"    // 即便我們知道沒有其他中斷能搶占這個中斷。\n"
+
+#: src/concurrency/index.md:269
+msgid ""
+"// We could use unsafe code to generate a fake CriticalSection if we\n"
+"    // really wanted to, avoiding the overhead:\n"
+"    // let cs = unsafe { interrupt::CriticalSection::new() };\n"
+msgstr ""
+"// 如果真的想避免開銷，我們可以用 unsafe 產生假的 CriticalSection：\n"
+"    // let cs = unsafe { interrupt::CriticalSection::new() };\n"
+
+#: src/concurrency/index.md:275
+msgid ""
+"We've moved our `unsafe` code to inside our carefully-planned abstraction, "
+"and now our application code does not contain any `unsafe` blocks."
+msgstr ""
+"我們把 `unsafe` 程式碼移到精心設計的抽象內部，現在應用程式碼不再含有任何 "
+"`unsafe` 區塊。"
+
+#: src/concurrency/index.md:278
+msgid ""
+"This design requires that the application pass a `CriticalSection` token in: "
+"these tokens are only safely generated by `interrupt::free`, so by requiring "
+"one be passed in, we ensure we are operating inside a critical section, "
+"without having to actually do the lock ourselves. This guarantee is provided "
+"statically by the compiler: there won't be any runtime overhead associated "
+"with `cs`. If we had multiple counters, they could all be given the same "
+"`cs`, without requiring multiple nested critical sections."
+msgstr ""
+
+#: src/concurrency/index.md:286
+msgid ""
+"This also brings up an important topic for concurrency in Rust: the [`Send` "
+"and `Sync`](https://doc.rust-lang.org/nomicon/send-and-sync.html) traits. To "
+"summarise the Rust book, a type is Send when it can safely be moved to "
+"another thread, while it is Sync when it can be safely shared between "
+"multiple threads. In an embedded context, we consider interrupts to be "
+"executing in a separate thread to the application code, so variables "
+"accessed by both an interrupt and the main code must be Sync."
+msgstr ""
+
+#: src/concurrency/index.md:296
+msgid ""
+"For most types in Rust, both of these traits are automatically derived for "
+"you by the compiler. However, because `CSCounter` contains an [`UnsafeCell`]"
+"(https://doc.rust-lang.org/core/cell/struct.UnsafeCell.html), it is not "
+"Sync, and therefore we could not make a `static CSCounter`: `static` "
+"variables _must_ be Sync, since they can be accessed by multiple threads."
+msgstr ""
+
+#: src/concurrency/index.md:303
+msgid ""
+"To tell the compiler we have taken care that the `CSCounter` is in fact safe "
+"to share between threads, we implement the Sync trait explicitly. As with "
+"the previous use of critical sections, this is only safe on single-core "
+"platforms: with multiple cores, you would need to go to greater lengths to "
+"ensure safety."
+msgstr ""
+
+#: src/concurrency/index.md:308
+msgid "Mutexes"
+msgstr ""
+
+#: src/concurrency/index.md:310
+msgid ""
+"We've created a useful abstraction specific to our counter problem, but "
+"there are many common abstractions used for concurrency."
+msgstr ""
+
+#: src/concurrency/index.md:313
+msgid ""
+"One such _synchronisation primitive_ is a mutex, short for mutual exclusion. "
+"These constructs ensure exclusive access to a variable, such as our counter. "
+"A thread can attempt to _lock_ (or _acquire_) the mutex, and either succeeds "
+"immediately, or blocks waiting for the lock to be acquired, or returns an "
+"error that the mutex could not be locked. While that thread holds the lock, "
+"it is granted access to the protected data. When the thread is done, it "
+"_unlocks_ (or _releases_) the mutex, allowing another thread to lock it. In "
+"Rust, we would usually implement the unlock using the [`Drop`](https://doc."
+"rust-lang.org/core/ops/trait.Drop.html) trait to ensure it is always "
+"released when the mutex goes out of scope."
+msgstr ""
+
+#: src/concurrency/index.md:325
+msgid ""
+"Using a mutex with interrupt handlers can be tricky: it is not normally "
+"acceptable for the interrupt handler to block, and it would be especially "
+"disastrous for it to block waiting for the main thread to release a lock, "
+"since we would then _deadlock_ (the main thread will never release the lock "
+"because execution stays in the interrupt handler). Deadlocking is not "
+"considered unsafe: it is possible even in safe Rust."
+msgstr ""
+
+#: src/concurrency/index.md:332
+msgid ""
+"To avoid this behaviour entirely, we could implement a mutex which requires "
+"a critical section to lock, just like our counter example. So long as the "
+"critical section must last as long as the lock, we can be sure we have "
+"exclusive access to the wrapped variable without even needing to track the "
+"lock/unlock state of the mutex."
+msgstr ""
+
+#: src/concurrency/index.md:338
+msgid ""
+"This is in fact done for us in the `cortex_m` crate! We could have written "
+"our counter using it:"
+msgstr ""
+
+#: src/concurrency/index.md:363
+msgid ""
+"// We still need to enter a critical section here to satisfy the Mutex.\n"
+msgstr ""
+
+#: src/concurrency/index.md:368
+msgid ""
+"We're now using [`Cell`](https://doc.rust-lang.org/core/cell/struct.Cell."
+"html), which along with its sibling `RefCell` is used to provide safe "
+"interior mutability. We've already seen `UnsafeCell` which is the bottom "
+"layer of interior mutability in Rust: it allows you to obtain multiple "
+"mutable references to its value, but only with unsafe code. A `Cell` is like "
+"an `UnsafeCell` but it provides a safe interface: it only permits taking a "
+"copy of the current value or replacing it, not taking a reference, and since "
+"it is not Sync, it cannot be shared between threads. These constraints mean "
+"it's safe to use, but we couldn't use it directly in a `static` variable as "
+"a `static` must be Sync."
+msgstr ""
+
+#: src/concurrency/index.md:380
+msgid ""
+"So why does the example above work? The `Mutex<T>` implements Sync for any "
+"`T` which is Send — such as a `Cell`. It can do this safely because it only "
+"gives access to its contents during a critical section. We're therefore able "
+"to get a safe counter with no unsafe code at all!"
+msgstr ""
+
+#: src/concurrency/index.md:385
+msgid ""
+"This is great for simple types like the `u32` of our counter, but what about "
+"more complex types which are not Copy? An extremely common example in an "
+"embedded context is a peripheral struct, which generally is not Copy. For "
+"that, we can turn to `RefCell`."
+msgstr ""
+
+#: src/concurrency/index.md:390
+msgid "Sharing Peripherals"
+msgstr ""
+
+#: src/concurrency/index.md:392
+msgid ""
+"Device crates generated using `svd2rust` and similar abstractions provide "
+"safe access to peripherals by enforcing that only one instance of the "
+"peripheral struct can exist at a time. This ensures safety, but makes it "
+"difficult to access a peripheral from both the main thread and an interrupt "
+"handler."
+msgstr ""
+
+#: src/concurrency/index.md:398
+msgid ""
+"To safely share peripheral access, we can use the `Mutex` we saw before. "
+"We'll also need to use [`RefCell`](https://doc.rust-lang.org/core/cell/"
+"struct.RefCell.html), which uses a runtime check to ensure only one "
+"reference to a peripheral is given out at a time. This has more overhead "
+"than the plain `Cell`, but since we are giving out references rather than "
+"copies, we must be sure only one exists at a time."
+msgstr ""
+
+#: src/concurrency/index.md:406
+msgid ""
+"Finally, we'll also have to account for somehow moving the peripheral into "
+"the shared variable after it has been initialised in the main code. To do "
+"this we can use the `Option` type, initialised to `None` and later set to "
+"the instance of the peripheral."
+msgstr ""
+
+#: src/concurrency/index.md:421
+msgid ""
+"// Obtain the peripheral singletons and configure it.\n"
+"    // This example is from an svd2rust-generated crate, but\n"
+"    // most embedded device crates will be similar.\n"
+msgstr ""
+
+#: src/concurrency/index.md:427
+msgid ""
+"// Some sort of configuration function.\n"
+"    // Assume it sets PA0 to an input and PA1 to an output.\n"
+msgstr ""
+
+#: src/concurrency/index.md:431
+msgid "// Store the GPIOA in the mutex, moving it.\n"
+msgstr ""
+
+#: src/concurrency/index.md:433
+msgid ""
+"// We can no longer use `gpioa` or `dp.GPIOA`, and instead have to\n"
+"    // access it via the mutex.\n"
+msgstr ""
+
+#: src/concurrency/index.md:436
+msgid ""
+"// Be careful to enable the interrupt only after setting MY_GPIO:\n"
+"    // otherwise the interrupt might fire while it still contains None,\n"
+"    // and as-written (with `unwrap()`), it would panic.\n"
+msgstr ""
+
+#: src/concurrency/index.md:442
+msgid "// We'll now read state as a digital input, via the mutex\n"
+msgstr ""
+
+#: src/concurrency/index.md:449
+msgid "// Set PA1 high if we've seen a rising edge on PA0.\n"
+msgstr ""
+
+#: src/concurrency/index.md:461
+msgid "// This time in the interrupt we'll just clear PA0.\n"
+msgstr ""
+
+#: src/concurrency/index.md:463
+msgid ""
+"// We can use `unwrap()` because we know the interrupt wasn't enabled\n"
+"        // until after MY_GPIO was set; otherwise we should handle the "
+"potential\n"
+"        // for a None value.\n"
+msgstr ""
+
+#: src/concurrency/index.md:472
+msgid "That's quite a lot to take in, so let's break down the important lines."
+msgstr ""
+
+#: src/concurrency/index.md:479
+msgid ""
+"Our shared variable is now a `Mutex` around a `RefCell` which contains an "
+"`Option`. The `Mutex` ensures we only have access during a critical section, "
+"and therefore makes the variable Sync, even though a plain `RefCell` would "
+"not be Sync. The `RefCell` gives us interior mutability with references, "
+"which we'll need to use our `GPIOA`. The `Option` lets us initialise this "
+"variable to something empty, and only later actually move the variable in. "
+"We cannot access the peripheral singleton statically, only at runtime, so "
+"this is required."
+msgstr ""
+
+#: src/concurrency/index.md:492
+msgid ""
+"Inside a critical section we can call `borrow()` on the mutex, which gives "
+"us a reference to the `RefCell`. We then call `replace()` to move our new "
+"value into the `RefCell`."
+msgstr ""
+
+#: src/concurrency/index.md:503
+msgid ""
+"Finally, we use `MY_GPIO` in a safe and concurrent fashion. The critical "
+"section prevents the interrupt firing as usual, and lets us borrow the "
+"mutex.  The `RefCell` then gives us an `&Option<GPIOA>`, and tracks how long "
+"it remains borrowed - once that reference goes out of scope, the `RefCell` "
+"will be updated to indicate it is no longer borrowed."
+msgstr ""
+
+#: src/concurrency/index.md:509
+msgid ""
+"Since we can't move the `GPIOA` out of the `&Option`, we need to convert it "
+"to an `&Option<&GPIOA>` with `as_ref()`, which we can finally `unwrap()` to "
+"obtain the `&GPIOA` which lets us modify the peripheral."
+msgstr ""
+
+#: src/concurrency/index.md:513
+msgid ""
+"If we need a mutable reference to a shared resource, then `borrow_mut` and "
+"`deref_mut` should be used instead. The following code shows an example "
+"using the TIM2 timer."
+msgstr ""
+
+#: src/concurrency/index.md:531
+msgid ""
+"// Some sort of timer configuration function.\n"
+"    // Assume it configures the TIM2 timer, its NVIC interrupt,\n"
+"    // and finally starts the timer.\n"
+msgstr ""
+
+#: src/concurrency/index.md:556
+msgid ""
+"Whew! This is safe, but it is also a little unwieldy. Is there anything else "
+"we can do?"
+msgstr ""
+
+#: src/concurrency/index.md:559
+msgid "RTIC"
+msgstr ""
+
+#: src/concurrency/index.md:561
+msgid ""
+"One alternative is the [RTIC framework](https://github.com/rtic-rs/cortex-m-"
+"rtic), short for Real Time Interrupt-driven Concurrency. It enforces static "
+"priorities and tracks accesses to `static mut` variables (\"resources\") to "
+"statically ensure that shared resources are always accessed safely, without "
+"requiring the overhead of always entering critical sections and using "
+"reference counting (as in `RefCell`). This has a number of advantages such "
+"as guaranteeing no deadlocks and giving extremely low time and memory "
+"overhead."
+msgstr ""
+
+#: src/concurrency/index.md:570
+msgid ""
+"The framework also includes other features like message passing, which "
+"reduces the need for explicit shared state, and the ability to schedule "
+"tasks to run at a given time, which can be used to implement periodic tasks. "
+"Check out [the documentation](https://rtic.rs) for more information!"
+msgstr ""
+
+#: src/concurrency/index.md:577
+msgid "Real Time Operating Systems"
+msgstr ""
+
+#: src/concurrency/index.md:579
+msgid ""
+"Another common model for embedded concurrency is the real-time operating "
+"system (RTOS). While currently less well explored in Rust, they are widely "
+"used in traditional embedded development. Open source examples include "
+"[FreeRTOS](https://freertos.org/) and [ChibiOS](http://chibios.org/). These "
+"RTOSs provide support for running multiple application threads which the CPU "
+"swaps between, either when the threads yield control (called cooperative "
+"multitasking) or based on a regular timer or interrupts (preemptive "
+"multitasking). The RTOS typically provide mutexes and other synchronisation "
+"primitives, and often interoperate with hardware features such as DMA "
+"engines."
+msgstr ""
+
+#: src/concurrency/index.md:591
+msgid ""
+"At the time of writing, there are not many Rust RTOS examples to point to, "
+"but it's an interesting area so watch this space!"
+msgstr ""
+
+#: src/concurrency/index.md:594
+msgid "Multiple Cores"
+msgstr ""
+
+#: src/concurrency/index.md:596
+msgid ""
+"It is becoming more common to have two or more cores in embedded processors, "
+"which adds an extra layer of complexity to concurrency. All the examples "
+"using a critical section (including the `cortex_m::interrupt::Mutex`) assume "
+"the only other execution thread is the interrupt thread, but on a multi-core "
+"system that's no longer true. Instead, we'll need synchronisation primitives "
+"designed for multiple cores (also called SMP, for symmetric multi-"
+"processing)."
+msgstr ""
+
+#: src/concurrency/index.md:603
+msgid ""
+"These typically use the atomic instructions we saw earlier, since the "
+"processing system will ensure that atomicity is maintained over all cores."
+msgstr ""
+
+#: src/concurrency/index.md:606
+msgid ""
+"Covering these topics in detail is currently beyond the scope of this book, "
+"but the general patterns are the same as for the single-core case."
+msgstr ""
