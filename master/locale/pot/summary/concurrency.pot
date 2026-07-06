@@ -1,14 +1,14 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Embedded Rust Book\n"
-"POT-Creation-Date: 2025-12-02T17:24:39Z\n"
+"POT-Creation-Date: 2026-06-30T11:08:47Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: src/concurrency/index.md:1
@@ -570,17 +570,23 @@ msgstr ""
 
 #: src/concurrency/index.md:561
 msgid ""
-"One alternative is the [RTIC framework](https://github.com/rtic-rs/cortex-m-"
-"rtic), short for Real Time Interrupt-driven Concurrency. It enforces static "
-"priorities and tracks accesses to `static mut` variables (\"resources\") to "
-"statically ensure that shared resources are always accessed safely, without "
-"requiring the overhead of always entering critical sections and using "
-"reference counting (as in `RefCell`). This has a number of advantages such "
-"as guaranteeing no deadlocks and giving extremely low time and memory "
-"overhead."
+"One alternative is the [RTIC framework](https://rtic.rs/2/book/en), short "
+"for Real Time Interrupt-driven Concurrency. It enforces static priorities "
+"and tracks accesses to `static mut` variables (\"resources\") to statically "
+"ensure that shared resources are always accessed safely, without requiring "
+"the overhead of always entering critical sections and using reference "
+"counting (as in `RefCell`). This has a number of advantages such as "
+"guaranteeing no deadlocks and giving extremely low time and memory overhead."
 msgstr ""
 
 #: src/concurrency/index.md:570
+msgid ""
+"RTIC comes with as asynchronous executor, so your software tasks are `async` "
+"functions where you can use `async` APIs in addition to regular synchronous "
+"APIs."
+msgstr ""
+
+#: src/concurrency/index.md:573
 msgid ""
 "The framework also includes other features like message passing, which "
 "reduces the need for explicit shared state, and the ability to schedule "
@@ -588,11 +594,49 @@ msgid ""
 "Check out [the documentation](https://rtic.rs) for more information!"
 msgstr ""
 
-#: src/concurrency/index.md:577
+#: src/concurrency/index.md:580
+msgid "Embassy"
+msgstr ""
+
+#: src/concurrency/index.md:582
+msgid ""
+"Embassy is an ecosystem of libraries which focus on using the `async` / "
+"`await` syntax included in Rust for concurrency. The core of embassy is its "
+"[asynchronous executor](https://docs.rs/embassy-executor/latest/"
+"embassy_executor/) which supports most common MCU architectures."
+msgstr ""
+
+#: src/concurrency/index.md:586
+msgid ""
+"embassy also takes a battery-included approach and offers many other "
+"components, for example:"
+msgstr ""
+
+#: src/concurrency/index.md:588
+msgid "[Time library](https://docs.rs/embassy-time/latest/embassy_time/)"
+msgstr ""
+
+#: src/concurrency/index.md:589
+msgid "Various HAL libraries which also provide the time library support."
+msgstr ""
+
+#: src/concurrency/index.md:590
+msgid ""
+"[embassy-sync](https://docs.embassy.dev/embassy-sync/git/default/index.html) "
+"for synchronization primitives"
+msgstr ""
+
+#: src/concurrency/index.md:592
+msgid ""
+"You can check the [website](https://embassy.dev/) and the [book](https://"
+"embassy.dev/book/) for more information."
+msgstr ""
+
+#: src/concurrency/index.md:595
 msgid "Real Time Operating Systems"
 msgstr ""
 
-#: src/concurrency/index.md:579
+#: src/concurrency/index.md:597
 msgid ""
 "Another common model for embedded concurrency is the real-time operating "
 "system (RTOS). While currently less well explored in Rust, they are widely "
@@ -606,17 +650,17 @@ msgid ""
 "engines."
 msgstr ""
 
-#: src/concurrency/index.md:591
+#: src/concurrency/index.md:609
 msgid ""
 "At the time of writing, there are not many Rust RTOS examples to point to, "
 "but it's an interesting area so watch this space!"
 msgstr ""
 
-#: src/concurrency/index.md:594
+#: src/concurrency/index.md:612
 msgid "Multiple Cores"
 msgstr ""
 
-#: src/concurrency/index.md:596
+#: src/concurrency/index.md:614
 msgid ""
 "It is becoming more common to have two or more cores in embedded processors, "
 "which adds an extra layer of complexity to concurrency. All the examples "
@@ -627,13 +671,13 @@ msgid ""
 "processing)."
 msgstr ""
 
-#: src/concurrency/index.md:603
+#: src/concurrency/index.md:621
 msgid ""
 "These typically use the atomic instructions we saw earlier, since the "
 "processing system will ensure that atomicity is maintained over all cores."
 msgstr ""
 
-#: src/concurrency/index.md:606
+#: src/concurrency/index.md:624
 msgid ""
 "Covering these topics in detail is currently beyond the scope of this book, "
 "but the general patterns are the same as for the single-core case."
