@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: The Embedded Rust Book\n"
-"POT-Creation-Date: 2025-12-02T17:24:38Z\n"
+"POT-Creation-Date: 2026-06-30T11:08:47Z\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -204,7 +204,7 @@ msgid ""
 msgstr ""
 
 #: src/intro/index.md:63
-msgid "Teaching material for a 1-day class on bare-metal Rust development"
+msgid "Teaching material for a 4-day class on bare-metal Rust development"
 msgstr ""
 
 #: src/intro/index.md:64
