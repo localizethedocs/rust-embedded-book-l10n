@@ -404,6 +404,3 @@ msgstr "說明是否對素材做過任何變更，並將你對素材的修改以
 #: src/intro/index.md:131
 msgid "Also, please do let us know if you find this book useful!"
 msgstr "如果你覺得本書有幫助，也請務必讓我們知道！"
-
-#~ msgid "Teaching material for a 1-day class on bare-metal Rust development"
-#~ msgstr "裸機 Rust 開發 1 日課程的教學教材"

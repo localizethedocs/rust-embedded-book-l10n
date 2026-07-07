@@ -182,6 +182,3 @@ msgstr "數學運算功能"
 #: src/SUMMARY.md:59
 msgid "Appendix A: Glossary"
 msgstr "附錄 A：詞彙表"
-
-#~ msgid "IO"
-#~ msgstr "I/O"
