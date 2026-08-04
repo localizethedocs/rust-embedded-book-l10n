@@ -21,7 +21,7 @@ msgstr ""
 
 #: src/SUMMARY.md:13 src/SUMMARY.md:23
 msgid "Hardware"
-msgstr ""
+msgstr "硬件"
 
 #: src/SUMMARY.md:14
 msgid "`no_std`"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: src/SUMMARY.md:16
 msgid "Installation"
-msgstr ""
+msgstr "安装"
 
 #: src/SUMMARY.md:17
 msgid "Linux"
@@ -77,7 +77,7 @@ msgstr ""
 
 #: src/SUMMARY.md:28
 msgid "Interrupts"
-msgstr ""
+msgstr "中断"
 
 #: src/SUMMARY.md:29
 msgid "Peripherals"
@@ -129,7 +129,7 @@ msgstr ""
 
 #: src/SUMMARY.md:41
 msgid "Design Patterns"
-msgstr ""
+msgstr "设计模式"
 
 #: src/SUMMARY.md:42
 msgid "HALs"

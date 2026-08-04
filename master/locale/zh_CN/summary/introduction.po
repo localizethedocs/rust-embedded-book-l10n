@@ -113,7 +113,7 @@ msgstr ""
 
 #: src/intro/index.md:50 src/intro/index.md:64
 msgid "Interrupts"
-msgstr ""
+msgstr "中断"
 
 #: src/intro/index.md:51
 msgid "Common interfaces such as I2C, SPI, Serial, etc."
