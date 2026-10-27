@@ -114,8 +114,9 @@ msgstr ""
 
 #: src/appendix/glossary.md:56
 msgid ""
-"Universal asynchronous receiver-transmitter. See [here](https://en.wikipedia."
-"org/wiki/Universal_asynchronous_receiver-transmitter) for more information."
+"Universal asynchronous receiver-transmitter. See [here](https://"
+"en.wikipedia.org/wiki/Universal_asynchronous_receiver-transmitter) for more "
+"information."
 msgstr ""
 
 #: src/appendix/glossary.md:60

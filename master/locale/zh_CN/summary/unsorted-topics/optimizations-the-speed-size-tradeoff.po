@@ -70,8 +70,8 @@ msgstr ""
 
 #: src/unsorted/speed-vs-size.md:40
 msgid ""
-"There's a Cargo feature named [`profile-overrides`](https://doc.rust-lang."
-"org/cargo/reference/profiles.html#overrides) that lets you override the "
+"There's a Cargo feature named [`profile-overrides`](https://doc.rust-"
+"lang.org/cargo/reference/profiles.html#overrides) that lets you override the "
 "optimization level of dependencies. You can use that feature to optimize all "
 "dependencies for size while keeping the top crate unoptimized and debugger "
 "friendly."
@@ -233,8 +233,8 @@ msgstr ""
 #: src/unsorted/speed-vs-size.md:169
 msgid ""
 "What value to use? [As of 1.29.0 these are the inline thresholds that the "
-"different optimization levels use](https://github.com/rust-lang/rust/"
-"blob/1.29.0/src/librustc_codegen_llvm/back/write.rs#L2105-L2122):"
+"different optimization levels use](https://github.com/rust-lang/rust/blob/"
+"1.29.0/src/librustc_codegen_llvm/back/write.rs#L2105-L2122):"
 msgstr ""
 
 #: src/unsorted/speed-vs-size.md:174

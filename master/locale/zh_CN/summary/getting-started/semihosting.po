@@ -51,8 +51,8 @@ msgid ""
 "QEMU understands semihosting operations so the above program will also work "
 "with `qemu-system-arm` without having to start a debug session. Note that "
 "you'll need to pass the `-semihosting-config` flag to QEMU to enable "
-"semihosting support; these flags are already included in the `.cargo/config."
-"toml` file of the template."
+"semihosting support; these flags are already included in the `.cargo/"
+"config.toml` file of the template."
 msgstr ""
 
 #: src/start/semihosting.md:61
@@ -104,8 +104,9 @@ msgstr ""
 
 #: src/start/semihosting.md:134
 msgid ""
-"**NOTE**: To enable this feature on `panic-semihosting`, edit your `Cargo."
-"toml` dependencies section where `panic-semihosting` is specified with:"
+"**NOTE**: To enable this feature on `panic-semihosting`, edit your "
+"`Cargo.toml` dependencies section where `panic-semihosting` is specified "
+"with:"
 msgstr ""
 
 #: src/start/semihosting.md:137

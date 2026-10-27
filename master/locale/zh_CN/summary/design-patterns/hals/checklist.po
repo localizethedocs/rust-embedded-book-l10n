@@ -38,14 +38,14 @@ msgstr ""
 
 #: src/design-patterns/hal/checklist.md:7
 msgid ""
-"HALs reexport their register access crate ([C-REEXPORT-PAC](interoperability."
-"html#c-reexport-pac))"
+"HALs reexport their register access crate ([C-REEXPORT-PAC]"
+"(interoperability.html#c-reexport-pac))"
 msgstr ""
 
 #: src/design-patterns/hal/checklist.md:8
 msgid ""
-"Types implement the `embedded-hal` traits ([C-HAL-TRAITS](interoperability."
-"html#c-hal-traits))"
+"Types implement the `embedded-hal` traits ([C-HAL-TRAITS]"
+"(interoperability.html#c-hal-traits))"
 msgstr ""
 
 #: src/design-patterns/hal/checklist.md:9
@@ -55,8 +55,8 @@ msgstr ""
 
 #: src/design-patterns/hal/checklist.md:10
 msgid ""
-"Constructors are used instead of extension traits ([C-CTOR](predictability."
-"html#c-ctor))"
+"Constructors are used instead of extension traits ([C-CTOR]"
+"(predictability.html#c-ctor))"
 msgstr ""
 
 #: src/design-patterns/hal/checklist.md:11

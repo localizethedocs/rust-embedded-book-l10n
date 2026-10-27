@@ -71,11 +71,11 @@ msgstr ""
 #: src/start/interrupts.md:22
 msgid ""
 "Similarly to exceptions, the cortex-m-rt crate exposes an [`interrupt`]"
-"(https://docs.rs/cortex-m-rt-macros/0.1.5/cortex_m_rt_macros/attr.interrupt."
-"html) attribute for declaring interrupt handlers. However, this attribute is "
-"only available when the device feature is enabled. That said, this attribute "
-"is not intended to be used directly—doing so will result in a compilation "
-"error."
+"(https://docs.rs/cortex-m-rt-macros/0.1.5/cortex_m_rt_macros/"
+"attr.interrupt.html) attribute for declaring interrupt handlers. However, "
+"this attribute is only available when the device feature is enabled. That "
+"said, this attribute is not intended to be used directly—doing so will "
+"result in a compilation error."
 msgstr ""
 
 #: src/start/interrupts.md:26

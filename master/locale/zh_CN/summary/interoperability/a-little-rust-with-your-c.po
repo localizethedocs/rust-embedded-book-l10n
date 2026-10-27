@@ -158,8 +158,8 @@ msgstr ""
 
 #: src/interoperability/rust-with-c.md:93
 msgid ""
-"There is a tool to automate this process, called [cbindgen](https://github."
-"com/eqrion/cbindgen) which analyses your Rust code and then generates "
+"There is a tool to automate this process, called [cbindgen](https://"
+"github.com/eqrion/cbindgen) which analyses your Rust code and then generates "
 "headers for your C and C++ projects from it."
 msgstr ""
 

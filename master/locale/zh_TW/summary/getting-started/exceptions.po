@@ -42,8 +42,8 @@ msgstr ""
 msgid ""
 "Other than the `exception` attribute exception handlers look like plain "
 "functions but there's one more difference: `exception` handlers can _not_ be "
-"called by software. Following the previous example, the statement `SysTick();"
-"` would result in a compilation error."
+"called by software. Following the previous example, the statement "
+"`SysTick();` would result in a compilation error."
 msgstr ""
 
 #: src/start/exceptions.md:26

@@ -195,10 +195,10 @@ msgstr ""
 msgid ""
 "Most Rust crates are built using Cargo (although it is not required). This "
 "takes care of many difficult problems with traditional build systems. "
-"However, you may wish to customise the build process. Cargo provides [`build."
-"rs` scripts](https://doc.rust-lang.org/cargo/reference/build-scripts.html) "
-"for this purpose. They are Rust scripts which can interact with the Cargo "
-"build system as required."
+"However, you may wish to customise the build process. Cargo provides "
+"[`build.rs` scripts](https://doc.rust-lang.org/cargo/reference/build-"
+"scripts.html) for this purpose. They are Rust scripts which can interact "
+"with the Cargo build system as required."
 msgstr ""
 
 #: src/c-tips/index.md:138
@@ -341,11 +341,11 @@ msgstr ""
 #: src/c-tips/index.md:230
 msgid ""
 "In Rust, instead of marking a variable as `volatile`, we use specific "
-"methods to perform volatile access: [`core::ptr::read_volatile`](https://doc."
-"rust-lang.org/core/ptr/fn.read_volatile.html) and [`core::ptr::"
-"write_volatile`](https://doc.rust-lang.org/core/ptr/fn.write_volatile.html). "
-"These methods take a `*const T` or a `*mut T` (_raw pointers_, as discussed "
-"above) and perform a volatile read or write."
+"methods to perform volatile access: [`core::ptr::read_volatile`](https://"
+"doc.rust-lang.org/core/ptr/fn.read_volatile.html) and "
+"[`core::ptr::write_volatile`](https://doc.rust-lang.org/core/ptr/"
+"fn.write_volatile.html). These methods take a `*const T` or a `*mut T` (_raw "
+"pointers_, as discussed above) and perform a volatile read or write."
 msgstr ""
 
 #: src/c-tips/index.md:238
@@ -402,8 +402,8 @@ msgid ""
 "usually be taken care of for you by higher-level libraries. For memory "
 "mapped peripherals, the peripheral access crates will implement volatile "
 "access automatically, while for concurrency primitives there are better "
-"abstractions available (see the [Concurrency chapter](../concurrency/index."
-"md))."
+"abstractions available (see the [Concurrency chapter](../concurrency/"
+"index.md))."
 msgstr ""
 
 #: src/c-tips/index.md:300
@@ -495,8 +495,8 @@ msgstr ""
 
 #: src/c-tips/index.md:405
 msgid ""
-"For further details on type layouts, refer to the [type layout](https://doc."
-"rust-lang.org/reference/type-layout.html) chapter of the Rust Reference."
+"For further details on type layouts, refer to the [type layout](https://"
+"doc.rust-lang.org/reference/type-layout.html) chapter of the Rust Reference."
 msgstr ""
 
 #: src/c-tips/index.md:410

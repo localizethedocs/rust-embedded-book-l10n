@@ -50,8 +50,8 @@ msgstr ""
 
 #: src/intro/index.md:17
 msgid ""
-"Share _current_ best practices about using Rust for embedded development. i."
-"e. How to best use Rust language features to write more correct embedded "
+"Share _current_ best practices about using Rust for embedded development. "
+"i.e. How to best use Rust language features to write more correct embedded "
 "software."
 msgstr ""
 
@@ -93,8 +93,8 @@ msgstr ""
 msgid ""
 "You are comfortable using the Rust Programming Language, and have written, "
 "run, and debugged Rust applications on a desktop environment. You should "
-"also be familiar with the idioms of the [2018 edition](https://doc.rust-lang."
-"org/edition-guide/) as this book targets Rust 2018."
+"also be familiar with the idioms of the [2018 edition](https://doc.rust-"
+"lang.org/edition-guide/) as this book targets Rust 2018."
 msgstr ""
 
 #: src/intro/index.md:46
@@ -229,9 +229,9 @@ msgstr ""
 
 #: src/intro/index.md:66
 msgid ""
-"[Stack Exchange about SPI, UART, and other interfaces](https://electronics."
-"stackexchange.com/questions/37814/usart-uart-rs232-usb-spi-i2c-ttl-etc-what-"
-"are-all-of-these-and-how-do-th)"
+"[Stack Exchange about SPI, UART, and other interfaces](https://"
+"electronics.stackexchange.com/questions/37814/usart-uart-rs232-usb-spi-i2c-"
+"ttl-etc-what-are-all-of-these-and-how-do-th)"
 msgstr ""
 
 #: src/intro/index.md:68
@@ -281,9 +281,9 @@ msgstr ""
 
 #: src/intro/index.md:93
 msgid ""
-"For this reason, we suggest purchasing the [STM32F3DISCOVERY](http://www.st."
-"com/en/evaluation-tools/stm32f3discovery.html) development board for the "
-"purpose of following the examples in this book."
+"For this reason, we suggest purchasing the [STM32F3DISCOVERY](http://"
+"www.st.com/en/evaluation-tools/stm32f3discovery.html) development board for "
+"the purpose of following the examples in this book."
 msgstr ""
 
 #: src/intro/index.md:98
@@ -320,9 +320,9 @@ msgstr ""
 #: src/intro/index.md:118
 msgid ""
 "The code samples and free-standing Cargo projects contained within this book "
-"are licensed under the terms of both the [MIT License](https://opensource."
-"org/licenses/MIT) and the [Apache License v2.0](http://www.apache.org/"
-"licenses/LICENSE-2.0)."
+"are licensed under the terms of both the [MIT License](https://"
+"opensource.org/licenses/MIT) and the [Apache License v2.0](http://"
+"www.apache.org/licenses/LICENSE-2.0)."
 msgstr ""
 
 #: src/intro/index.md:119

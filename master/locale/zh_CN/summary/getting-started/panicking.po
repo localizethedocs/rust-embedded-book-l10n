@@ -35,8 +35,9 @@ msgid ""
 "left undefined. A behavior can be chosen by declaring a `#[panic_handler]` "
 "function. This function must appear exactly _once_ in the dependency graph "
 "of a program, and must have the following signature: `fn(&PanicInfo) -> !`, "
-"where [`PanicInfo`](https://doc.rust-lang.org/core/panic/struct.PanicInfo."
-"html) is a struct containing information about the location of the panic."
+"where [`PanicInfo`](https://doc.rust-lang.org/core/panic/"
+"struct.PanicInfo.html) is a struct containing information about the location "
+"of the panic."
 msgstr ""
 
 #: src/start/panicking.md:19

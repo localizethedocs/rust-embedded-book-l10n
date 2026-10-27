@@ -105,8 +105,8 @@ msgstr ""
 
 #: src/start/hardware.md:52
 msgid ""
-"Step number one is to set a default compilation target in `.cargo/config."
-"toml`."
+"Step number one is to set a default compilation target in `.cargo/"
+"config.toml`."
 msgstr ""
 
 #: src/start/hardware.md:58
@@ -133,16 +133,16 @@ msgstr ""
 
 #: src/start/hardware.md:71
 msgid ""
-"The second step is to enter the memory region information into the `memory."
-"x` file."
+"The second step is to enter the memory region information into the "
+"`memory.x` file."
 msgstr ""
 
 #: src/start/hardware.md:84
 msgid ""
 "**NOTE**: If you for some reason changed the `memory.x` file after you had "
 "made the first build of a specific build target, then do `cargo clean` "
-"before `cargo build`, because `cargo build` may not track updates of `memory."
-"x`."
+"before `cargo build`, because `cargo build` may not track updates of "
+"`memory.x`."
 msgstr ""
 
 #: src/start/hardware.md:88
@@ -356,8 +356,8 @@ msgid ""
 "```toml\n"
 "[target.thumbv7m-none-eabi]\n"
 "# uncomment this to make `cargo run` execute programs on QEMU\n"
-"# runner = \"qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic -"
-"semihosting-config enable=on,target=native -kernel\"\n"
+"# runner = \"qemu-system-arm -cpu cortex-m3 -machine lm3s6965evb -nographic "
+"-semihosting-config enable=on,target=native -kernel\"\n"
 "\n"
 "[target.'cfg(all(target_arch = \"arm\", target_os = \"none\"))']\n"
 "# uncomment ONE of these three option to make `cargo run` start a GDB "

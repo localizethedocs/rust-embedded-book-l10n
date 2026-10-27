@@ -20,9 +20,9 @@ msgid ""
 "The concept of [typestates](https://en.wikipedia.org/wiki/"
 "Typestate_analysis) describes the encoding of information about the current "
 "state of an object into the type of that object. Although this can sound a "
-"little arcane, if you have used the [Builder Pattern](https://doc.rust-lang."
-"org/1.0.0/style/ownership/builders.html) in Rust, you have already started "
-"using Typestate Programming!"
+"little arcane, if you have used the [Builder Pattern](https://doc.rust-"
+"lang.org/1.0.0/style/ownership/builders.html) in Rust, you have already "
+"started using Typestate Programming!"
 msgstr ""
 
 #: src/static-guarantees/typestate-programming.md:48

@@ -98,8 +98,8 @@ msgstr ""
 
 #: src/peripherals/singletons.md:73
 msgid ""
-"[cortex_m docs](https://docs.rs/cortex-m/latest/cortex_m/macro.singleton."
-"html)"
+"[cortex_m docs](https://docs.rs/cortex-m/latest/cortex_m/"
+"macro.singleton.html)"
 msgstr ""
 
 #: src/peripherals/singletons.md:75
