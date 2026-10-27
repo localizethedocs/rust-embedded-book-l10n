@@ -1,5 +1,5 @@
 <div align="center">
-<h1 id="localization-of-the-rust-embedded-book">Localization of The Embedded Rust Book</h1>
+<h1 id="localization-of-the-rust-embedded-book">嵌入式 Rust 书册的本地化</h1>
 </div>
 
 <details><summary><strong>切换语言</strong></summary>
